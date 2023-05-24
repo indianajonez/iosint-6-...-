@@ -29,6 +29,7 @@ var window: UIWindow?
         tabBar.viewControllers = [createFeedViewController(), createLoginViewController()]
         return tabBar
     }
+    
 // 8. Внедрите зависимость контроллера LoginViewController от LoginInspector, то есть присвойте значение свойству делегата в классе SceneDelegate или AppDelegate.
     func createLoginViewController() -> UINavigationController {
         let login = LogInViewController()
@@ -40,11 +41,9 @@ var window: UIWindow?
         let loginReturn = UINavigationController(rootViewController: login)
         loginReturn.navigationController?.navigationBar.isHidden = true
         
-        
         return loginReturn
     }
 
-    
     func createFeedViewController() -> UINavigationController {
         let feed = FeedViewController()
         feed.tabBarItem.title = "Feed"
