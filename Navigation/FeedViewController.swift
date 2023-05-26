@@ -10,18 +10,10 @@ import StorageService
 
 class FeedViewController: UIViewController {
     
-    let feedmodel = FeedModel()
+    private let feedmodel = FeedModel()
     
-    let post = Post2(
-        title: "Название поста",
-        image: UIImage(named: "A316DE42"),
-        text: "текст внутри данного поста, очень длинный и важный"
-    )
+    private var feedViewModel: FeedViewModelProtocol
     
-    let postTwo = Post2(
-        title: "Second Post",
-        image: UIImage(named: "A316DE42"),
-        text: "Text for second post")
     
     private lazy var textField: UITextField = {
             let textField = UITextField()
@@ -39,10 +31,6 @@ class FeedViewController: UIViewController {
             return textField
         }()
     
-    private lazy var buttonOne: CustomButton = {
-            let button = CustomButton(title: "Post One", backgroundColor: .brown, navigation: navigationController)
-            return button
-        }()
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
@@ -56,8 +44,17 @@ class FeedViewController: UIViewController {
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        let button = CustomButton(title: "checkGuessButton", backgroundColor: .brown)
-        button.addTarget(self, action: #selector(check), for: .touchUpInside)
+        let button = CustomButton(title: "checkGuessButton", titleColor: .black, action: {
+            if self.feedmodel.check(word: self.textField.text ?? "nothing") {
+                self.labelCheck.text = "TRUE"
+                self.labelCheck.textColor = .green
+                self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            } else {
+                self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+                self.labelCheck.text = "FALSE"
+                self.labelCheck.textColor = .red
+            }
+        })
         button.layer.cornerRadius = 5
         return button
     }()
@@ -70,23 +67,34 @@ class FeedViewController: UIViewController {
         return label
     }()
     
-    @objc private func check() {
-        if self.feedmodel.check(word: textField.text ?? "nothing") {
-            self.labelCheck.text = "TRUE"
-            self.labelCheck.textColor = .green
-            self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-        } else {
-            self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-            self.labelCheck.text = "FALSE"
-            self.labelCheck.textColor = .red
-        }
-
-    }
+    private lazy var buttonOne: CustomButton = {
+        let button = CustomButton(title: "Post One", titleColor: .black, action: {
+            let postVC = PostViewController()
+            let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
+            postVC.setupPost(post)
+            self.navigationController?.pushViewController(postVC, animated: true)
+        })
+            return button
+        }()
     
     private lazy var buttonTwo: CustomButton = {
-        let button = CustomButton(title: "Post Two", backgroundColor: .brown, navigation: navigationController)
+        let button = CustomButton(title: "Post Two", titleColor: .black, action: {
+            let postVC = PostViewController()
+            let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
+            postVC.setupPost(post)
+            self.navigationController?.pushViewController(postVC, animated: true)
+        })
         return button
     }()
+    
+    init(viewModel: FeedViewModelProtocol) {
+        self.feedViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()

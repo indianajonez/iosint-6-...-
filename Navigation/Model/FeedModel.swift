@@ -9,7 +9,7 @@ import Foundation
 
 class FeedModel {
     
-    private var secretWord: String = "12345"
+    private var secretWord: String = "Пароль"
     
     func check(word: String) -> Bool {
         self.secretWord == word

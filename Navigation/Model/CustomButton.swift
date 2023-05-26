@@ -15,26 +15,32 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    private var title: String?
-    private var navigationController: UINavigationController?
+
+    private var buttonAction: ()->Void
     
-    convenience init(title:String? = "Title", titleColor: UIColor? = .black, backgroundColor: UIColor? = .black, navigation: UINavigationController? = UINavigationController()) {
-        self.init()
-        self.title = title
-        self.navigationController = navigation
-        self.setTitle(title, for: .normal)
-        self.backgroundColor = backgroundColor
+    init(title: String , titleColor: UIColor, action: @escaping () -> Void) {
+        self.buttonAction = action
+        super.init(frame: .zero)
+        
         self.translatesAutoresizingMaskIntoConstraints = false
+        self.setTitle(title, for: .normal)
+        self.setBackgroundImage(UIImage(named: "star.circle"), for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
+        self.layer.cornerRadius = 5.0
+        self.clipsToBounds = true
+        self.alpha = 1
         self.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
-    @objc private func buttonTapped(){
-        let postVC = PostViewController()
-        postVC.navigationItem.title = self.title
-        self.navigationController?.pushViewController(postVC, animated: true)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+    @objc private func buttonTapped(){
+        self.buttonAction()
+       }
 }
-
-
-
+    
+    
+    
 

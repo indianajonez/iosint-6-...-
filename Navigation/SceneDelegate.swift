@@ -45,7 +45,8 @@ var window: UIWindow?
     }
 
     func createFeedViewController() -> UINavigationController {
-        let feed = FeedViewController()
+        let viewModel = FeedViewModel()
+        let feed = FeedViewController(viewModel: viewModel)
         feed.tabBarItem.title = "Feed"
         feed.tabBarItem.image = UIImage(systemName: "rectangle.3.group.bubble.left")
         return UINavigationController(rootViewController: feed)
