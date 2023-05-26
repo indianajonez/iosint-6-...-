@@ -6,62 +6,96 @@
 //
 
 import UIKit
-import Foundation
 import StorageService
 
 class FeedViewController: UIViewController {
-
-    let post = Post2(
-        title: "Название поста",
-        image: UIImage(named: "A316DE42"),
-        text: "текст внутри данного поста, очень длинный и важный"
-    )
     
-    let postTwo = Post2(
-        title: "Second Post",
-        image: UIImage(named: "A316DE42"),
-        text: "Text for second post")
+    private let feedmodel = FeedModel()
+    
+    private var feedViewModel: FeedViewModelProtocol
+    
+    
+    private lazy var textField: UITextField = {
+            let textField = UITextField()
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            textField.layer.borderColor = UIColor.black.cgColor
+            textField.layer.borderWidth = 1
+            textField.layer.cornerRadius = 12
+            textField.layer.backgroundColor = UIColor.white.cgColor
+            textField.textColor = .black
+            textField.textAlignment = .left
+            textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
+            textField.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
+            textField.leftViewMode = .always
+            textField.placeholder = "Write the right word here.."
+            return textField
+        }()
+    
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
-        stack.distribution = .fillProportionally // fillProportionally
+        stack.distribution = .fillProportionally
         stack.spacing = 20.0
         stack.alignment = .fill
         
         return stack
     }()
     
-    private lazy var buttonOne: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .brown
-        button.setTitle("Post One", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(tapButtonViewPost), for: .touchUpInside)
+    private lazy var checkGuessButton: CustomButton = {
+        let button = CustomButton(title: "checkGuessButton", titleColor: .black, action: {
+            if self.feedmodel.check(word: self.textField.text ?? "nothing") {
+                self.labelCheck.text = "TRUE"
+                self.labelCheck.textColor = .green
+                self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+            } else {
+                self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
+                self.labelCheck.text = "FALSE"
+                self.labelCheck.textColor = .red
+            }
+        })
+        button.layer.cornerRadius = 5
         return button
     }()
     
-    private lazy var buttonTwo: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = .brown
-        button.setTitle("Post Two", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(tapButtonViewPostTwo), for: .touchUpInside)
+    private lazy var labelCheck: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .gray
+        label.layer.cornerRadius = 5
+        return label
+    }()
+    
+    private lazy var buttonOne: CustomButton = {
+        let button = CustomButton(title: "Post One", titleColor: .black, action: {
+            let postVC = PostViewController()
+            let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
+            postVC.setupPost(post)
+            self.navigationController?.pushViewController(postVC, animated: true)
+        })
+            return button
+        }()
+    
+    private lazy var buttonTwo: CustomButton = {
+        let button = CustomButton(title: "Post Two", titleColor: .black, action: {
+            let postVC = PostViewController()
+            let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
+            postVC.setupPost(post)
+            self.navigationController?.pushViewController(postVC, animated: true)
+        })
         return button
     }()
     
-    @objc private func tapButtonViewPost(){
-        let postVC = PostViewController()
-        postVC.navigationItem.title = post.title
-        navigationController?.pushViewController(postVC, animated: true)
-    }
-    @objc private func tapButtonViewPostTwo(){
-        let postVC = PostViewController()
-        postVC.navigationItem.title = postTwo.title
-        navigationController?.pushViewController(postVC, animated: true)
+    init(viewModel: FeedViewModelProtocol) {
+        self.feedViewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
@@ -70,11 +104,27 @@ class FeedViewController: UIViewController {
     
     private func layout() {
         view.addSubview(stackView)
+        view.addSubview(textField)
+        view.addSubview(labelCheck)
+        view.addSubview(checkGuessButton)
         [buttonOne, buttonTwo].forEach{stackView.addArrangedSubview($0)}
         
         NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: checkGuessButton.bottomAnchor, constant: 200),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            
+            textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            textField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            textField.heightAnchor.constraint(equalToConstant: 60),
+            textField.widthAnchor.constraint(equalToConstant: 300),
+            
+            checkGuessButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 30),
+            checkGuessButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            checkGuessButton.widthAnchor.constraint(equalToConstant: 300),
+            
+            labelCheck.topAnchor.constraint(equalTo: checkGuessButton.bottomAnchor, constant: 30),
+            labelCheck.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+                        
         ])
     }
 

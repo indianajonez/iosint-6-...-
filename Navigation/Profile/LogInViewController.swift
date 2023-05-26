@@ -14,9 +14,7 @@ class LogInViewController: UIViewController {
     enum ValidationError: Error {
             case invalidCredentials
         }
-    
-    // Для класса LoginViewController сделайте свойство loginDelegate с типом LoginViewControllerDelegate. Метод делегата будет проверять значения, введённые в текстовых полях контроллера. Напрямую вызывать из контроллера сервис Checker в этой работе нельзя.
-    
+
     var loginDelegate: LoginViewControllerDelegate!
         
     private lazy var scrollView: UIScrollView = {
@@ -31,7 +29,7 @@ class LogInViewController: UIViewController {
         return view
     }()
     
-    private lazy var logoImage: UIImageView = { // логотип
+    private lazy var logoImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "logo"))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -42,14 +40,11 @@ class LogInViewController: UIViewController {
         login.translatesAutoresizingMaskIntoConstraints = false
         login.textColor = .black
         login.layer.backgroundColor = UIColor.systemGray6.cgColor
-        //password.font = UIFont.systemFont(ofSize: 16, weight: .normal)
         login.layer.borderColor = UIColor.lightGray.cgColor
         login.layer.borderWidth = 0.5
-        //login.layer.cornerRadius = 10
         login.leftViewMode = .always
         login.placeholder = "Login"
         login.autocapitalizationType = .none
-        //login.isSecureTextEntry = true
         login.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return login
     }()
@@ -57,16 +52,14 @@ class LogInViewController: UIViewController {
     private lazy var loginPassword: UITextField = {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
-        password.textColor = .black //done
+        password.textColor = .black
         password.layer.backgroundColor = UIColor.systemGray6.cgColor
-        //password.font = UIFont.systemFont(ofSize: 16, weight: .normal)
         password.layer.borderColor = UIColor.lightGray.cgColor
-        password.layer.borderWidth = 0.5//done
-        //password.layer.cornerRadius = 10//done
+        password.layer.borderWidth = 0.5
         password.leftViewMode = .always
-        password.placeholder = "Password" //done
-        password.autocapitalizationType = .none //done
-        password.isSecureTextEntry = true //done
+        password.placeholder = "Password"
+        password.autocapitalizationType = .none
+        password.isSecureTextEntry = true
         password.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return password
 
@@ -88,7 +81,6 @@ class LogInViewController: UIViewController {
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
         stackView.layer.cornerRadius = 10
-        //stackView.layer.borderWidth = 0.5
         
         
         stackView.addArrangedSubview(self.loginText)
@@ -109,8 +101,8 @@ class LogInViewController: UIViewController {
     }()
     
     @objc private func setStatus() {
-        var login = loginText.text ?? ""
-        var pass = loginPassword.text ?? ""
+        let login = loginText.text ?? ""
+        let pass = loginPassword.text ?? ""
         if self.loginDelegate.check(login: login, password: pass) {
             let profileVC = ProfileViewController()
             #if DEBUG
@@ -188,7 +180,7 @@ class LogInViewController: UIViewController {
             loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            logoImage.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 100), // привязка лого к верхней части экрана , чтобы скол понимал размер вью
+            logoImage.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 100),
             logoImage.widthAnchor.constraint(equalToConstant: 100),
             logoImage.heightAnchor.constraint(equalToConstant: 100),
             logoImage.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
@@ -204,12 +196,10 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
             logInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant) // привязка  к нижней части экрана , чтобы скрол понимал высоту окна
+            logInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant)
         ])
         
     }
-    
 
 }
 
-// 9. Реализуйте в LoginViewController проверку логина и пароля, введённого пользователем с помощью loginDelegate. Выведите сообщение о неверном логине или пароле с помощью UIAlertController, если они неверные. Подумайте, как логично интегрировать сделанный в предыдущем задании UserService, который предоставляет информацию о пользователе для его профиля, c проверкой на входе логина и пароля c использованием LoginInspector.

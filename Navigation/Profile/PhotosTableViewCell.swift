@@ -17,13 +17,13 @@ class PhotosTableViewCell: UITableViewCell {
     
     private let collectionPhotos = Photo.makeCollectionPhotos()
     
-    private lazy var imageCollectionView: UIView = { // вью самой коллекции на 4 картинки
+    private lazy var imageCollectionView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
-    private lazy var namelabel: UILabel = { // название Photos заголовок ячейки с 4 картинками
+    private lazy var namelabel: UILabel = {
         let name = UILabel()
         name.textColor = .black
         name.font = UIFont.systemFont(ofSize: 24, weight: .bold)
@@ -32,10 +32,10 @@ class PhotosTableViewCell: UITableViewCell {
         return name
     }()
     
-    private lazy var button: UIButton = { // кнопка для перехода в библиотеку картинок
+    private lazy var button: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(named: "Кнопка"), for: .normal) // .setTitle("Кнопка")
+        button.setImage(UIImage(named: "Кнопка"), for: .normal)
         button.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         return button
     }()
@@ -82,7 +82,6 @@ class PhotosTableViewCell: UITableViewCell {
             namelabel.bottomAnchor.constraint(equalTo: imageCollection.topAnchor, constant: -labelinset),
             
             button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelinset),
-            //button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: labelinset),
             button.centerYAnchor.constraint(equalTo: namelabel.centerYAnchor),
             button.heightAnchor.constraint(equalToConstant: 20),
             button.widthAnchor.constraint(equalToConstant: 20),

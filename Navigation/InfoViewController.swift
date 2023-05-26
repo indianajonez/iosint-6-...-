@@ -10,11 +10,11 @@ class InfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow //назначаем цвет фона в модальном открытии кнопки меню Инфо
+        view.backgroundColor = .yellow
         makeButton()
     }
     
-    func makeButton() { //черная кнопка по центру модального экрана
+    func makeButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
         button.center = view.center
         button.setTitle("Закрыть", for: .normal)

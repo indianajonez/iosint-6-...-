@@ -65,13 +65,11 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
-    
     private lazy var statusLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Waiting for something..."
         label.textColor = .gray
-        //label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -98,8 +96,8 @@ class ProfileHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
-        [avatarImage, fullNameLabel, statusLabel, statusTextField, setStatusButton, ].forEach{addSubview($0)} // добавили аватарку на вью
-        layout() // закрепили аватарку на вью
+        [avatarImage, fullNameLabel, statusLabel, statusTextField, setStatusButton, ].forEach{addSubview($0)}
+        layout()
         setupGestures()
     }
     
@@ -113,7 +111,6 @@ class ProfileHeaderView: UIView {
             self.avatarImage.image = user.avatar
         }
     }
-    
     
     private func setupGestures() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
