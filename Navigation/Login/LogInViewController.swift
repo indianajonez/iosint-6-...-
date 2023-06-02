@@ -7,7 +7,9 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, Coordinating {
+    
+    var coordinator: CoordinatorProtocol?
     
     private let notificationCenter = NotificationCenter.default
     

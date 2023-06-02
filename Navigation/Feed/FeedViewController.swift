@@ -8,7 +8,9 @@
 import UIKit
 import StorageService
 
-class FeedViewController: UIViewController {
+class FeedViewController: UIViewController, Coordinating {
+    
+    var coordinator: CoordinatorProtocol?
     
     private let feedmodel = FeedModel()
     
