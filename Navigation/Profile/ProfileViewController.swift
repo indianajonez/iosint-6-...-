@@ -10,11 +10,11 @@ import StorageService
 
 class ProfileViewController: UIViewController {
     
-    enum ValidationError: Error { //для проверки логина и пароля через аллерт
+    enum ValidationError: Error {
             case notFound
         }
     
-    var currentUser: User? // В существующий класс ProfileViewController добавьте свойство типа User и сделайте отображение этой информации на экране профиля, включая изображение аватара.
+    var currentUser: User?
     private var listPost = Post2.make()
     private var listPhoto = Photo.makeCollectionPhotos()
 
@@ -66,12 +66,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
-    } // auto math height size for cell
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileHeaderView()
         header.setView(user: currentUser)
-         // В существующий класс ProfileViewController добавьте свойство типа User и сделайте отображение этой информации на экране профиля, включая изображение аватара.
         header.backgroundColor = .lightGray
         return section == 0 ? header : nil
     }
@@ -93,7 +92,7 @@ extension ProfileViewController: UITableViewDataSource {
         section == 0 ? 1 : listPost.count // с помощью этого метода указываем кол-во ячеек
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // здесь ошибка
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier) as? PhotosTableViewCell else { return UITableViewCell()}
@@ -117,7 +116,6 @@ extension ProfileViewController: PhotosGalleryDelegate {
     func openGallery() {
         print(#function)
         let galleryVC = PhotosViewController()
-        //galleryVC.allPhotos = Photo.makeCollectionPhotos()
         navigationController?.pushViewController(galleryVC, animated: true)
     }
 }

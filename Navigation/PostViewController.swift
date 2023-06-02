@@ -4,13 +4,8 @@
 //
 //  Created by Ekaterina Saveleva on 16.03.2023.
 //
-//
-//  PostViewController.swift
-//  Navigation
-//
-//  Created by Ekaterina Saveleva on 16.03.2023.
-//
 import UIKit
+import StorageService
 
 class PostViewController: UIViewController {
 
@@ -18,6 +13,10 @@ class PostViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .red
         makeBarItem()
+    }
+    
+    func setupPost(_ post: Post2) {
+        self.title = post.title
     }
     
     private func makeBarItem() {
