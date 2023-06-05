@@ -12,8 +12,8 @@ class PhotosViewController: UIViewController {
     
 // Создайте для PhotosViewController экземпляр класса ImagePublisherFacade.
     private var imageList: [UIImage] = []
-    private var imagePublisherFacade: ImagePublisherFacade = ImagePublisherFacade()
-
+    //private var imagePublisherFacade: ImagePublisherFacade = ImagePublisherFacade()
+    private var timer: Double = 0
     
 // Завершив установку фреймворка, необходимо подписать класс PhotosViewController на протокол ImageLibrarySubscriber и реализовать через extension его единственный метод.
     
@@ -35,21 +35,33 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Gallery"
         navigationController?.navigationBar.isHidden = false
-// Запустите сценарий наполнения коллекции изображениями через метод addImagesWithTimer. Поставьте задержку времени не менее 0.5 секунд, чтобы наблюдать, как этот паблишер работает. Количество повторений RepeatCount нужно поставить более 10, чтобы вся коллекция постепенно заполнилась фото.
     
         // Начать генерацию изображений с помощью метода addImagesWithTimer
 //        self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: allPhotos)
-        self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20)
+        //self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20)
         layout()
+        timer = CFAbsoluteTimeGetCurrent()
+        ImageProcessor().processImagesOnThread(sourceImages: allPhotos,
+                                               filter: .fade,
+                                               qos: .default) { newPhotos in
+            self.timer = CFAbsoluteTimeGetCurrent() - self.timer
+            print("All photos gets for \(self.timer) sec")
+            for image in newPhotos {
+                self.imageList.append(UIImage(cgImage: image!))
+            }
+            DispatchQueue.main.async {
+                self.imageCollection.reloadData()
+            }
+        }
         }
     
     override func viewDidAppear(_ animated: Bool) {
-        imagePublisherFacade.subscribe(self)
+        //imagePublisherFacade.subscribe(self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        imagePublisherFacade.removeSubscription(for: self)
-        imagePublisherFacade.rechargeImageLibrary()
+        //imagePublisherFacade.removeSubscription(for: self)
+        //imagePublisherFacade.rechargeImageLibrary()
         
     }
     // Где-то в подходящем методе (подумайте где) необходимо отменить подписку, так как хорошее правило работы с подписками заключается в том, что если где-то в вашем приложении подписка добавлена, то где-то она должна быть потенциально завершена после окончания своей работы.
@@ -101,13 +113,13 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
     
     // MARK: - ImageLibrarySubscriber
     
-extension PhotosViewController: ImageLibrarySubscriber {
-    func receive(images: [UIImage]) {
-        self.imageList = images
-        imageCollection.reloadData()
-        
-    }
-}
+//extension PhotosViewController: ImageLibrarySubscriber {
+//    func receive(images: [UIImage]) {
+//        self.imageList = images
+//        imageCollection.reloadData()
+//
+//    }
+//}
 
 
         
