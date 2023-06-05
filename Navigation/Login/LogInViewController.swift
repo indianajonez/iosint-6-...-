@@ -9,6 +9,8 @@ import UIKit
 
 class LogInViewController: UIViewController, Coordinating {
     
+    var brut = BruteForce()
+    
     var coordinator: CoordinatorProtocol?
     
     private let notificationCenter = NotificationCenter.default
@@ -78,17 +80,13 @@ class LogInViewController: UIViewController, Coordinating {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.clipsToBounds = true
-        
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
         stackView.layer.cornerRadius = 10
-        
-        
         stackView.addArrangedSubview(self.loginText)
         stackView.addArrangedSubview(self.emptyView)
         stackView.addArrangedSubview(self.loginPassword)
-        
         return stackView
     }()
  
@@ -101,6 +99,47 @@ class LogInViewController: UIViewController, Coordinating {
         button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
         return button
     }()
+    
+    private lazy var bruteForceInButton: UIButton = {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = UIColor(rgb: 0x4885CC)
+            button.layer.cornerRadius = 10
+            button.setTitle("Подобрать пароль", for: .normal)
+            button.addTarget(self, action: #selector(bruteForceButtonPressed), for: .touchUpInside)
+            return button
+        }()
+    
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.color = .blue
+        return indicator
+    }()
+    
+    @objc private func bruteForceButtonPressed() {
+        indicator.startAnimating()
+        self.bruteForceInButton.isEnabled = false
+        self.bruteForceInButton.backgroundColor = .gray
+        
+        let randomPassword = getRandomPassword(countChars: 3)
+        print("Password was generation. Password = \(randomPassword)")
+        
+        let queue = DispatchQueue.global(qos: .background)
+        queue.async {
+            self.brut.bruteForce(passwordToUnlock: randomPassword)
+            
+            DispatchQueue.main.async {
+                print("Password was brut!")
+                self.loginPassword.isSecureTextEntry = false
+                self.loginPassword.text = randomPassword
+                self.bruteForceInButton.isEnabled = true
+                self.bruteForceInButton.backgroundColor = UIColor(rgb: 0x4885CC)
+                self.indicator.stopAnimating()
+            }
+        }
+    }
     
     @objc private func setStatus() {
         let login = loginText.text ?? ""
@@ -166,7 +205,7 @@ class LogInViewController: UIViewController, Coordinating {
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(loginView)
-        [logoImage, stackView, logInButton].forEach{loginView.addSubview($0)} // удалила отсюда loginPassword, loginText,
+        [logoImage, stackView, logInButton, bruteForceInButton, indicator].forEach{loginView.addSubview($0)} // удалила отсюда loginPassword, loginText,
         let constant: CGFloat = 16
         
         NSLayoutConstraint.activate([
@@ -198,7 +237,18 @@ class LogInViewController: UIViewController, Coordinating {
             logInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
             logInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant)
+            logInButton.bottomAnchor.constraint(equalTo: bruteForceInButton.topAnchor, constant: -constant),
+            
+            bruteForceInButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: constant),
+            bruteForceInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
+            bruteForceInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
+            bruteForceInButton.heightAnchor.constraint(equalToConstant: 50),
+            bruteForceInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant),
+            
+            indicator.topAnchor.constraint(equalTo: bruteForceInButton.topAnchor, constant: 2),
+            indicator.bottomAnchor.constraint(equalTo: bruteForceInButton.bottomAnchor, constant: 2),
+            indicator.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: 330)
+//            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
     }
