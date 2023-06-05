@@ -187,10 +187,8 @@ class LogInViewController: UIViewController, Coordinating {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             let keyboardRect = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRect.height
-            
             let loginButtonBottomPointY = self.logInButton.frame.origin.y + 16
             let keyboardOriginY = self.view.frame.height - keyboardHeight
-            
             let yOffset = keyboardOriginY < loginButtonBottomPointY ? loginButtonBottomPointY - keyboardOriginY + 16 : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)

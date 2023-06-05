@@ -77,6 +77,7 @@ class PhotosTableViewCell: UITableViewCell {
         [namelabel, button, imageCollection].forEach{contentView.addSubview($0)}
         
         NSLayoutConstraint.activate([
+            
             namelabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: labelinset),
             namelabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: labelinset),
             namelabel.bottomAnchor.constraint(equalTo: imageCollection.topAnchor, constant: -labelinset),
