@@ -6,7 +6,9 @@
 
 import UIKit
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController, Coordinating { //*
+    
+    var coordinator: CoordinatorProtocol? //*
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +29,9 @@ class InfoViewController: UIViewController {
         let alert = UIAlertController(title: "Перейти назад", message: "что ты хочешь сделать?", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Выйти", style: .default) { _ in
             print("Выход из окна информация")
-            self.navigationController?.popViewController(animated: true)
+            self.coordinator?.pop()
+            self.popoverPresentationController
+            //self.navigationController?.popViewController(animated: true)
         }
         let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
             print("отмена выхода из просмотра информации")

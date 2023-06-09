@@ -43,7 +43,7 @@ class PhotosViewController: UIViewController {
         timer = CFAbsoluteTimeGetCurrent()
         ImageProcessor().processImagesOnThread(sourceImages: allPhotos,
                                                filter: .fade,
-                                               qos: .default) { newPhotos in
+                                               qos: .default) { newPhotos in // default = 8,945.. , background = 28.044.., utility = 18,131.., userInitiated = 8,749.., userInteractive = 9.216...
             self.timer = CFAbsoluteTimeGetCurrent() - self.timer
             print("All photos gets for \(self.timer) sec")
             for image in newPhotos {

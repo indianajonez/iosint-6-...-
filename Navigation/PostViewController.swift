@@ -7,8 +7,10 @@
 import UIKit
 import StorageService
 
-class PostViewController: UIViewController {
+class PostViewController: UIViewController, Coordinating {
+    var coordinator: CoordinatorProtocol?
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .red
@@ -25,8 +27,9 @@ class PostViewController: UIViewController {
     }
     @objc private func tapAction(){
         let infoVC = InfoViewController()
+        infoVC.coordinator = self.coordinator
         infoVC.title = "Информация о посте"
-        present(infoVC, animated: true)
+        coordinator?.present(to: infoVC)
     }
 
 

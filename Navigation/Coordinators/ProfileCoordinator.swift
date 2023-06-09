@@ -18,13 +18,23 @@ class ProfileCoordinator: CoordinatorProtocol {
     }
     
     func startApplication() {
-        var profile = ProfileViewController()
-        
+        let profile = ProfileViewController()
         navigationController.pushViewController(profile, animated: true)
     }
     
     func eventCheck(with type: Event) {
     }
     
+    func forward(to: UIViewController & Coordinating) {
+        navigationController.pushViewController(to, animated: true)
+    }
+    
+    func present(to: UIViewController & Coordinating) {
+        navigationController.present(to, animated: true)
+    }
+    
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
     
 }

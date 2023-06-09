@@ -48,6 +48,17 @@ final class TabBarCoordinator: CoordinatorProtocol {
         }
     }
     
+    func forward(to: UIViewController & Coordinating) {
+        navigationController.pushViewController(to, animated: true)
+    }
+    
+    func present(to: UIViewController & Coordinating) {
+        navigationController.present(to, animated: true)
+    }
+    
+    func pop() {
+        navigationController.popViewController(animated: true)
+    }
     
 }
 

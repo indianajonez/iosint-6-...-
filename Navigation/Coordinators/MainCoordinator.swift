@@ -21,9 +21,12 @@ protocol CoordinatorProtocol { // протокол для создания ко�
     
     func startApplication()
     func eventCheck(with type: Event)
+    func forward(to: UIViewController & Coordinating)
+    func present(to: UIViewController & Coordinating)
+    func pop()
 }
 
-protocol Coordinating { // гарантирует что у вью контроллера будет координатор
+protocol Coordinating { // гарантирует, что у вью контроллера будет координатор
     var coordinator: CoordinatorProtocol? {get set}
 }
 

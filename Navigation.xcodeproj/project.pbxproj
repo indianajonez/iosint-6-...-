@@ -23,7 +23,6 @@
 		F3582BDA2A28E0320002C786 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BD92A28E0320002C786 /* TabBarCoordinator.swift */; };
 		F3582BDC2A28E0450002C786 /* FeedCoordicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BDB2A28E0450002C786 /* FeedCoordicator.swift */; };
 		F3582BDE2A28E0590002C786 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BDD2A28E0590002C786 /* ProfileCoordinator.swift */; };
-		F3582BE02A28E0B50002C786 /* FeedModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BDF2A28E0B50002C786 /* FeedModelService.swift */; };
 		F3582BE62A28E2940002C786 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BE52A28E2940002C786 /* ProfileViewModel.swift */; };
 		F3582BE92A28E4120002C786 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = F36F5B1129CA0DE4002AA1D0 /* Post.swift */; };
 		F3582BEB2A2A5C2B0002C786 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BEA2A2A5C2B0002C786 /* Factory.swift */; };
@@ -106,7 +105,6 @@
 		F3582BD92A28E0320002C786 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		F3582BDB2A28E0450002C786 /* FeedCoordicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordicator.swift; sourceTree = "<group>"; };
 		F3582BDD2A28E0590002C786 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
-		F3582BDF2A28E0B50002C786 /* FeedModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelService.swift; sourceTree = "<group>"; };
 		F3582BE52A28E2940002C786 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		F3582BEA2A2A5C2B0002C786 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
 		F3582BEC2A2A655F0002C786 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -178,7 +176,6 @@
 		F3582BD32A1FA88D0002C786 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
-				F3582BDF2A28E0B50002C786 /* FeedModelService.swift */,
 				F367D60229C386A1009A07B8 /* FeedViewController.swift */,
 				F3582BD42A1FA8F00002C786 /* FeedViewModel.swift */,
 			);
@@ -481,7 +478,6 @@
 				F3582BED2A2A655F0002C786 /* LoginCoordinator.swift in Sources */,
 				F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */,
 				F3F46A062A1BA2B700FDBA34 /* CustomButton.swift in Sources */,
-				F3582BE02A28E0B50002C786 /* FeedModelService.swift in Sources */,
 				F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */,
 				F3582BDE2A28E0590002C786 /* ProfileCoordinator.swift in Sources */,
 				F367D60529C38BC6009A07B8 /* TabBarController_delete.swift in Sources */,

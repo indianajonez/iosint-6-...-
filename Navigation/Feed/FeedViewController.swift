@@ -73,8 +73,10 @@ class FeedViewController: UIViewController, Coordinating {
         let button = CustomButton(title: "Post One", titleColor: .black, action: {
             let postVC = PostViewController()
             let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
+            postVC.coordinator = self.coordinator
             postVC.setupPost(post)
-            self.navigationController?.pushViewController(postVC, animated: true)
+            self.coordinator?.forward(to: postVC)
+            //self.navigationController?.pushViewController(postVC, animated: true)
         })
             return button
         }()
@@ -84,7 +86,9 @@ class FeedViewController: UIViewController, Coordinating {
             let postVC = PostViewController()
             let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
             postVC.setupPost(post)
-            self.navigationController?.pushViewController(postVC, animated: true)
+            postVC.coordinator = self.coordinator
+            self.coordinator?.forward(to: postVC)
+            //self.navigationController?.pushViewController(postVC, animated: true)
         })
         return button
     }()

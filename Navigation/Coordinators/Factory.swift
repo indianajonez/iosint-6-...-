@@ -15,13 +15,10 @@ final class Factory {
         case fourth
     }
     
-    let navigationController: UINavigationController
-    let state: State
+     let navigationController: UINavigationController
+     let state: State
     
-    init(
-        navigationController: UINavigationController,
-        state: State
-    ) {
+    init(navigationController: UINavigationController, state: State) {
         self.navigationController = navigationController
         self.state = state
         startModule()
