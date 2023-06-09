@@ -19,7 +19,6 @@ final class Checker: LoginViewControllerDelegate {
     }
 
 }
-
 // 5. Создайте новый протокол LoginViewControllerDelegate, для него пропишите один метод check, который будет использовать созданный выше синглтон Checker.
 
 protocol LoginViewControllerDelegate {

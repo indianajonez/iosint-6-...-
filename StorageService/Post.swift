@@ -25,6 +25,8 @@ public struct Post {
 }
 
 public struct Post2 {
+    static var id = 0
+    public let id: Int
     public let title: String?
     public let image: UIImage?
     public let text: String?
@@ -33,6 +35,8 @@ public struct Post2 {
         self.title = title
         self.image = image
         self.text = text
+        self.id = Post2.id
+        Post2.id += 1
     }
 }
 

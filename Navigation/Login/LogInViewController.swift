@@ -7,16 +7,18 @@
 
 import UIKit
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, Coordinating {
+    
+    var brut = BruteForce()
+    
+    var coordinator: CoordinatorProtocol?
     
     private let notificationCenter = NotificationCenter.default
     
     enum ValidationError: Error {
             case invalidCredentials
         }
-    
-    // Для класса LoginViewController сделайте свойство loginDelegate с типом LoginViewControllerDelegate. Метод делегата будет проверять значения, введённые в текстовых полях контроллера. Напрямую вызывать из контроллера сервис Checker в этой работе нельзя.
-    
+
     var loginDelegate: LoginViewControllerDelegate!
         
     private lazy var scrollView: UIScrollView = {
@@ -31,7 +33,7 @@ class LogInViewController: UIViewController {
         return view
     }()
     
-    private lazy var logoImage: UIImageView = { // логотип
+    private lazy var logoImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "logo"))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
@@ -42,14 +44,11 @@ class LogInViewController: UIViewController {
         login.translatesAutoresizingMaskIntoConstraints = false
         login.textColor = .black
         login.layer.backgroundColor = UIColor.systemGray6.cgColor
-        //password.font = UIFont.systemFont(ofSize: 16, weight: .normal)
         login.layer.borderColor = UIColor.lightGray.cgColor
         login.layer.borderWidth = 0.5
-        //login.layer.cornerRadius = 10
         login.leftViewMode = .always
         login.placeholder = "Login"
         login.autocapitalizationType = .none
-        //login.isSecureTextEntry = true
         login.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return login
     }()
@@ -57,16 +56,14 @@ class LogInViewController: UIViewController {
     private lazy var loginPassword: UITextField = {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
-        password.textColor = .black //done
+        password.textColor = .black
         password.layer.backgroundColor = UIColor.systemGray6.cgColor
-        //password.font = UIFont.systemFont(ofSize: 16, weight: .normal)
         password.layer.borderColor = UIColor.lightGray.cgColor
-        password.layer.borderWidth = 0.5//done
-        //password.layer.cornerRadius = 10//done
+        password.layer.borderWidth = 0.5
         password.leftViewMode = .always
-        password.placeholder = "Password" //done
-        password.autocapitalizationType = .none //done
-        password.isSecureTextEntry = true //done
+        password.placeholder = "Password"
+        password.autocapitalizationType = .none
+        password.isSecureTextEntry = true
         password.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return password
 
@@ -83,18 +80,13 @@ class LogInViewController: UIViewController {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.clipsToBounds = true
-        
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
         stackView.layer.cornerRadius = 10
-        //stackView.layer.borderWidth = 0.5
-        
-        
         stackView.addArrangedSubview(self.loginText)
         stackView.addArrangedSubview(self.emptyView)
         stackView.addArrangedSubview(self.loginPassword)
-        
         return stackView
     }()
  
@@ -108,9 +100,50 @@ class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var bruteForceInButton: UIButton = {
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = UIColor(rgb: 0x4885CC)
+            button.layer.cornerRadius = 10
+            button.setTitle("Подобрать пароль", for: .normal)
+            button.addTarget(self, action: #selector(bruteForceButtonPressed), for: .touchUpInside)
+            return button
+        }()
+    
+    private lazy var indicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        indicator.color = .blue
+        return indicator
+    }()
+    
+    @objc private func bruteForceButtonPressed() {
+        indicator.startAnimating()
+        self.bruteForceInButton.isEnabled = false
+        self.bruteForceInButton.backgroundColor = .gray
+        
+        let randomPassword = getRandomPassword(countChars: 3)
+        print("Password was generation. Password = \(randomPassword)")
+        
+        let queue = DispatchQueue.global(qos: .background)
+        queue.async {
+            self.brut.bruteForce(passwordToUnlock: randomPassword)
+            
+            DispatchQueue.main.async {
+                print("Password was brut!")
+                self.loginPassword.isSecureTextEntry = false
+                self.loginPassword.text = randomPassword
+                self.bruteForceInButton.isEnabled = true
+                self.bruteForceInButton.backgroundColor = UIColor(rgb: 0x4885CC)
+                self.indicator.stopAnimating()
+            }
+        }
+    }
+    
     @objc private func setStatus() {
-        var login = loginText.text ?? ""
-        var pass = loginPassword.text ?? ""
+        let login = loginText.text ?? ""
+        let pass = loginPassword.text ?? ""
         if self.loginDelegate.check(login: login, password: pass) {
             let profileVC = ProfileViewController()
             #if DEBUG
@@ -154,10 +187,8 @@ class LogInViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
             let keyboardRect = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRect.height
-            
             let loginButtonBottomPointY = self.logInButton.frame.origin.y + 16
             let keyboardOriginY = self.view.frame.height - keyboardHeight
-            
             let yOffset = keyboardOriginY < loginButtonBottomPointY ? loginButtonBottomPointY - keyboardOriginY + 16 : 0
             
             self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
@@ -172,7 +203,7 @@ class LogInViewController: UIViewController {
     private func layout() {
         view.addSubview(scrollView)
         scrollView.addSubview(loginView)
-        [logoImage, stackView, logInButton].forEach{loginView.addSubview($0)} // удалила отсюда loginPassword, loginText,
+        [logoImage, stackView, logInButton, bruteForceInButton, indicator].forEach{loginView.addSubview($0)} // удалила отсюда loginPassword, loginText,
         let constant: CGFloat = 16
         
         NSLayoutConstraint.activate([
@@ -188,7 +219,7 @@ class LogInViewController: UIViewController {
             loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            logoImage.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 100), // привязка лого к верхней части экрана , чтобы скол понимал размер вью
+            logoImage.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 100),
             logoImage.widthAnchor.constraint(equalToConstant: 100),
             logoImage.heightAnchor.constraint(equalToConstant: 100),
             logoImage.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
@@ -204,12 +235,21 @@ class LogInViewController: UIViewController {
             logInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
             logInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant) // привязка  к нижней части экрана , чтобы скрол понимал высоту окна
+            logInButton.bottomAnchor.constraint(equalTo: bruteForceInButton.topAnchor, constant: -constant),
+            
+            bruteForceInButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: constant),
+            bruteForceInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
+            bruteForceInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
+            bruteForceInButton.heightAnchor.constraint(equalToConstant: 50),
+            bruteForceInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant),
+            
+            indicator.topAnchor.constraint(equalTo: bruteForceInButton.topAnchor, constant: 2),
+            indicator.bottomAnchor.constraint(equalTo: bruteForceInButton.bottomAnchor, constant: 2),
+            indicator.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: 330)
+//            indicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         
     }
-    
 
 }
 
-// 9. Реализуйте в LoginViewController проверку логина и пароля, введённого пользователем с помощью loginDelegate. Выведите сообщение о неверном логине или пароле с помощью UIAlertController, если они неверные. Подумайте, как логично интегрировать сделанный в предыдущем задании UserService, который предоставляет информацию о пользователе для его профиля, c проверкой на входе логина и пароля c использованием LoginInspector.
