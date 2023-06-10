@@ -8,15 +8,17 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController {
-    
-    enum ValidationError: Error {
-            case notFound
-        }
+class ProfileViewController: UIViewController, Coordinating {
+    var coordinator: CoordinatorProtocol?
+
+    private var counter = 0
+    private var isTimerStarted = false
+    private var timer: Timer?
     
     var currentUser: User?
     private var listPost = Post2.make()
     private var listPhoto = Photo.makeCollectionPhotos()
+    private var subscriber = RunloopViewController()
 
     
     private lazy var table: UITableView = {
@@ -30,17 +32,44 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
-    override func viewDidLoad() { 
+    override func viewDidLoad() {
+        start()
         super.viewDidLoad()
         #if DEBUG
         view.backgroundColor = .cyan
         #else
         view.backgroundColor = .lightGray
         #endif
+    
         // Смоделируем случай, когда в схеме Debug, которая была создана по результатам первой домашней работы, вводится тестовый логин.
 
     }
     
+    private func start() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            
+            self.timer = Timer.scheduledTimer(
+                timeInterval: 5.0,
+                target: self,
+                selector: #selector(self.showView),
+                userInfo: nil,
+                repeats: true)
+            
+            guard let timer = self.timer else { return }
+            
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
+    
+    @objc private func showView() {
+        print("present")
+        coordinator?.forward(to: subscriber)
+        print("end present")
+        //navigationController?.pushViewController(subscriber, animated: true)
+        //coordinator?.present(to: subscriber)
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
