@@ -8,15 +8,20 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController{
+    var coordinator: ProfileCoordinator
     
-    enum ValidationError: Error { //для проверки логина и пароля через аллерт
-            case notFound
-        }
+
+//    var coordinator: ProfileCoordinator
+
+    private var counter = 0
+    private var isTimerStarted = false
+    private var timer: Timer?
     
-    var currentUser: User? // В существующий класс ProfileViewController добавьте свойство типа User и сделайте отображение этой информации на экране профиля, включая изображение аватара.
+    var currentUser: User?
     private var listPost = Post2.make()
     private var listPhoto = Photo.makeCollectionPhotos()
+    private var subscriber = RunloopViewController()
 
     
     private lazy var table: UITableView = {
@@ -30,17 +35,55 @@ class ProfileViewController: UIViewController {
         return table
     }()
     
-    override func viewDidLoad() { 
+    init(coordinator:ProfileCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        start()
         super.viewDidLoad()
         #if DEBUG
         view.backgroundColor = .cyan
         #else
         view.backgroundColor = .lightGray
         #endif
+    
         // Смоделируем случай, когда в схеме Debug, которая была создана по результатам первой домашней работы, вводится тестовый логин.
 
     }
     
+    private func start() {
+        DispatchQueue.global().async { [weak self] in
+            guard let self else { return }
+            
+            self.timer = Timer.scheduledTimer(
+                timeInterval: 5.0,
+                target: self,
+                selector: #selector(self.showView),
+                userInfo: nil,
+                repeats: false)
+            
+            guard let timer = self.timer else { return }
+            
+            RunLoop.current.add(timer, forMode: .common)
+            RunLoop.current.run()
+        }
+    }
+    
+    @objc private func showView() {
+        DispatchQueue.main.async {
+            //self.coordinator.forward(to: self.subscriber)
+            
+            print("end present")
+           self.navigationController?.pushViewController(self.subscriber, animated: true)
+            //coordinator?.present(to: subscriber)
+        }
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -66,12 +109,11 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
-    } // auto math height size for cell
+    }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileHeaderView()
         header.setView(user: currentUser)
-         // В существующий класс ProfileViewController добавьте свойство типа User и сделайте отображение этой информации на экране профиля, включая изображение аватара.
         header.backgroundColor = .lightGray
         return section == 0 ? header : nil
     }
@@ -93,7 +135,7 @@ extension ProfileViewController: UITableViewDataSource {
         section == 0 ? 1 : listPost.count // с помощью этого метода указываем кол-во ячеек
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // здесь ошибка
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier) as? PhotosTableViewCell else { return UITableViewCell()}
@@ -117,7 +159,6 @@ extension ProfileViewController: PhotosGalleryDelegate {
     func openGallery() {
         print(#function)
         let galleryVC = PhotosViewController()
-        //galleryVC.allPhotos = Photo.makeCollectionPhotos()
         navigationController?.pushViewController(galleryVC, animated: true)
     }
 }
