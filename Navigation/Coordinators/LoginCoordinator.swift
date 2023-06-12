@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 class LoginCoordinator: CoordinatorProtocol {
+    
     var childCoordinators: [CoordinatorProtocol]?
     
     var navigationController: UINavigationController
@@ -30,7 +31,7 @@ class LoginCoordinator: CoordinatorProtocol {
         
     }
     
-    func forward(to: UIViewController & Coordinating) {
+    func forward(to: UIViewController) {
         navigationController.pushViewController(to, animated: true)
     }
     
@@ -43,3 +44,16 @@ class LoginCoordinator: CoordinatorProtocol {
     }
     
 }
+
+// r extension LoginCoordinator: CoordinatorProtocol {
+//    func start() -> UIViewController {
+//        let login = LogInViewController()
+//        let myLoginFactory = MyLoginFactory()
+//        login.tabBarItem.title = "Login"
+//        login.tabBarItem.image = UIImage(systemName: "person.fill.viewfinder")
+//        login.loginDelegate = myLoginFactory.makeLoginInspector()
+//        return login
+//    }
+
+    
+//}

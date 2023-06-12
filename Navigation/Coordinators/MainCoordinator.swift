@@ -7,7 +7,6 @@
 
 import UIKit
 
-
 enum Event {
     case buttonFeed
     case buttonLogin
@@ -21,7 +20,7 @@ protocol CoordinatorProtocol { // протокол для создания ко�
     
     func startApplication()
     func eventCheck(with type: Event)
-    func forward(to: UIViewController & Coordinating)
+    func forward(to: UIViewController)
     func present(to: UIViewController & Coordinating)
     func pop()
 }
@@ -30,20 +29,25 @@ protocol Coordinating { // гарантирует, что у вью контро
     var coordinator: CoordinatorProtocol? {get set}
 }
 
-
+// r final class MainCoordinator {
+//    private var rootViewController: UIViewController
+//    private var childCoordinator: [CoordinatorProtocol] = []
+//
+//    init(rootViewController: UIViewController) {
+//        self.rootViewController = rootViewController
+//    }
+//
+//    private func setLoginCoordinator() -> CoordinatorProtocol {
+//        let loginCoordinator = LoginCoordinator()
+//        return loginCoordinator
+//    }
+//}
 
 //final class MainCoordinator: MainCoordinatorProtocol {
 //    func startApplication() -> UIViewController {
 //        return FeedViewController
 //    }
 //}
-
-// нужно создать фабрику
-
-
-
-
-
 
 // общий паротокол для любого координатора
 

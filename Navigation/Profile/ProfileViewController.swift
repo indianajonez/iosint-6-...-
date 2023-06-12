@@ -8,8 +8,11 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController, Coordinating {
-    var coordinator: CoordinatorProtocol?
+class ProfileViewController: UIViewController{
+    var coordinator: ProfileCoordinator
+    
+
+//    var coordinator: ProfileCoordinator
 
     private var counter = 0
     private var isTimerStarted = false
@@ -32,6 +35,15 @@ class ProfileViewController: UIViewController, Coordinating {
         return table
     }()
     
+    init(coordinator:ProfileCoordinator) {
+        self.coordinator = coordinator
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         start()
         super.viewDidLoad()
@@ -46,7 +58,7 @@ class ProfileViewController: UIViewController, Coordinating {
     }
     
     private func start() {
-        DispatchQueue.main.async { [weak self] in
+        DispatchQueue.global().async { [weak self] in
             guard let self else { return }
             
             self.timer = Timer.scheduledTimer(
@@ -54,7 +66,7 @@ class ProfileViewController: UIViewController, Coordinating {
                 target: self,
                 selector: #selector(self.showView),
                 userInfo: nil,
-                repeats: true)
+                repeats: false)
             
             guard let timer = self.timer else { return }
             
@@ -64,11 +76,13 @@ class ProfileViewController: UIViewController, Coordinating {
     }
     
     @objc private func showView() {
-        print("present")
-        coordinator?.forward(to: subscriber)
-        print("end present")
-        //navigationController?.pushViewController(subscriber, animated: true)
-        //coordinator?.present(to: subscriber)
+        DispatchQueue.main.async {
+            //self.coordinator.forward(to: self.subscriber)
+            
+            print("end present")
+           self.navigationController?.pushViewController(self.subscriber, animated: true)
+            //coordinator?.present(to: subscriber)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

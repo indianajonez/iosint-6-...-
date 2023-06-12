@@ -38,7 +38,7 @@ class CurrentUserService: UserService {
     
     // 3.1 функция реализующая протокол, если переданный логин соответсвует логину имени пользовтеля
     func checkLogin(login: String) -> User? {
-        login == "Katay" ? User(login: "Katay", fullName: "Ekaterina", avatar: UIImage(named: "tiger") ?? UIImage(), status: "online") : nil
+        login == "K" ? User(login: "K", fullName: "Ekaterina", avatar: UIImage(named: "tiger") ?? UIImage(), status: "online") : nil
     }
     
 }

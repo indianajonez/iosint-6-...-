@@ -16,13 +16,14 @@ class RunloopViewController: UIViewController, Coordinating {
         return image
     }()
     
-    private lazy var SubscribeLabel: UILabel = {
+    private lazy var subscribeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Купи подписку и используй все возможности приложения"
+        label.text = "Купи подписку и используй все возможности приложения!"
         label.textColor = .black
-        label.textAlignment = .center
+        //label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        label.numberOfLines = 2
         return label
     }()
     
@@ -39,7 +40,7 @@ class RunloopViewController: UIViewController, Coordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        //layout()
+        layout()
     }
     
     @objc private func buy() {
@@ -49,7 +50,7 @@ class RunloopViewController: UIViewController, Coordinating {
     
     private func layout() {
         view.addSubview(logoImage)
-        view.addSubview(SubscribeLabel)
+        view.addSubview(subscribeLabel)
         view.addSubview(buyButton)
         
         NSLayoutConstraint.activate([
@@ -59,18 +60,17 @@ class RunloopViewController: UIViewController, Coordinating {
             logoImage.heightAnchor.constraint(equalToConstant: 100),
             logoImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             
-            buyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 200),
-            buyButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30),
-            buyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: 16),
+            buyButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 160),
+            buyButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            buyButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             buyButton.heightAnchor.constraint(equalToConstant: 50),
-            buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 50),
+            buyButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -30),
             
-            SubscribeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50),
-            SubscribeLabel.widthAnchor.constraint(equalToConstant: 100),
-            SubscribeLabel.heightAnchor.constraint(equalToConstant: 100),
-            SubscribeLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            
-            
+            subscribeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 200),
+            subscribeLabel.widthAnchor.constraint(equalToConstant: 100),
+            subscribeLabel.heightAnchor.constraint(equalToConstant: 100),
+            subscribeLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            subscribeLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             
         ])
     }

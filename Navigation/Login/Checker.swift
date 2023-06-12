@@ -11,8 +11,8 @@ final class Checker: LoginViewControllerDelegate {
     
     private init() {}
 // 3. В классе Checker сделайте приватные свойства login и password, пусть они будут константами и будут иметь выбранные вами значения в заранее заданном виде.
-    private let login: String = "Katay"
-    private let password: String = "1234567890"
+    private let login: String = "K"
+    private let password: String = "1"
 // 4. В классе Checker сделайте метод check, который будет принимать логин и пароль, введенные пользователем и возвращать true, если и логин и пароль будут совпадать и false — если нет.
     func check(login: String, password: String) -> Bool {
         self.login == login && self.password == password ? true : false

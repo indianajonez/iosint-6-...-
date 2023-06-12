@@ -48,7 +48,7 @@ final class TabBarCoordinator: CoordinatorProtocol {
         }
     }
     
-    func forward(to: UIViewController & Coordinating) {
+    func forward(to: UIViewController) {
         navigationController.pushViewController(to, animated: true)
     }
     

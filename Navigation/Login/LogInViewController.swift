@@ -99,8 +99,8 @@ class LogInViewController: UIViewController, Coordinating {
         let login = loginText.text ?? ""
         let pass = loginPassword.text ?? ""
         if self.loginDelegate.check(login: login, password: pass) {
-            let profileVC = ProfileViewController()
-            profileVC.coordinator = self.coordinator
+            let profileVC = ProfileViewController(coordinator: ProfileCoordinator(navigation: UINavigationController())) 
+           // profileVC.coordinator = self.coordinator
             #if DEBUG
             profileVC.currentUser = TestUserService(login: loginText.text ?? "Not login").user
             navigationController?.pushViewController(profileVC, animated: true)

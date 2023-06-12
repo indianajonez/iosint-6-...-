@@ -18,15 +18,18 @@ class ProfileCoordinator: CoordinatorProtocol {
     }
     
     func startApplication() {
-        let profile = ProfileViewController()
+        let profile = ProfileViewController(coordinator: self)
         navigationController.pushViewController(profile, animated: true)
     }
     
     func eventCheck(with type: Event) {
     }
     
-    func forward(to: UIViewController & Coordinating) {
+    func forward(to: UIViewController) {
+        // r let controller = to
+        print("1,2,3")
         navigationController.pushViewController(to, animated: true)
+
     }
     
     func present(to: UIViewController & Coordinating) {
@@ -37,4 +40,10 @@ class ProfileCoordinator: CoordinatorProtocol {
         navigationController.popViewController(animated: true)
     }
     
+    // r
+    func pushRunLoopController() {
+        let controller = RunloopViewController()
+        navigationController.pushViewController(controller, animated: true)
+    }
 }
+    
