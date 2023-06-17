@@ -9,8 +9,8 @@ import Foundation
 
 // Сделайте новую структуру MyLoginFactory, которая будет удовлетворять требованиям протокола LoginFactory и содержать генератор экземпляра LoginInspector
 
-struct MyLoginFactory: LoginFactory {
-    func makeLoginInspector() -> LoginInspector {
-        LoginInspector()
-    }
-}
+//struct MyLoginFactory: LoginFactory {
+//    func makeLoginInspector() -> LoginInspector {
+//        LoginInspector()
+//    }
+//}

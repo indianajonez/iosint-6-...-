@@ -14,15 +14,16 @@ final class Checker: LoginViewControllerDelegate {
     private let login: String = "K"
     private let password: String = "1"
 // 4. В классе Checker сделайте метод check, который будет принимать логин и пароль, введенные пользователем и возвращать true, если и логин и пароль будут совпадать и false — если нет.
-    func check(login: String, password: String) -> Bool {
-        self.login == login && self.password == password ? true : false
+    func check(login: String, password: String) throws -> Bool {
+        guard self.login == login && self.password == password else { throw TypeError.Auth.notFound }
+        return true
     }
 
 }
 // 5. Создайте новый протокол LoginViewControllerDelegate, для него пропишите один метод check, который будет использовать созданный выше синглтон Checker.
 
 protocol LoginViewControllerDelegate {
-    func check(login: String, password: String) -> Bool
+    func check(login: String, password: String) throws -> Bool
     
 }
 

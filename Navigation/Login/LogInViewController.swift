@@ -93,31 +93,57 @@ class LogInViewController: UIViewController, Coordinating {
         button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
         return button
     }()
-
+    
+    private func checkData() throws -> [String] {
+        guard let login = loginText.text, let pass = loginPassword.text else {throw TypeError.Auth.emptyTextField}
+        return [login, pass]
+    }
 
     @objc private func setStatus() {
-        let login = loginText.text ?? ""
-        let pass = loginPassword.text ?? ""
-        if self.loginDelegate.check(login: login, password: pass) {
-            let profileVC = ProfileViewController(coordinator: ProfileCoordinator(navigation: UINavigationController())) 
-           // profileVC.coordinator = self.coordinator
-            #if DEBUG
-            profileVC.currentUser = TestUserService(login: loginText.text ?? "Not login").user
-            navigationController?.pushViewController(profileVC, animated: true)
-            #else
-            profileVC.currentUser = CurrentUserService(login: loginText.text ?? "Not login").user
-            navigationController?.pushViewController(profileVC, animated: true)
-            #endif
+
+        do {
+            let dataFromForm = try? checkData()
+            let login = dataFromForm![0]
+            let pass = dataFromForm![1]
+            
+            let result = try? loginDelegate.check(login: login, password: pass)
+            if let result = result {
+                #if DEBUG
+                let userService = TestUserService(login: login).user
+                #else
+                let userService = CurrentUserService(login: login).user
+                #endif
+                
+                let profileCoordinator = ProfileCoordinator(navigation: navigationController!)
+                profileCoordinator.startWithUser(userService)
+            }
         }
-        else {
-            let alert = UIAlertController(title: "Bad auth", message: "Пользователь с таким логином/паролем не найден", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "Ок", style: .default) { _ in
+        catch TypeError.Auth.emptyTextField {
+            print("Text field not fill")
+        }
+        catch TypeError.Auth.notFound {
+            let alertCustom = CustomAlert(titleAlert: "Bad auth", messageAlert: "Пользователь с таким логином/паролем не найден", okTitle: "Oк") {
                 self.navigationController?.popViewController(animated: true)
             }
-            
-            alert.addAction(okAction)
-            present(alert, animated: true)
+            present(alertCustom.alert!, animated: true)
         }
+        
+//        if self.loginDelegate.check(login: login, password: pass) {
+//            #if DEBUG
+//            let userService = TestUserService(login: login).user
+//            #else
+//            let userService = CurrentUserService(login: login).user
+//            #endif
+//
+//            let profileCoordinator = ProfileCoordinator(navigation: navigationController!)
+//            profileCoordinator.startWithUser(userService)
+//        }
+//        else {
+//            let alertCustom = CustomAlert(titleAlert: "Bad auth", messageAlert: "Пользователь с таким логином/паролем не найден", okTitle: "Oк") {
+//                self.navigationController?.popViewController(animated: true)
+//            }
+//            present(alertCustom.alert!, animated: true)
+//        }
     }
     
     override func viewDidLoad() {

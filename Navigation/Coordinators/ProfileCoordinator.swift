@@ -18,32 +18,29 @@ class ProfileCoordinator: CoordinatorProtocol {
     }
     
     func startApplication() {
-        let profile = ProfileViewController(coordinator: self)
+
+    }
+    
+    func startWithUser(_ user: User?) {
+        let profile = ProfileViewController()
+        profile.coordinator = self
+        profile.currentUser = user
         navigationController.pushViewController(profile, animated: true)
     }
     
     func eventCheck(with type: Event) {
     }
     
-    func forward(to: UIViewController) {
-        // r let controller = to
-        print("1,2,3")
-        navigationController.pushViewController(to, animated: true)
-
+    func forward(to: UIViewController & Coordinating) {
+        self.navigationController.pushViewController(to, animated: true)
     }
     
     func present(to: UIViewController & Coordinating) {
-        navigationController.present(to, animated: true)
+        self.navigationController.present(to, animated: true)
     }
     
     func pop() {
-        navigationController.popViewController(animated: true)
-    }
-    
-    // r
-    func pushRunLoopController() {
-        let controller = RunloopViewController()
-        navigationController.pushViewController(controller, animated: true)
+        self.navigationController.popViewController(animated: true)
     }
 }
     

@@ -9,6 +9,6 @@ import Foundation
 
 // Создайте новый протокол LoginFactory с одним методом без параметров makeLoginInspector, который будет возвращать LoginInspector.
 
-protocol LoginFactory {
-    func makeLoginInspector() -> LoginInspector
-}
+//protocol LoginFactory {
+//    func makeLoginInspector() -> LoginInspector
+//}

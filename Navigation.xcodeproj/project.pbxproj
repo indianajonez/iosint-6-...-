@@ -44,6 +44,8 @@
 		F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F367D60229C386A1009A07B8 /* FeedViewController.swift */; };
 		F380563E29E342E3007C5031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380563D29E342E3007C5031 /* Extensions.swift */; };
 		F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A2D9DD2A0925C0005BA05C /* User.swift */; };
+		F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960C2A37560B0054B1D4 /* TypeError.swift */; };
+		F3C3960F2A3758C30054B1D4 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */; };
 		F3D500A829D1A77400CCABF5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D500A729D1A77400CCABF5 /* LogInViewController.swift */; };
 		F3F46A062A1BA2B700FDBA34 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F46A052A1BA2B700FDBA34 /* CustomButton.swift */; };
 		F3F6E2552A3453FE002B9431 /* RunloopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3F6E2542A3453FE002B9431 /* RunloopViewController.swift */; };
@@ -125,6 +127,8 @@
 		F3785B6D2A0287AC00EDFF3F /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
 		F380563D29E342E3007C5031 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F3A2D9DD2A0925C0005BA05C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F3C3960C2A37560B0054B1D4 /* TypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeError.swift; sourceTree = "<group>"; };
+		F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		F3D500A729D1A77400CCABF5 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		F3F46A052A1BA2B700FDBA34 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F3F6E2542A3453FE002B9431 /* RunloopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunloopViewController.swift; sourceTree = "<group>"; };
@@ -197,6 +201,7 @@
 			children = (
 				F367D5EA29C057AC009A07B8 /* AppDelegate.swift */,
 				F367D5EC29C057AD009A07B8 /* SceneDelegate.swift */,
+				F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -286,6 +291,7 @@
 				F3A2D9DD2A0925C0005BA05C /* User.swift */,
 				F3F46A052A1BA2B700FDBA34 /* CustomButton.swift */,
 				F3582BD12A1D19D40002C786 /* FeedModel.swift */,
+				F3C3960C2A37560B0054B1D4 /* TypeError.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -457,6 +463,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */,
 				F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */,
 				F3582BD82A28E01B0002C786 /* MainCoordinator.swift in Sources */,
 				F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */,
@@ -487,6 +494,7 @@
 				F34396502A15109D007FFD87 /* LoginFactory.swift in Sources */,
 				F36F5B0F29C788E3002AA1D0 /* ProfileHeaderView.swift in Sources */,
 				F3582BD22A1D19D50002C786 /* FeedModel.swift in Sources */,
+				F3C3960F2A3758C30054B1D4 /* CustomAlert.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@ import UIKit
 // частный случай для координаторов с модулем
 
 final class FeedCoordinator: CoordinatorProtocol {
+
     var childCoordinators: [CoordinatorProtocol]? = []
     
     var navigationController: UINavigationController
@@ -33,7 +34,7 @@ final class FeedCoordinator: CoordinatorProtocol {
         
     }
     
-    func forward(to: UIViewController) {
+    func forward(to: UIViewController & Coordinating) {
         navigationController.pushViewController(to, animated: true)
     }
     

@@ -20,7 +20,7 @@ protocol CoordinatorProtocol { // протокол для создания ко�
     
     func startApplication()
     func eventCheck(with type: Event)
-    func forward(to: UIViewController)
+    func forward(to: UIViewController & Coordinating)
     func present(to: UIViewController & Coordinating)
     func pop()
 }

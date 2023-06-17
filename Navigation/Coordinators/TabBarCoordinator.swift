@@ -42,13 +42,13 @@ final class TabBarCoordinator: CoordinatorProtocol {
             vc.coordinator = self
             navigationController.pushViewController(vc, animated: true)
         case .buttonLogin:
-            var vc: UIViewController & Coordinating = LogInViewController()
+            var _: UIViewController & Coordinating = LogInViewController()
         case .buttonProfile:
             print("fdfd")
         }
     }
     
-    func forward(to: UIViewController) {
+    func forward(to: UIViewController & Coordinating) {
         navigationController.pushViewController(to, animated: true)
     }
     

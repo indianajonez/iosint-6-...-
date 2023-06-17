@@ -42,10 +42,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createLoginViewController() -> UINavigationController {
         let login = LogInViewController()
 // Вынесите генерацию LoginInspector в SceneDelegate (или AppDelegate) через фабрику: теперь экземпляр делегата для LoginViewController должен создаваться через фабрику, а не напрямую.
-        let myLoginFactory = MyLoginFactory()
+//        let myLoginFactory = MyLoginFactory()
         login.tabBarItem.title = "Login"
         login.tabBarItem.image = UIImage(systemName: "person.fill.viewfinder")
-        login.loginDelegate = myLoginFactory.makeLoginInspector()
+//        login.loginDelegate = myLoginFactory.makeLoginInspector()
         let loginReturn = UINavigationController(rootViewController: login)
         loginReturn.navigationController?.navigationBar.isHidden = true
         

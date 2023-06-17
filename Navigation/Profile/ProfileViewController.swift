@@ -8,9 +8,9 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController{
-    var coordinator: ProfileCoordinator
-    
+class ProfileViewController: UIViewController, Coordinating {
+    var coordinator: CoordinatorProtocol?
+
 
 //    var coordinator: ProfileCoordinator
 
@@ -35,15 +35,6 @@ class ProfileViewController: UIViewController{
         return table
     }()
     
-    init(coordinator:ProfileCoordinator) {
-        self.coordinator = coordinator
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         start()
         super.viewDidLoad()
@@ -58,33 +49,46 @@ class ProfileViewController: UIViewController{
     }
     
     private func start() {
-        DispatchQueue.global().async { [weak self] in
+        Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { [weak self] _ in
             guard let self else { return }
-            
-            self.timer = Timer.scheduledTimer(
-                timeInterval: 5.0,
-                target: self,
-                selector: #selector(self.showView),
-                userInfo: nil,
-                repeats: false)
-            
-            guard let timer = self.timer else { return }
-            
-            RunLoop.current.add(timer, forMode: .common)
-            RunLoop.current.run()
+
+            DispatchQueue.main.async {
+                print("end present")
+                self.navigationController?.pushViewController(self.subscriber, animated: true)
+            }
         }
     }
     
-    @objc private func showView() {
-        DispatchQueue.main.async {
-            //self.coordinator.forward(to: self.subscriber)
-            
-            print("end present")
-           self.navigationController?.pushViewController(self.subscriber, animated: true)
-            //coordinator?.present(to: subscriber)
-        }
-    }
-    
+//    private func start() {
+//        DispatchQueue.global().async { [weak self] in
+//            guard let self else { return }
+//
+//            self.timer = Timer.scheduledTimer(
+//                timeInterval: 5.0,
+//                target: self,
+//                selector: #selector(self.showView),
+//                userInfo: nil,
+//                repeats: false)
+//
+//            guard let timer = self.timer else { return }
+//
+//            RunLoop.current.add(timer, forMode: .common)
+//            RunLoop.current.run()
+//        }
+//    }
+//
+//    @objc private func showView() {
+//        DispatchQueue.main.async { [weak self] in
+//            guard let self = self else {return }
+//            //self.coordinator.forward(to: self.subscriber)
+//
+//            print("end present")
+//           //self.navigationController?.pushViewController(self.subscriber, animated: true)
+//            self.coordinator?.forward(to: RunloopViewController())
+//            //coordinator?.present(to: subscriber)
+//        }
+//    }
+//
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         layout()

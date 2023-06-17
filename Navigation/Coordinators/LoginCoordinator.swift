@@ -20,10 +20,10 @@ class LoginCoordinator: CoordinatorProtocol {
     
     func startApplication() {
         let login = LogInViewController()
-        let myLoginFactory = MyLoginFactory()
+//        let myLoginFactory = MyLoginFactory()
         login.tabBarItem.title = "Login"
         login.tabBarItem.image = UIImage(systemName: "person.fill.viewfinder")
-        login.loginDelegate = myLoginFactory.makeLoginInspector()
+//        login.loginDelegate = myLoginFactory.makeLoginInspector()
         navigationController.pushViewController(login, animated: true)
     }
     
@@ -31,7 +31,7 @@ class LoginCoordinator: CoordinatorProtocol {
         
     }
     
-    func forward(to: UIViewController) {
+    func forward(to: UIViewController & Coordinating) {
         navigationController.pushViewController(to, animated: true)
     }
     
