@@ -8,14 +8,18 @@
 import UIKit
 import StorageService
 
-class FeedViewController: UIViewController, Coordinating {
+class FeedViewController: UIViewController{
+    
+    
+    // MARK: - Public properties
     
     var coordinator: CoordinatorProtocol?
     
+    
+    // MARK: - Private properties
+    
     private let feedmodel = FeedModel()
-    
     private var feedViewModel: FeedViewModelProtocol
-    
     
     private lazy var textField: UITextField = {
             let textField = UITextField()
@@ -30,9 +34,9 @@ class FeedViewController: UIViewController, Coordinating {
             textField.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
             textField.leftViewMode = .always
             textField.placeholder = "Write the right word here.."
+        
             return textField
         }()
-    
     
     private lazy var stackView: UIStackView = {
         let stack = UIStackView()
@@ -58,6 +62,7 @@ class FeedViewController: UIViewController, Coordinating {
             }
         })
         button.layer.cornerRadius = 5
+        
         return button
     }()
     
@@ -66,6 +71,7 @@ class FeedViewController: UIViewController, Coordinating {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .gray
         label.layer.cornerRadius = 5
+        
         return label
     }()
     
@@ -75,7 +81,7 @@ class FeedViewController: UIViewController, Coordinating {
             let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
             postVC.coordinator = self.coordinator
             postVC.setupPost(post)
-            self.coordinator?.forward(to: postVC)
+//            self.coordinator?.forward(to: postVC)
             //self.navigationController?.pushViewController(postVC, animated: true)
         })
             return button
@@ -87,11 +93,14 @@ class FeedViewController: UIViewController, Coordinating {
             let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
             postVC.setupPost(post)
             postVC.coordinator = self.coordinator
-            self.coordinator?.forward(to: postVC)
+//            self.coordinator?.forward(to: postVC)
             //self.navigationController?.pushViewController(postVC, animated: true)
         })
         return button
     }()
+    
+    
+    // MARK: - Init
     
     init(viewModel: FeedViewModelProtocol) {
         self.feedViewModel = viewModel
@@ -101,14 +110,20 @@ class FeedViewController: UIViewController, Coordinating {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-        
+      
+    
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemCyan
-        layout()
+        setupConstrains()
     }
     
-    private func layout() {
+    
+    // MARK: - Private methods
+    
+    private func setupConstrains() {
         view.addSubview(stackView)
         view.addSubview(textField)
         view.addSubview(labelCheck)
@@ -133,6 +148,5 @@ class FeedViewController: UIViewController, Coordinating {
                         
         ])
     }
-
 }
 

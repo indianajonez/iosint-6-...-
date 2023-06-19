@@ -5,45 +5,45 @@
 //  Created by Ekaterina Saveleva on 01.06.2023.
 //
 
-import Foundation
 import UIKit
 
+final class FeedCoordinator {
 
-// частный случай для координаторов с модулем
+    // MARK: - Private properties
+    
+    private var childCoordinators: [CoordinatorProtocol] = []
+    private var navigationController: UINavigationController
+    
+    
+    // MARK: - Init
+    
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
+    
+    
+    // MARK: - Private methods
+    
+    private func setupNavigationController() {
+        let tabBarItem = UITabBarItem(
+            title: "Feed",
+            image: UIImage(systemName: "rectangle.3.group.bubble.left"),
+            tag: 0
+        )
+        self.navigationController.tabBarItem = tabBarItem
+    }
+}
 
-final class FeedCoordinator: CoordinatorProtocol {
 
-    var childCoordinators: [CoordinatorProtocol]? = []
-    
-    var navigationController: UINavigationController
-    
-    init(navigation: UINavigationController) {
-        self.navigationController = navigation
+
+    // MARK: - CoordinatorProtocol
+
+extension FeedCoordinator: CoordinatorProtocol {
+    func start() -> UIViewController {
+        let viewModel = FeedViewModel()
+        let feedViewController = FeedViewController(viewModel: viewModel)
+        self.navigationController.setViewControllers([feedViewController], animated: false)
+        self.setupNavigationController()
+        return self.navigationController
     }
-    
-    func startApplication() {
-        let feedModel = FeedViewModel()
-        let feed = FeedViewController(viewModel: feedModel)
-        feed.tabBarItem.title = "Feed"
-        feed.tabBarItem.image = UIImage(systemName: "rectangle.3.group.bubble.left")
-        feed.coordinator = self
-        navigationController.pushViewController(feed, animated: true)
-    }
-    
-    func eventCheck(with type: Event) {
-        
-    }
-    
-    func forward(to: UIViewController & Coordinating) {
-        navigationController.pushViewController(to, animated: true)
-    }
-    
-    func present(to: UIViewController & Coordinating) {
-        navigationController.present(to, animated: true)
-    }
-    
-    func pop() {
-        navigationController.popViewController(animated: true)
-    }
-    
 }

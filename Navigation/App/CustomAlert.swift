@@ -5,14 +5,19 @@
 //  Created by Ekaterina Saveleva on 12.06.2023.
 //
 import UIKit
-import Foundation
 
 class CustomAlert: UIAlertController {
+    
+    // MARK: - Public properties
+    
     let titleAlert: String
     let messageAlert: String
     let okTitle: String
     var completionOk: ()->()
     var alert: UIAlertController?
+    
+    
+    // MARK: - Init
     
     init(titleAlert: String, messageAlert: String, okTitle: String, completionOk: @escaping ()->()) {
         self.titleAlert = titleAlert
@@ -26,6 +31,9 @@ class CustomAlert: UIAlertController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - Private methods
     
     private func setup() {
         let alert = UIAlertController(title: titleAlert, message: messageAlert, preferredStyle: .alert)

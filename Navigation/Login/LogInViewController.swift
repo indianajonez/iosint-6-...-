@@ -7,33 +7,25 @@
 
 import UIKit
 
-class LogInViewController: UIViewController, Coordinating {
+final class LogInViewController: UIViewController {
     
-    var coordinator: CoordinatorProtocol?
+    // MARK: - Privte properties
     
-    private let notificationCenter = NotificationCenter.default
-
-    var loginDelegate: LoginViewControllerDelegate!
-        
+    private var loginDelegate: LoginViewControllerDelegate
+    
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
         scroll.translatesAutoresizingMaskIntoConstraints = false
         return scroll
     }()
     
-    private lazy var loginView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
-    private lazy var logoImage: UIImageView = {
+    private lazy var logoImageView: UIImageView = {
         let image = UIImageView(image: UIImage(named: "logo"))
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    private lazy var loginText: UITextField = {
+    private lazy var loginTextField: UITextField = {
         let login = UITextField()
         login.translatesAutoresizingMaskIntoConstraints = false
         login.textColor = .black
@@ -47,7 +39,7 @@ class LogInViewController: UIViewController, Coordinating {
         return login
     }()
     
-    private lazy var loginPassword: UITextField = {
+    private lazy var passwordTextField: UITextField = {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
         password.textColor = .black
@@ -63,24 +55,14 @@ class LogInViewController: UIViewController, Coordinating {
 
     }()
     
-    private lazy var emptyView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
-    
     private lazy var stackView: UIStackView = { [unowned self] in
         let stackView = UIStackView()
-        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.clipsToBounds = true
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 0
         stackView.layer.cornerRadius = 10
-        stackView.addArrangedSubview(self.loginText)
-        stackView.addArrangedSubview(self.emptyView)
-        stackView.addArrangedSubview(self.loginPassword)
         return stackView
     }()
  
@@ -90,137 +72,135 @@ class LogInViewController: UIViewController, Coordinating {
         button.backgroundColor = UIColor(rgb: 0x4885CC)
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
-        button.addTarget(self, action: #selector(setStatus), for: .touchUpInside)
+        button.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
         return button
     }()
     
-    private func checkData() throws -> [String] {
-        guard let login = loginText.text, let pass = loginPassword.text else {throw TypeError.Auth.emptyTextField}
-        return [login, pass]
+    
+    // MARK: - Lifecycles
+    
+    init(loginDelegate: LoginViewControllerDelegate) {
+        self.loginDelegate = loginDelegate
+        super.init(nibName: nil, bundle: nil)
     }
-
-    @objc private func setStatus() {
-
-        do {
-            let dataFromForm = try? checkData()
-            let login = dataFromForm![0]
-            let pass = dataFromForm![1]
-            
-            let result = try? loginDelegate.check(login: login, password: pass)
-            if let result = result {
-                #if DEBUG
-                let userService = TestUserService(login: login).user
-                #else
-                let userService = CurrentUserService(login: login).user
-                #endif
-                
-                let profileCoordinator = ProfileCoordinator(navigation: navigationController!)
-                profileCoordinator.startWithUser(userService)
-            }
-        }
-        catch TypeError.Auth.emptyTextField {
-            print("Text field not fill")
-        }
-        catch TypeError.Auth.notFound {
-            let alertCustom = CustomAlert(titleAlert: "Bad auth", messageAlert: "Пользователь с таким логином/паролем не найден", okTitle: "Oк") {
-                self.navigationController?.popViewController(animated: true)
-            }
-            present(alertCustom.alert!, animated: true)
-        }
-        
-//        if self.loginDelegate.check(login: login, password: pass) {
-//            #if DEBUG
-//            let userService = TestUserService(login: login).user
-//            #else
-//            let userService = CurrentUserService(login: login).user
-//            #endif
-//
-//            let profileCoordinator = ProfileCoordinator(navigation: navigationController!)
-//            profileCoordinator.startWithUser(userService)
-//        }
-//        else {
-//            let alertCustom = CustomAlert(titleAlert: "Bad auth", messageAlert: "Пользователь с таким логином/паролем не найден", okTitle: "Oк") {
-//                self.navigationController?.popViewController(animated: true)
-//            }
-//            present(alertCustom.alert!, animated: true)
-//        }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        layout()
+        setupView()
+        setupConstraints()
+        setupgestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        notificationCenter.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbdShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbdHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-        notificationCenter.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    @objc private func kbdShow(notification: Notification) {
-        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue {
+    
+    // MARK: - Private methods
+    
+    private func setupView() {
+        view.backgroundColor = .white
+        view.addSubview(scrollView)
+        scrollView.addSubview(logoImageView)
+        scrollView.addSubview(stackView)
+        setupStackView()
+        scrollView.addSubview(logInButton)
+    }
+    
+    private func setupStackView() {
+        stackView.addArrangedSubview(self.loginTextField)
+        stackView.addArrangedSubview(self.passwordTextField)
+    }
+    
+    private func setupgestureRecognizer() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.didTapSuperView))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    private func makeWrongAlert(massage: String) {
+        let alertController = UIAlertController(
+            title: "Ошибка",
+            message: massage,
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+    }
+    
+    private func setupConstraints() {
+        NSLayoutConstraint.activate([
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            logoImageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 100),
+            logoImageView.widthAnchor.constraint(equalToConstant: 100),
+            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
+            
+            stackView.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 120),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
+
+            logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+            logInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            logInButton.heightAnchor.constraint(equalToConstant: 50),
+        ])
+    }
+    
+    
+    @objc
+    private func kbdShow(notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRect = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRect.height
-            let loginButtonBottomPointY = self.logInButton.frame.origin.y + 16
-            let keyboardOriginY = self.view.frame.height - keyboardHeight
+            let loginButtonBottomPointY = self.logInButton.frame.origin.y + self.logInButton.frame.height
+            let keyboardOriginY = self.scrollView.frame.height - keyboardHeight
             let yOffset = keyboardOriginY < loginButtonBottomPointY ? loginButtonBottomPointY - keyboardOriginY + 16 : 0
-            
-            self.scrollView.contentOffset = CGPoint(x: 0, y: yOffset)
+            print(keyboardOriginY)
+            print(loginButtonBottomPointY)
+            self.scrollView.setContentOffset(CGPoint(x: 0, y: yOffset), animated: true)
         }
     }
     
-    @objc private func kbdHide() {
-        scrollView.contentOffset = .zero
-        
+    @objc
+    private func kbdHide() {
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
     
-    private func layout() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(loginView)
-        [logoImage, stackView, logInButton].forEach{loginView.addSubview($0)} // удалила отсюда loginPassword, loginText,
-        let constant: CGFloat = 16
-        
-        NSLayoutConstraint.activate([
-            
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            
-            loginView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            loginView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            loginView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            loginView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            loginView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            
-            logoImage.topAnchor.constraint(equalTo: loginView.topAnchor, constant: 100),
-            logoImage.widthAnchor.constraint(equalToConstant: 100),
-            logoImage.heightAnchor.constraint(equalToConstant: 100),
-            logoImage.centerXAnchor.constraint(equalTo: loginView.centerXAnchor),
-            
-            
-            stackView.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 120),
-            stackView.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
-            stackView.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
-            stackView.heightAnchor.constraint(equalToConstant: 100),
-
-            
-            logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: constant),
-            logInButton.leadingAnchor.constraint(equalTo: loginView.leadingAnchor, constant: constant),
-            logInButton.trailingAnchor.constraint(equalTo: loginView.trailingAnchor, constant: -constant),
-            logInButton.heightAnchor.constraint(equalToConstant: 50),
-            logInButton.bottomAnchor.constraint(equalTo: loginView.bottomAnchor, constant: -constant),
-            
-        ])
-        
+    @objc
+    private func didTapSuperView() {
+        self.view.endEditing(true)
+    }
+    
+    @objc
+    private func didTapButton() {
+        do {
+           // let _ = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
+            let _ = try self.loginDelegate.check(login: loginTextField.text, password: self.passwordTextField.text)
+        } catch {
+            if let error = error as? LoginViewControllerDelegateError {
+                self.makeWrongAlert(massage: error.errorDescription)
+            } else {
+                self.makeWrongAlert(massage: "Неизвестная ошибка")
+            }
+        }
     }
 
 }
-

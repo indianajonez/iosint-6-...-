@@ -8,32 +8,34 @@
 import UIKit
 import StorageService
 
-class ProfileViewController: UIViewController, Coordinating {
-    var coordinator: CoordinatorProtocol?
-
-
-//    var coordinator: ProfileCoordinator
-
+class ProfileViewController: UIViewController {
+    
+    // MARK: - Privte properties
+    
     private var counter = 0
     private var isTimerStarted = false
     private var timer: Timer?
-    
-    var currentUser: User?
     private var listPost = Post2.make()
     private var listPhoto = Photo.makeCollectionPhotos()
     private var subscriber = RunloopViewController()
 
-    
     private lazy var table: UITableView = {
-        let table = UITableView(frame: .zero, style: .plain) //поменять стиль
+        let table = UITableView(frame: .zero, style: .plain)
         table.translatesAutoresizingMaskIntoConstraints = false
         table.delegate = self
         table.dataSource = self
         table.backgroundColor = .lightGray
-        table.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier) //регистрация ячейки c фото для переиспользования
-        table.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier) //регистрация ячейки c постами для переиспользования
+        table.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
+        table.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         return table
     }()
+    
+    // MARK: - Public properties
+    
+    var currentUser: User?
+    var coordinator: CoordinatorProtocol?
+    
+    // MARK: - Lifecycles
     
     override func viewDidLoad() {
         start()
@@ -43,10 +45,15 @@ class ProfileViewController: UIViewController, Coordinating {
         #else
         view.backgroundColor = .lightGray
         #endif
-    
-        // Смоделируем случай, когда в схеме Debug, которая была создана по результатам первой домашней работы, вводится тестовый логин.
-
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupConstraints()
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    // MARK: - Private methods
     
     private func start() {
         Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { [weak self] _ in
@@ -89,13 +96,8 @@ class ProfileViewController: UIViewController, Coordinating {
 //        }
 //    }
 //
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        layout()
-        navigationController?.navigationBar.isHidden = true
-    }
     
-    private func layout() {
+    private func setupConstraints() {
         
         view.addSubview(table)
         
@@ -107,6 +109,7 @@ class ProfileViewController: UIViewController, Coordinating {
         ])
     }
 }
+
 
 // MARK: - UITableViewDelegate
 
@@ -127,18 +130,20 @@ extension ProfileViewController: UITableViewDelegate {
         }
 }
 
-// MARK: - UITableViewDataSource дата сорс отвечает за то, чтобы наполнить таблицу данными
+
+
+// MARK: - UITableViewDataSource
 
 extension ProfileViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         2
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        section == 0 ? 1 : listPost.count // с помощью этого метода указываем кол-во ячеек
+        section == 0 ? 1 : listPost.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
@@ -154,11 +159,14 @@ extension ProfileViewController: UITableViewDataSource {
             cell.backgroundColor = .lightGray
             return cell
         }
-
+        
     }
 }
 
+
+
 // MARK: - PhotosGalleryDelegate
+
 extension ProfileViewController: PhotosGalleryDelegate {
     func openGallery() {
         print(#function)

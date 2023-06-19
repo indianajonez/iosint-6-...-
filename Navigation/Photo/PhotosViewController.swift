@@ -120,9 +120,3 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout {
 //
 //    }
 //}
-
-
-        
-
-    
-

@@ -6,15 +6,27 @@
 
 import UIKit
 
-class InfoViewController: UIViewController, Coordinating { //*
+class InfoViewController: UIViewController{
     
-    var coordinator: CoordinatorProtocol? //*
+    // MARK: - Public properties
+    
+    var coordinator: CoordinatorProtocol?
+    
+    let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+        print("отмена выхода из просмотра информации")
+    }
+    
+    
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         makeButton()
     }
+    
+    
+    // MARK: - Public methods
     
     func makeButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
@@ -25,16 +37,23 @@ class InfoViewController: UIViewController, Coordinating { //*
         view.addSubview(button)
     }
     
-    @objc private func tapAction(){
-        let alert = UIAlertController(title: "Перейти назад", message: "что ты хочешь сделать?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Выйти", style: .default) { _ in
+    
+    // MARK: - Private methods
+    
+    @objc
+    private func tapAction(){
+        let alert = UIAlertController(
+            title: "Перейти назад",
+            message: "что ты хочешь сделать?",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "Выйти",
+            style: .default
+        ){
+            _ in
             print("Выход из окна информация")
-            self.coordinator?.pop()
             self.popoverPresentationController
-            //self.navigationController?.popViewController(animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-            print("отмена выхода из просмотра информации")
         }
         
         alert.addAction(okAction)

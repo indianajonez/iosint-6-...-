@@ -9,6 +9,8 @@ import UIKit
 
 class PhotosCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - Private properties
+    
     private lazy var imageCollectionCell: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -18,20 +20,28 @@ class PhotosCollectionViewCell: UICollectionViewCell {
     }()
     
     
+    // MARK: - Init
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layout()
+        setupConstrains()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    // MARK: - Public methods
+    
     func setupCollectionCell(_ photo: UIImage) {
         imageCollectionCell.image = photo
     }
     
-    private func layout() {
+    
+    // MARK: - Private methods
+    
+    private func setupConstrains() {
         
         contentView.addSubview(imageCollectionCell)
         

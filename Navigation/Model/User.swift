@@ -5,17 +5,16 @@
 //  Created by Ekaterina Saveleva on 08.05.2023.
 //
 
-import Foundation
 import UIKit
 
 // 1. Добавьте новый класс User для хранения информации о пользователе со свойствами: логин, полное имя, аватар, статус. Типы для свойств — String, за исключением аватара, который должен иметь тип UIImage.
 class User {
     var login: String
     var fullName: String
-    var avatar: UIImage
+    var avatar: UIImage?
     var status: String
 
-    init(login: String, fullName: String, avatar: UIImage, status: String) {
+    init(login: String, fullName: String, avatar: UIImage?, status: String) {
         self.login = login
         self.fullName = fullName
         self.avatar = avatar
@@ -56,9 +55,4 @@ class TestUserService: UserService {
     func checkLogin(login: String) -> User? {
         login == user?.login ? self.user : nil
     }
-
-
 }
-
-
-

@@ -12,8 +12,12 @@ protocol PhotosGalleryDelegate: AnyObject {
 }
 
 class PhotosTableViewCell: UITableViewCell {
+    
+    // MARK: - Public properties
 
     weak var delegate: PhotosGalleryDelegate?
+    
+    // MARK: - Private properties
     
     private let collectionPhotos = Photo.makeCollectionPhotos()
     
@@ -40,13 +44,6 @@ class PhotosTableViewCell: UITableViewCell {
         return button
     }()
     
-    @objc private func tapButton() {
-        print("TAP")
-        
-        self.delegate?.openGallery()
-        print(#function)
-    }
-    
     private lazy var imageCollection: UICollectionView = { // коллекция картинок
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal // горизонтальное расположение
@@ -62,16 +59,29 @@ class PhotosTableViewCell: UITableViewCell {
         return imageCollection
     }()
     
+    // MARK: - Init
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // момент создания ячеки блока с фотографиями
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        layout()
+        setupConstrains()
     }
     
     required init(coder: NSCoder) { // обязательный инициализатор
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func layout() {
+    
+    // MARK: - Private methods
+    
+    @objc private func tapButton() {
+        print("TAP")
+        
+        self.delegate?.openGallery()
+        print(#function)
+    }
+    
+    private func setupConstrains() {
+        
         let labelinset: CGFloat = 12
         
         [namelabel, button, imageCollection].forEach{contentView.addSubview($0)}
@@ -98,10 +108,19 @@ class PhotosTableViewCell: UITableViewCell {
     
 }
 
+
+
 // MARK: - UICOllectionViewDelegateFlowLayout
 
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
+    
+    
+    // MARK: - Private properties
+    
     private var sideInset: CGFloat {return 8}
+    
+    
+    // MARK: - Public methods
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.bounds.width - sideInset * 5) / 4 // от ширины экрана отнимает все отступы (включая первый и последний) и делим на количество элементов
@@ -119,9 +138,14 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 }
 
 
+
 // MARK: - UICollectionViewDataSource
 
 extension PhotosTableViewCell: UICollectionViewDataSource {
+    
+    
+    // MARK: - Private methods
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as? PhotosCollectionViewCell else {return UICollectionViewCell()}
         cell.setupCollectionCell(collectionPhotos[indexPath.item].image!)

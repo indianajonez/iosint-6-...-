@@ -7,10 +7,13 @@
 
 import UIKit
 
-
 struct Photo {
     
+    // MARK: - Public properties
+    
     let image: UIImage?
+    
+    // MARK: - Public methods
     
     static func makeCollectionPhotos() -> [Photo] {
         var collection: [Photo] = []

@@ -5,11 +5,11 @@
 //  Created by Ekaterina Saveleva on 25.05.2023.
 //
 
-import Foundation
 import StorageService
 import UIKit
 
 protocol FeedViewModelProtocol {
+    
     func getPost(title: String, image: UIImage?, text: String) -> Post2
     func checkPost(idPost: Int) -> Bool
     func delete(post: Post2) -> Bool
@@ -18,7 +18,13 @@ protocol FeedViewModelProtocol {
 
 class FeedViewModel: FeedViewModelProtocol {
     
+    
+    // MARK: - Private properties
+    
     private var arrayPost: [Post2] = []
+    
+    
+    // MARK: - Public methods
     
     func checkPost(idPost: Int) -> Bool {
         if let _ = arrayPost.first(where: {$0.id == idPost}) {
@@ -43,13 +49,3 @@ class FeedViewModel: FeedViewModelProtocol {
     
 }
 
-//let post = Post2(
-//       title: "Название поста",
-//       image: UIImage(named: "A316DE42"),
-//       text: "текст внутри данного поста, очень длинный и важный"
-//   )
-//   
-//   let postTwo = Post2(
-//       title: "Second Post",
-//       image: UIImage(named: "A316DE42"),
-//       text: "Text for second post")

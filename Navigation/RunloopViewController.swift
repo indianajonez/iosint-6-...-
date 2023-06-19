@@ -7,8 +7,15 @@
 
 import UIKit
 
-class RunloopViewController: UIViewController, Coordinating {
+class RunloopViewController: UIViewController{
+    
+    
+    // MARK: - Public properties
+    
     var coordinator: CoordinatorProtocol?
+    
+    
+    // MARK: - Private properties
     
     private lazy var logoImage: UIImageView = {
         let image = UIImageView(image: UIImage(named: "logo"))
@@ -21,7 +28,6 @@ class RunloopViewController: UIViewController, Coordinating {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Купи подписку и используй все возможности приложения!"
         label.textColor = .black
-        //label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 2
         return label
@@ -37,18 +43,25 @@ class RunloopViewController: UIViewController, Coordinating {
         return button
     }()
     
+    
+    // MARK: - Lifecycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        layout()
+        setupConstrains()
     }
     
-    @objc private func buy() {
+    
+    // MARK: - Private methods
+    
+    @objc
+    private func buy() {
         print("buy")
         navigationController?.popViewController(animated: true)
     }
     
-    private func layout() {
+    private func setupConstrains() {
         view.addSubview(logoImage)
         view.addSubview(subscribeLabel)
         view.addSubview(buyButton)
