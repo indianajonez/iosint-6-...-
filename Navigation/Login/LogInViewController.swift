@@ -9,6 +9,10 @@ import UIKit
 
 final class LogInViewController: UIViewController {
     
+    // MARK: - Public properties
+    
+    weak var coordinator: LoginCoordinatorProtocol?
+    
     // MARK: - Privte properties
     
     private var loginDelegate: LoginViewControllerDelegate
@@ -192,8 +196,8 @@ final class LogInViewController: UIViewController {
     @objc
     private func didTapButton() {
         do {
-           // let _ = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
-            let _ = try self.loginDelegate.check(login: loginTextField.text, password: self.passwordTextField.text)
+            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
+            self.coordinator?.goToTabBarController()
         } catch {
             if let error = error as? LoginViewControllerDelegateError {
                 self.makeWrongAlert(massage: error.errorDescription)
@@ -202,5 +206,5 @@ final class LogInViewController: UIViewController {
             }
         }
     }
-
 }
+

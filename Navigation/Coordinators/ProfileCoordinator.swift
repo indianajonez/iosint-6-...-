@@ -27,7 +27,7 @@ final class ProfileCoordinator {
     private func setupNavigationController() {
         let tabBarItem = UITabBarItem(
             title: "Profile",
-            image: UIImage(systemName: ""),
+            image: UIImage(systemName: "person.fill"),
             tag: 1
         )
         self.navigationController.tabBarItem = tabBarItem

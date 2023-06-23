@@ -7,7 +7,15 @@
 
 import UIKit
 
+protocol LoginCoordinatorProtocol: AnyObject {
+    func goToTabBarController()
+}
+
 final class LoginCoordinator {
+    
+    // MARK: - Public properties
+    
+    weak var parentCoordinator: MainCoordinatorProcotol?
 
     // MARK: - Private properties
     
@@ -19,6 +27,7 @@ final class LoginCoordinator {
     init(navigationController: UINavigationController) {
           self.navigationController = navigationController
     }
+    
 }
 
 
@@ -35,9 +44,17 @@ extension LoginCoordinator: CoordinatorProtocol {
         )
         let loginDelegate = Checker(user: user, password: "1")
         let loginViewController = LogInViewController(loginDelegate: loginDelegate)
+        loginViewController.coordinator = self
         
         self.navigationController.setViewControllers([loginViewController], animated: false)
         return self.navigationController
     }
     
+}
+
+
+extension LoginCoordinator: LoginCoordinatorProtocol {
+    func goToTabBarController() {
+        self.parentCoordinator?.goToTabBarController()
+    }
 }
