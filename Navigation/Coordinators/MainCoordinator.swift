@@ -60,7 +60,6 @@ final class MainCoordinator {
         }
         self.childCoordinators.append(coordinator)
     }
-    // хм...
     
     private func removeChildCoordinator(_ coordinator: CoordinatorProtocol) {
         self.childCoordinators.removeAll(where: {$0 === coordinator})

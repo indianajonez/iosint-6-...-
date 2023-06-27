@@ -51,10 +51,13 @@ extension TabBarCoordinator: CoordinatorProtocol {
         self.addChildCoordinator(feedCoordinator)
         let profileCoordinator = ProfileCoordinator(navigationController: UINavigationController())
         self.addChildCoordinator(profileCoordinator)
+        let mediaPlayerViewCoordinator = MediaPlayerViewCoordinator(navigationController: UINavigationController())
+        self.addChildCoordinator(mediaPlayerViewCoordinator)
         self.setupTabBarController(viewControllers:
         [
             feedCoordinator.start(),
-            profileCoordinator.start()
+            profileCoordinator.start(),
+            mediaPlayerViewCoordinator.start()
         ])
         
         return self.tabBarController
