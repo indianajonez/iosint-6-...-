@@ -6,15 +6,29 @@
 
 import UIKit
 
-class InfoViewController: UIViewController {
+class InfoViewController: UIViewController{
+    
+    // MARK: - Public properties
+    
+    var coordinator: CoordinatorProtocol?
+    
+    let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
+        print("отмена выхода из просмотра информации")
+    }
+    
+    
+    // MARK: - Lifecycles
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow //назначаем цвет фона в модальном открытии кнопки меню Инфо
+        view.backgroundColor = .yellow
         makeButton()
     }
     
-    func makeButton() { //черная кнопка по центру модального экрана
+    
+    // MARK: - Public methods
+    
+    func makeButton() {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 200, height: 40))
         button.center = view.center
         button.setTitle("Закрыть", for: .normal)
@@ -23,14 +37,23 @@ class InfoViewController: UIViewController {
         view.addSubview(button)
     }
     
-    @objc private func tapAction(){
-        let alert = UIAlertController(title: "Перейти назад", message: "что ты хочешь сделать?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Выйти", style: .default) { _ in
+    
+    // MARK: - Private methods
+    
+    @objc
+    private func tapAction(){
+        let alert = UIAlertController(
+            title: "Перейти назад",
+            message: "что ты хочешь сделать?",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(
+            title: "Выйти",
+            style: .default
+        ){
+            _ in
             print("Выход из окна информация")
-            self.navigationController?.popViewController(animated: true)
-        }
-        let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
-            print("отмена выхода из просмотра информации")
+            self.popoverPresentationController
         }
         
         alert.addAction(okAction)
