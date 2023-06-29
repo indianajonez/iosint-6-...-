@@ -14,7 +14,7 @@
 		F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */; };
 		F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */; };
 		F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */ = {isa = PBXBuildFile; fileRef = F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */; };
-		F33CE0E62A4B1F7E008AA476 /* Louis Armstrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F33CE0E52A4B1F7E008AA476 /* Louis Armstrong.mp3 */; };
+		F316B5EF2A4D87DE00F81E03 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */; };
 		F343964C2A13F24C007FFD87 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964B2A13F24C007FFD87 /* Checker.swift */; };
 		F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964D2A13F769007FFD87 /* LoginInspector.swift */; };
 		F34396502A15109D007FFD87 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964F2A15109C007FFD87 /* LoginFactory.swift */; };
@@ -47,7 +47,6 @@
 		F38653572A40B7F400900391 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38653562A40B7F400900391 /* CoordinatorProtocol.swift */; };
 		F39A2B592A459F450088E20A /* CheckerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B582A459F450088E20A /* CheckerResult.swift */; };
 		F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */; };
-		F39A2B5E2A45A70C0088E20A /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B5D2A45A70C0088E20A /* CameraController.swift */; };
 		F39A2B622A45DF750088E20A /* MediaPlayerViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B612A45DF750088E20A /* MediaPlayerViewCoordinator.swift */; };
 		F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A2D9DD2A0925C0005BA05C /* User.swift */; };
 		F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960C2A37560B0054B1D4 /* TypeError.swift */; };
@@ -103,7 +102,11 @@
 		F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SomeMusicForNavigationPlayer; sourceTree = "<group>"; };
-		F33CE0E52A4B1F7E008AA476 /* Louis Armstrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Louis Armstrong.mp3"; sourceTree = "<group>"; };
+		F316B5E92A4D871300F81E03 /* Louis Armstrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Louis Armstrong.mp3"; sourceTree = "<group>"; };
+		F316B5EA2A4D871800F81E03 /* RichardMarxShouldKnowBetter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RichardMarxShouldKnowBetter.mp3; sourceTree = "<group>"; };
+		F316B5EB2A4D871E00F81E03 /* TheMidnightRiverOfDarkness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMidnightRiverOfDarkness.mp3; sourceTree = "<group>"; };
+		F316B5EC2A4D872100F81E03 /* ChicagoIfYouMeNow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ChicagoIfYouMeNow.mp3; sourceTree = "<group>"; };
+		F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F343964B2A13F24C007FFD87 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		F343964D2A13F769007FFD87 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		F343964F2A15109C007FFD87 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
@@ -136,7 +139,6 @@
 		F38653562A40B7F400900391 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		F39A2B582A459F450088E20A /* CheckerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerResult.swift; sourceTree = "<group>"; };
 		F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
-		F39A2B5D2A45A70C0088E20A /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		F39A2B612A45DF750088E20A /* MediaPlayerViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewCoordinator.swift; sourceTree = "<group>"; };
 		F3A2D9DD2A0925C0005BA05C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C3960C2A37560B0054B1D4 /* TypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeError.swift; sourceTree = "<group>"; };
@@ -174,6 +176,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F316B5ED2A4D87B700F81E03 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
 		F343964A2A13F236007FFD87 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,6 +277,7 @@
 		F367D5E929C057AC009A07B8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F316B5ED2A4D87B700F81E03 /* NetworkManager */,
 				F39A2B5A2A45A6130088E20A /* MediaPlayer */,
 				F3582BE12A28E0F30002C786 /* App */,
 				F3582BD62A28DFDE0002C786 /* Coordinators */,
@@ -282,7 +293,11 @@
 				F3F6E2542A3453FE002B9431 /* RunloopViewController.swift */,
 				F367D5F329C057B0009A07B8 /* Assets.xcassets */,
 				F367D5F529C057B0009A07B8 /* LaunchScreen.storyboard */,
-				F33CE0E52A4B1F7E008AA476 /* Louis Armstrong.mp3 */,
+				F316B5E92A4D871300F81E03 /* Louis Armstrong.mp3 */,
+				F316B5EA2A4D871800F81E03 /* RichardMarxShouldKnowBetter.mp3 */,
+				F316B5EB2A4D871E00F81E03 /* TheMidnightRiverOfDarkness.mp3 */,
+				F316B5EC2A4D872100F81E03 /* ChicagoIfYouMeNow.mp3 */,
+				F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */,
 				F367D5F829C057B0009A07B8 /* Info.plist */,
 			);
 			path = Navigation;
@@ -341,9 +356,7 @@
 		F39A2B5A2A45A6130088E20A /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */,
 				F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */,
-				F39A2B5D2A45A70C0088E20A /* CameraController.swift */,
 			);
 			path = MediaPlayer;
 			sourceTree = "<group>";
@@ -473,7 +486,6 @@
 			files = (
 				F367D5F729C057B0009A07B8 /* LaunchScreen.storyboard in Resources */,
 				F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */,
-				F33CE0E62A4B1F7E008AA476 /* Louis Armstrong.mp3 in Resources */,
 				F367D5F429C057B0009A07B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -499,6 +511,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F316B5EF2A4D87DE00F81E03 /* NetworkManager.swift in Sources */,
 				F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */,
 				F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */,
 				F3582BD82A28E01B0002C786 /* MainCoordinator.swift in Sources */,
@@ -508,7 +521,6 @@
 				F34396522A1512EB007FFD87 /* MyLoginFactory.swift in Sources */,
 				F31191BF29D8ACAC00EEC6DF /* PostTableViewCell.swift in Sources */,
 				F367D60729C395D9009A07B8 /* PostViewController.swift in Sources */,
-				F39A2B5E2A45A70C0088E20A /* CameraController.swift in Sources */,
 				F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */,
 				F3582BD52A1FA8F00002C786 /* FeedViewModel.swift in Sources */,
 				F367D5EB29C057AC009A07B8 /* AppDelegate.swift in Sources */,

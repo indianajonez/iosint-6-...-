@@ -26,6 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         self.window = window
        self.mainCoordinator = mainCoordinator
+        NetworkManager.request(for: .people(url: "4"))
+        NetworkManager.request(for: .starships(url: "3"))
   //      self.mainCoordinator = tabBarCoordinator
     }
     
