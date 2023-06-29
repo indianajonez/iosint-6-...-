@@ -13,6 +13,7 @@
 		F312038129DAE2A1009B9D7F /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038029DAE2A1009B9D7F /* Photos.swift */; };
 		F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */; };
 		F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */; };
+		F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */ = {isa = PBXBuildFile; fileRef = F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */; };
 		F33CE0E62A4B1F7E008AA476 /* Louis Armstrong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F33CE0E52A4B1F7E008AA476 /* Louis Armstrong.mp3 */; };
 		F343964C2A13F24C007FFD87 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964B2A13F24C007FFD87 /* Checker.swift */; };
 		F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964D2A13F769007FFD87 /* LoginInspector.swift */; };
@@ -101,6 +102,7 @@
 		F312038029DAE2A1009B9D7F /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SomeMusicForNavigationPlayer; sourceTree = "<group>"; };
 		F33CE0E52A4B1F7E008AA476 /* Louis Armstrong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Louis Armstrong.mp3"; sourceTree = "<group>"; };
 		F343964B2A13F24C007FFD87 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		F343964D2A13F769007FFD87 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 		F39A2B5A2A45A6130088E20A /* MediaPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */,
 				F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */,
 				F39A2B5D2A45A70C0088E20A /* CameraController.swift */,
 			);
@@ -469,6 +472,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F367D5F729C057B0009A07B8 /* LaunchScreen.storyboard in Resources */,
+				F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */,
 				F33CE0E62A4B1F7E008AA476 /* Louis Armstrong.mp3 in Resources */,
 				F367D5F429C057B0009A07B8 /* Assets.xcassets in Resources */,
 			);
