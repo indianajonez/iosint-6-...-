@@ -12,6 +12,26 @@ class InfoViewController: UIViewController{
     
     var coordinator: CoordinatorProtocol?
     
+    private lazy var fullNameLabel: UILabel = {
+           let label = UILabel()
+           label.translatesAutoresizingMaskIntoConstraints = false
+           label.text = ""
+           label.textColor = .black
+           label.textAlignment = .center
+           label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+           return label
+       }()
+    
+    private lazy var fullNameLabelTwo: UILabel = {
+           let label = UILabel()
+           label.translatesAutoresizingMaskIntoConstraints = false
+           label.text = ""
+           label.textColor = .black
+           label.textAlignment = .center
+           label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+           return label
+       }()
+    
     let cancelAction = UIAlertAction(title: "Отмена", style: .destructive) { _ in
         print("отмена выхода из просмотра информации")
     }
@@ -23,6 +43,28 @@ class InfoViewController: UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .yellow
         makeButton()
+        layout()
+        NetworkManager.requestTaskOne { array in
+            self.fullNameLabelTwo.text = array?[0].title
+        }
+        
+        NetworkManager.requestTaskTwo { array in
+            self.fullNameLabel.text = array[0].title
+        }
+    }
+    
+    private func layout() {
+        
+        view.addSubview(fullNameLabel)
+        view.addSubview(fullNameLabelTwo)
+        
+        NSLayoutConstraint.activate([
+            fullNameLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            fullNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50),
+            
+            fullNameLabelTwo.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            fullNameLabelTwo.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50)
+        ])
     }
     
     

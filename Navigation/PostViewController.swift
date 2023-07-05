@@ -41,7 +41,7 @@ class PostViewController: UIViewController {
         let infoVC = InfoViewController()
         infoVC.coordinator = self.coordinator
         infoVC.title = "Информация о посте"
-
+        navigationController?.pushViewController(infoVC, animated: true)
     }
 }
 

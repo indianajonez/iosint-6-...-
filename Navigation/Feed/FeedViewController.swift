@@ -81,8 +81,9 @@ class FeedViewController: UIViewController{
             let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
             postVC.coordinator = self.coordinator
             postVC.setupPost(post)
+            
 //            self.coordinator?.forward(to: postVC)
-            //self.navigationController?.pushViewController(postVC, animated: true)
+            self.navigationController?.pushViewController(postVC, animated: true)
         })
             return button
         }()
@@ -94,7 +95,7 @@ class FeedViewController: UIViewController{
             postVC.setupPost(post)
             postVC.coordinator = self.coordinator
 //            self.coordinator?.forward(to: postVC)
-            //self.navigationController?.pushViewController(postVC, animated: true)
+            self.navigationController?.pushViewController(postVC, animated: true)
         })
         return button
     }()

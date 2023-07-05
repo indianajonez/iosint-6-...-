@@ -15,9 +15,61 @@ struct People: Codable {
     let name: String
 }
 
+struct UrlData: Codable {
+    let userId: Int
+    let id: Int
+    let title: String
+    let completed: Bool
+}
+
+struct UrlStarWars: Codable {
+    
+    let nameOfThePlanet: String
+    let orbitalPeriod: Int
+    
+}
+
 
 struct NetworkManager {
 
+    static func requestTaskOne(complition: @escaping ([UrlData]?)-> Void) {
+        let session = URLSession.shared
+        let endPoint = "https://jsonplaceholder.typicode.com/todos/"
+        let url = URL(string: endPoint)!
+        
+        let task = session.dataTask(with: url) { data, responce, error in
+            do {
+                let arrayData = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions() )
+                DispatchQueue.main.async {
+                    complition(arrayData as? [UrlData])
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    static func requestTaskTwo(complition: @escaping ([UrlStarWars])-> Void) {
+        let session = URLSession.shared
+        let endPoint = "https://swapi.dev/api/planets/"
+        let url = URL(string: endPoint)!
+        
+        let task = session.dataTask(with: url) { data, responce, error in
+            do {
+                let arrayData = try JSONDecoder().decode([UrlStarWars].self, from: data!)
+                DispatchQueue.main.async {
+                    complition((arrayData as? [UrlStarWars])!)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        
+        task.resume()
+    }
+    
     static func request(for configuration: AppConfiguration) {
         let session = URLSession.shared
         let endPoint = "https://swapi.dev/api/"
@@ -86,4 +138,9 @@ enum AppConfiguration {
     case starships(url: String)
     case planets(url: String)
     
+}
+
+enum CodingKeys {
+    case orbitalPeriod(url: String)
+    case nameOfThePlanet(url: String)
 }
