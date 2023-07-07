@@ -38,7 +38,9 @@ class PostViewController: UIViewController {
     
     @objc
     private func tapAction(){
-        let infoVC = InfoViewController()
+        let corNetworkService = CoreNetworkManager()
+        let infoNetworkService = InfoNetworkService(corNetworkService: corNetworkService)
+        let infoVC = InfoViewController(infoNetworkService: infoNetworkService)
         infoVC.coordinator = self.coordinator
         infoVC.title = "Информация о посте"
         navigationController?.pushViewController(infoVC, animated: true)

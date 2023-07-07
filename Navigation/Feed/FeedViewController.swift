@@ -99,8 +99,7 @@ class FeedViewController: UIViewController{
         })
         return button
     }()
-    
-    
+   
     // MARK: - Init
     
     init(viewModel: FeedViewModelProtocol) {

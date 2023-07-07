@@ -25,14 +25,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         self.window = window
-       self.mainCoordinator = mainCoordinator
-        NetworkManager.request(for: .people(url: "4"))
-        NetworkManager.request(for: .starships(url: "3"))
-        
-        NetworkManager.requestTaskOne { array in
-            print(array)
-            
+        self.mainCoordinator = mainCoordinator
+        let infoNetwork = InfoNetworkService(corNetworkService: CoreNetworkManager())
+        infoNetwork.requestTaskOne(number: 4) { result in
+            print(result)
         }
+        infoNetwork.requestTaskOne(number: 3) { result in
+            print(result)
+        }
+//        NetworkManager.request(for: .people(url: "4"))
+//        NetworkManager.request(for: .starships(url: "3"))
+//
+//        NetworkManager.requestTaskOne { array in
+//            print(array)
+//
+//        }
   //      self.mainCoordinator = tabBarCoordinator
     }
     

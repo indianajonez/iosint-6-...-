@@ -12,7 +12,6 @@ protocol CoordinatorProtocol: AnyObject {
 }
 
 // MARK: - Public properties
-// MARK: - Private properties
 // MARK: - Lifecycles / Init
 // MARK: - Public methods
 // MARK: - Private methods

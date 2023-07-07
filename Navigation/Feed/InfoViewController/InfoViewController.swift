@@ -12,6 +12,8 @@ class InfoViewController: UIViewController{
     
     var coordinator: CoordinatorProtocol?
     
+    private let infoNetworkService: InfoNetworkServiceProtocol
+    
     private lazy var fullNameLabel: UILabel = {
            let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
@@ -38,19 +40,42 @@ class InfoViewController: UIViewController{
     
     
     // MARK: - Lifecycles
+    init( infoNetworkService: InfoNetworkServiceProtocol) {
+        self.infoNetworkService = infoNetworkService
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .yellow
         makeButton()
         layout()
-        NetworkManager.requestTaskOne { array in
-            self.fullNameLabelTwo.text = array?[0].title
+        infoNetworkService.requestTaskOne(number: 2) { result in
+            switch result {
+            case .success(let newTitle):
+                self.fullNameLabel.text = newTitle
+            case .failure(let error):
+                print(error)
+            }
         }
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else {return}
+            self.infoNetworkService.requestTaskTwo { star in
+                self.fullNameLabelTwo.text = star.orbital_period
+            }
+
+        }
+//        NetworkManager.requestTaskOne { array in
+//            self.fullNameLabelTwo.text = array?[0].title
+//        }
         
-        NetworkManager.requestTaskTwo { array in
-            self.fullNameLabel.text = array[0].title
-        }
+//        NetworkManager.requestTaskTwo { array in
+//            self.fullNameLabel.text = array[0].title
+//        }
     }
     
     private func layout() {
@@ -63,7 +88,7 @@ class InfoViewController: UIViewController{
             fullNameLabel.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50),
             
             fullNameLabelTwo.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            fullNameLabelTwo.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -50)
+            fullNameLabelTwo.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor, constant: -230)
         ])
     }
     

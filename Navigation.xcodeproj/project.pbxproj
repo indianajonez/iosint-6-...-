@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		0EFA8A5A29C47FCE008A1549 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA8A5929C47FCE008A1549 /* InfoViewController.swift */; };
+		F30A342E2A56EEDD00178CBA /* CoreNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30A342D2A56EEDD00178CBA /* CoreNetworkManager.swift */; };
+		F30A34332A56F01D00178CBA /* InfoNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30A34322A56F01D00178CBA /* InfoNetworkService.swift */; };
 		F31191BF29D8ACAC00EEC6DF /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31191BE29D8ACAC00EEC6DF /* PostTableViewCell.swift */; };
 		F312037F29DAE0C6009B9D7F /* PhotosTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312037E29DAE0C6009B9D7F /* PhotosTableViewCell.swift */; };
 		F312038129DAE2A1009B9D7F /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038029DAE2A1009B9D7F /* Photos.swift */; };
 		F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */; };
 		F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */; };
 		F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */ = {isa = PBXBuildFile; fileRef = F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */; };
-		F316B5EF2A4D87DE00F81E03 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */; };
 		F343964C2A13F24C007FFD87 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964B2A13F24C007FFD87 /* Checker.swift */; };
 		F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964D2A13F769007FFD87 /* LoginInspector.swift */; };
 		F34396502A15109D007FFD87 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964F2A15109C007FFD87 /* LoginFactory.swift */; };
@@ -96,6 +97,8 @@
 
 /* Begin PBXFileReference section */
 		0EFA8A5929C47FCE008A1549 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		F30A342D2A56EEDD00178CBA /* CoreNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreNetworkManager.swift; sourceTree = "<group>"; };
+		F30A34322A56F01D00178CBA /* InfoNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoNetworkService.swift; sourceTree = "<group>"; };
 		F31191BE29D8ACAC00EEC6DF /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		F312037E29DAE0C6009B9D7F /* PhotosTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosTableViewCell.swift; sourceTree = "<group>"; };
 		F312038029DAE2A1009B9D7F /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
@@ -106,7 +109,6 @@
 		F316B5EA2A4D871800F81E03 /* RichardMarxShouldKnowBetter.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = RichardMarxShouldKnowBetter.mp3; sourceTree = "<group>"; };
 		F316B5EB2A4D871E00F81E03 /* TheMidnightRiverOfDarkness.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TheMidnightRiverOfDarkness.mp3; sourceTree = "<group>"; };
 		F316B5EC2A4D872100F81E03 /* ChicagoIfYouMeNow.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ChicagoIfYouMeNow.mp3; sourceTree = "<group>"; };
-		F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		F343964B2A13F24C007FFD87 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		F343964D2A13F769007FFD87 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		F343964F2A15109C007FFD87 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
@@ -176,10 +178,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F30A342C2A56E1A000178CBA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F30A342F2A56EFAA00178CBA /* PostViewController */ = {
+			isa = PBXGroup;
+			children = (
+				F367D60629C395D9009A07B8 /* PostViewController.swift */,
+			);
+			path = PostViewController;
+			sourceTree = "<group>";
+		};
+		F30A34302A56EFD800178CBA /* InfoViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0EFA8A5929C47FCE008A1549 /* InfoViewController.swift */,
+			);
+			path = InfoViewController;
+			sourceTree = "<group>";
+		};
+		F30A34312A56EFEF00178CBA /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				F30A34322A56F01D00178CBA /* InfoNetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
 		F316B5ED2A4D87B700F81E03 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				F316B5EE2A4D87DE00F81E03 /* NetworkManager.swift */,
+				F30A342C2A56E1A000178CBA /* Models */,
+				F30A342D2A56EEDD00178CBA /* CoreNetworkManager.swift */,
 			);
 			path = NetworkManager;
 			sourceTree = "<group>";
@@ -196,6 +230,9 @@
 		F3582BD32A1FA88D0002C786 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				F30A34312A56EFEF00178CBA /* NetworkService */,
+				F30A34302A56EFD800178CBA /* InfoViewController */,
+				F30A342F2A56EFAA00178CBA /* PostViewController */,
 				F367D60229C386A1009A07B8 /* FeedViewController.swift */,
 				F3582BD42A1FA8F00002C786 /* FeedViewModel.swift */,
 			);
@@ -288,8 +325,6 @@
 				F36F5B1029CA0DBA002AA1D0 /* Model */,
 				F36F5B0D29C7889F002AA1D0 /* Profile */,
 				F3582BE42A28E2560002C786 /* Data */,
-				F367D60629C395D9009A07B8 /* PostViewController.swift */,
-				0EFA8A5929C47FCE008A1549 /* InfoViewController.swift */,
 				F3F6E2542A3453FE002B9431 /* RunloopViewController.swift */,
 				F367D5F329C057B0009A07B8 /* Assets.xcassets */,
 				F367D5F529C057B0009A07B8 /* LaunchScreen.storyboard */,
@@ -511,15 +546,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F316B5EF2A4D87DE00F81E03 /* NetworkManager.swift in Sources */,
 				F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */,
 				F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */,
 				F3582BD82A28E01B0002C786 /* MainCoordinator.swift in Sources */,
+				F30A342E2A56EEDD00178CBA /* CoreNetworkManager.swift in Sources */,
 				F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */,
 				F3F6E2552A3453FE002B9431 /* RunloopViewController.swift in Sources */,
 				F3582BDA2A28E0320002C786 /* TabBarCoordinator.swift in Sources */,
 				F34396522A1512EB007FFD87 /* MyLoginFactory.swift in Sources */,
 				F31191BF29D8ACAC00EEC6DF /* PostTableViewCell.swift in Sources */,
+				F30A34332A56F01D00178CBA /* InfoNetworkService.swift in Sources */,
 				F367D60729C395D9009A07B8 /* PostViewController.swift in Sources */,
 				F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */,
 				F3582BD52A1FA8F00002C786 /* FeedViewModel.swift in Sources */,
