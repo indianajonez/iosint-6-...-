@@ -9,6 +9,7 @@ import UIKit
 
 class ProfileHeaderView: UIView {
     
+    // MARK: - Privte properties
     
     private lazy var blackView: UIView = {
         let blackView = UIView()
@@ -65,13 +66,11 @@ class ProfileHeaderView: UIView {
         return textField
     }()
     
-    
     private lazy var statusLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Waiting for something..."
         label.textColor = .gray
-        //label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -90,22 +89,27 @@ class ProfileHeaderView: UIView {
         return button
     }()
     
-    @objc private func didTaplogInButton() {
-        statusLabel.text = statusTextField.text
-        print(statusLabel.text ?? "NOT")
-    }
+    private var avatarWight = NSLayoutConstraint()
+    private var avatarHeight = NSLayoutConstraint()
+    private var avatarTop = NSLayoutConstraint()
+    private var avatarLeading = NSLayoutConstraint()
+    
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        [avatarImage, fullNameLabel, statusLabel, statusTextField, setStatusButton, ].forEach{addSubview($0)} // добавили аватарку на вью
-        layout() // закрепили аватарку на вью
+        [avatarImage, fullNameLabel, statusLabel, statusTextField, setStatusButton, ].forEach{addSubview($0)}
+        setupConstrains()
         setupGestures()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
+    // MARK: - Public methods
     
     func setView(user: User?) {
         if let user = user {
@@ -115,13 +119,22 @@ class ProfileHeaderView: UIView {
     }
     
     
+    // MARK: - Private methods
+    
     private func setupGestures() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tapAction))
         avatarImage.isUserInteractionEnabled = true
         avatarImage.addGestureRecognizer(tap)
     }
     
-    @objc private func tapAction() {
+    @objc
+    private func didTaplogInButton() {
+        statusLabel.text = statusTextField.text
+        print(statusLabel.text ?? "NOT")
+    }
+    
+    @objc
+    private func tapAction() {
         addSubview(blackView)
         addSubview(crossButton)
         bringSubviewToFront(avatarImage)
@@ -150,7 +163,8 @@ class ProfileHeaderView: UIView {
         
     }
     
-    @objc private func cancelAction() {
+    @objc
+    private func cancelAction() {
         UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) { [self] in
             crossButton.alpha = 0.0
             crossButton.removeFromSuperview()
@@ -165,18 +179,12 @@ class ProfileHeaderView: UIView {
                 avatarHeight.constant = 100
                 blackView.alpha = 0.0
                 blackView.removeFromSuperview()
-                
                 layoutIfNeeded()
             }
         }
     }
     
-    private var avatarWight = NSLayoutConstraint()
-    private var avatarHeight = NSLayoutConstraint()
-    private var avatarTop = NSLayoutConstraint()
-    private var avatarLeading = NSLayoutConstraint()
-    
-    private func layout() {
+    private func setupConstrains() {
         
         avatarTop = avatarImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16)
         avatarLeading = avatarImage.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16)
