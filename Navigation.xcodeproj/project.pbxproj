@@ -20,6 +20,11 @@
 		F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964D2A13F769007FFD87 /* LoginInspector.swift */; };
 		F34396502A15109D007FFD87 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964F2A15109C007FFD87 /* LoginFactory.swift */; };
 		F34396522A1512EB007FFD87 /* MyLoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34396512A1512EB007FFD87 /* MyLoginFactory.swift */; };
+		F345E11C2A5FFB4E00703834 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F345E11B2A5FFB4E00703834 /* GoogleService-Info.plist */; };
+		F345E13F2A61556700703834 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F345E13E2A61556700703834 /* FirebaseAuth */; };
+		F345E1412A61E4E900703834 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1402A61E4E900703834 /* Validator.swift */; };
+		F345E1672A630F9600703834 /* TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1662A630F9600703834 /* TextPicker.swift */; };
+		F345E1692A63233100703834 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1682A63233100703834 /* CheckerService.swift */; };
 		F3582BD22A1D19D50002C786 /* FeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BD12A1D19D40002C786 /* FeedModel.swift */; };
 		F3582BD52A1FA8F00002C786 /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BD42A1FA8F00002C786 /* FeedViewModel.swift */; };
 		F3582BD82A28E01B0002C786 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3582BD72A28E01B0002C786 /* MainCoordinator.swift */; };
@@ -113,6 +118,10 @@
 		F343964D2A13F769007FFD87 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		F343964F2A15109C007FFD87 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
 		F34396512A1512EB007FFD87 /* MyLoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLoginFactory.swift; sourceTree = "<group>"; };
+		F345E11B2A5FFB4E00703834 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F345E1402A61E4E900703834 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		F345E1662A630F9600703834 /* TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPicker.swift; sourceTree = "<group>"; };
+		F345E1682A63233100703834 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
 		F3582BD12A1D19D40002C786 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		F3582BD42A1FA8F00002C786 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		F3582BD72A28E01B0002C786 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -156,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3785B722A0287AC00EDFF3F /* StorageService.framework in Frameworks */,
+				F345E13F2A61556700703834 /* FirebaseAuth in Frameworks */,
 				F35C82AF2A17816B000BFEF0 /* iOSIntPackage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,6 +344,7 @@
 				F316B5EC2A4D872100F81E03 /* ChicagoIfYouMeNow.mp3 */,
 				F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */,
 				F367D5F829C057B0009A07B8 /* Info.plist */,
+				F345E11B2A5FFB4E00703834 /* GoogleService-Info.plist */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -384,6 +395,9 @@
 				F343964D2A13F769007FFD87 /* LoginInspector.swift */,
 				F343964B2A13F24C007FFD87 /* Checker.swift */,
 				F39A2B582A459F450088E20A /* CheckerResult.swift */,
+				F345E1402A61E4E900703834 /* Validator.swift */,
+				F345E1662A630F9600703834 /* TextPicker.swift */,
+				F345E1682A63233100703834 /* CheckerService.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -427,6 +441,7 @@
 			name = Navigation;
 			packageProductDependencies = (
 				F35C82AE2A17816B000BFEF0 /* iOSIntPackage */,
+				F345E13E2A61556700703834 /* FirebaseAuth */,
 			);
 			productName = Navigation;
 			productReference = F367D5E729C057AC009A07B8 /* Navigation.app */;
@@ -502,6 +517,7 @@
 			mainGroup = F367D5DE29C057AC009A07B8;
 			packageReferences = (
 				F35C82AD2A17816B000BFEF0 /* XCRemoteSwiftPackageReference "iOSIntPackage" */,
+				F345E13D2A61556700703834 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = F367D5E829C057AC009A07B8 /* Products */;
 			projectDirPath = "";
@@ -521,6 +537,7 @@
 			files = (
 				F367D5F729C057B0009A07B8 /* LaunchScreen.storyboard in Resources */,
 				F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */,
+				F345E11C2A5FFB4E00703834 /* GoogleService-Info.plist in Resources */,
 				F367D5F429C057B0009A07B8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +575,8 @@
 				F30A34332A56F01D00178CBA /* InfoNetworkService.swift in Sources */,
 				F367D60729C395D9009A07B8 /* PostViewController.swift in Sources */,
 				F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */,
+				F345E1672A630F9600703834 /* TextPicker.swift in Sources */,
+				F345E1412A61E4E900703834 /* Validator.swift in Sources */,
 				F3582BD52A1FA8F00002C786 /* FeedViewModel.swift in Sources */,
 				F367D5EB29C057AC009A07B8 /* AppDelegate.swift in Sources */,
 				F367D60129C3859A009A07B8 /* ProfileViewController.swift in Sources */,
@@ -573,6 +592,7 @@
 				F312038129DAE2A1009B9D7F /* Photos.swift in Sources */,
 				F380563E29E342E3007C5031 /* Extensions.swift in Sources */,
 				F3582BDC2A28E0450002C786 /* FeedCoordicator.swift in Sources */,
+				F345E1692A63233100703834 /* CheckerService.swift in Sources */,
 				F312037F29DAE0C6009B9D7F /* PhotosTableViewCell.swift in Sources */,
 				F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */,
 				F39A2B592A459F450088E20A /* CheckerResult.swift in Sources */,
@@ -951,6 +971,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F345E13D2A61556700703834 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 		F35C82AD2A17816B000BFEF0 /* XCRemoteSwiftPackageReference "iOSIntPackage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/TrueMax/iOSIntPackage";
@@ -962,6 +990,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F345E13E2A61556700703834 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F345E13D2A61556700703834 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
 		F35C82AE2A17816B000BFEF0 /* iOSIntPackage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F35C82AD2A17816B000BFEF0 /* XCRemoteSwiftPackageReference "iOSIntPackage" */;

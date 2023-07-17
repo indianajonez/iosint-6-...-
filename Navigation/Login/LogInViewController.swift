@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import FirebaseAuth
+
 
 final class LogInViewController: UIViewController {
     
@@ -15,7 +17,10 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Privte properties
     
-    private var loginDelegate: LoginViewControllerDelegate
+    
+    private var loginDelegate: LoginViewControllerDelegate?
+    
+    private let validator = Validator.shared
     
     private lazy var scrollView: UIScrollView = {
         let scroll = UIScrollView()
@@ -56,7 +61,7 @@ final class LogInViewController: UIViewController {
         password.isSecureTextEntry = true
         password.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return password
-
+        
     }()
     
     private lazy var stackView: UIStackView = { [unowned self] in
@@ -69,7 +74,7 @@ final class LogInViewController: UIViewController {
         stackView.layer.cornerRadius = 10
         return stackView
     }()
- 
+    
     private lazy var logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +82,16 @@ final class LogInViewController: UIViewController {
         button.layer.cornerRadius = 10
         button.setTitle("Log In", for: .normal)
         button.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var registrationButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor(rgb: 0x4885CC)
+        button.layer.cornerRadius = 10
+        button.setTitle("Singup", for: .normal)
+        button.addTarget(self, action: #selector(self.didTapRegistrationButton), for: .touchUpInside)
         return button
     }()
     
@@ -97,6 +112,9 @@ final class LogInViewController: UIViewController {
         setupView()
         setupConstraints()
         setupgestureRecognizer()
+        Auth.auth().addStateDidChangeListener{ auth, user in // заходим в профайл если данные получены корректно
+            
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -121,6 +139,7 @@ final class LogInViewController: UIViewController {
         scrollView.addSubview(stackView)
         setupStackView()
         scrollView.addSubview(logInButton)
+        scrollView.addSubview(registrationButton)
     }
     
     private func setupStackView() {
@@ -160,11 +179,16 @@ final class LogInViewController: UIViewController {
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             stackView.heightAnchor.constraint(equalToConstant: 100),
-
+            
             logInButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
             logInButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             logInButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            registrationButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
+            registrationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            registrationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            registrationButton.heightAnchor.constraint(equalToConstant: 50)
         ])
     }
     
@@ -194,17 +218,75 @@ final class LogInViewController: UIViewController {
     }
     
     @objc
-    private func didTapButton() {
+    private func didTapButton() { //не заходит в систему даже если данные правильные
+        let login = self.loginTextField.text ?? ""
+        let password = self.passwordTextField.text ?? ""
+        var result: Bool? = true
         do {
-            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
-            self.coordinator?.goToTabBarController()
+            result = try loginDelegate?.check(login: login, password: password)
         } catch {
-            if let error = error as? LoginViewControllerDelegateError {
-                self.makeWrongAlert(massage: error.errorDescription)
-            } else {
-                self.makeWrongAlert(massage: "Неизвестная ошибка")
+            print(error.localizedDescription)
+        }
+        
+        if result! {
+            self.coordinator?.goToTabBarController()
+        } else {
+            self.makeWrongAlert(massage: "Login or password is not correct")
+        }
+        
+        //        checker.checkCredentials(email: login, pass: password) { [weak self] authDataResult, error in
+        //            guard let self = self else {return}
+        //            if let error {
+        //                print(error.localizedDescription)
+        //                self.makeWrongAlert(massage: "Login or password is not correct")
+        //                return
+        //            }
+        //            self.coordinator?.goToTabBarController()
+        //        }
+    }
+    
+    
+    
+    @objc
+    private func didTapRegistrationButton() {
+        TextPicker.defaultPicker.showSignupPicker(in: self) { login, pass, pass2 in
+            if login != "" && pass != "" && pass2 != "" {
+                if pass != pass2 {
+                    self.makeWrongAlert(massage: "password is not sovpadaet")
+                    
+                    return
+                }
+                
+                var result: Bool? = true
+                do {
+                    result = try self.loginDelegate?.register(login: login, password: pass)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                if result! {
+                    self.coordinator?.goToTabBarController()
+                } else {
+                    self.makeWrongAlert(massage: "Login or password is not correct")
+                }
+            }
+            else {
+                self.makeWrongAlert(massage: "Zapolni vse polia")
             }
         }
     }
+    
+    
+    
+    //        do {
+    //            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
+    //            self.coordinator?.goToTabBarController()
+    //        } catch {
+    //            if let error = error as? LoginViewControllerDelegateError {
+    //                self.makeWrongAlert(massage: error.errorDescription)
+    //            } else {
+    //                self.makeWrongAlert(massage: "Неизвестная ошибка")
+    //            }
+    //        }
 }
 

@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import FirebaseCore
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
+        
 //        let audioSession = AVAudioSession.sharedInstance()
 //        do {
 //            try audioSession.setCategory(.playback, mode: .moviePlayback)
@@ -29,6 +32,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
         
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        //Auth.auth().logOut()
+        CheckerService().logout()
+        print("LOG OUT")
     }
 }
 

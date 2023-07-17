@@ -27,6 +27,7 @@ enum LoginViewControllerDelegateError: Error {
 
 protocol LoginViewControllerDelegate {
     func check(login: String?, password: String?) throws -> User
+    func register(login: String, password: String) throws -> Bool
 }
 
 
