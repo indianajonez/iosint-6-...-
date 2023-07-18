@@ -53,6 +53,11 @@ final class Checker {
     // MARK: - LoginViewControllerDelegate
 
 extension Checker: LoginViewControllerDelegate {
+    func register(login: String, password: String) throws -> User {
+        
+        return User(login: "dfg", fullName: "dfg", status: "dg")
+    }
+
 
     func check(login: String?, password: String?) throws -> User {
         guard let login = login,

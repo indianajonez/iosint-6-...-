@@ -13,10 +13,13 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Public properties
     
+    
+    
     weak var coordinator: LoginCoordinatorProtocol?
     
     // MARK: - Privte properties
     
+    private let checkerService: CheckerServiceProtocol
     
     private var loginDelegate: LoginViewControllerDelegate?
     
@@ -98,8 +101,9 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Lifecycles
     
-    init(loginDelegate: LoginViewControllerDelegate) {
+    init(loginDelegate: LoginViewControllerDelegate, checkerService: CheckerServiceProtocol) {
         self.loginDelegate = loginDelegate
+        self.checkerService = checkerService
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -221,19 +225,27 @@ final class LogInViewController: UIViewController {
     private func didTapButton() { //не заходит в систему даже если данные правильные
         let login = self.loginTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
-        var result: Bool? = true
-        do {
-            result = try loginDelegate?.check(login: login, password: password)
-        } catch {
-            print(error.localizedDescription)
-        }
-        
-        if result! {
+        checkerService.checkCredentials(email: login, pass: password) { user, errorString in
+            guard let user else {
+                self.makeWrongAlert(massage: errorString ?? "Login or password is not correct")
+                return
+            }
             self.coordinator?.goToTabBarController()
-        } else {
-            self.makeWrongAlert(massage: "Login or password is not correct")
         }
         
+//        var result: Bool? = true
+//        do {
+//            result = try loginDelegate?.check(login: login, password: password)
+//        } catch {
+//            print(error.localizedDescription)
+//        }
+//
+//        if result! {
+//            self.coordinator?.goToTabBarController()
+//        } else {
+//            self.makeWrongAlert(massage: "Login or password is not correct")
+//        }
+//
         //        checker.checkCredentials(email: login, pass: password) { [weak self] authDataResult, error in
         //            guard let self = self else {return}
         //            if let error {
@@ -253,21 +265,17 @@ final class LogInViewController: UIViewController {
             if login != "" && pass != "" && pass2 != "" {
                 if pass != pass2 {
                     self.makeWrongAlert(massage: "password is not sovpadaet")
-                    
+
                     return
                 }
                 
-                var result: Bool? = true
-                do {
-                    result = try self.loginDelegate?.register(login: login, password: pass)
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
-                if result! {
-                    self.coordinator?.goToTabBarController()
-                } else {
-                    self.makeWrongAlert(massage: "Login or password is not correct")
+                self.checkerService.signUp(email: login, pass: pass) { check , errorString in
+                    guard let errorString else {
+                        self.coordinator?.goToTabBarController()
+                        return
+                    }
+                    
+                    self.makeWrongAlert(massage: errorString)
                 }
             }
             else {

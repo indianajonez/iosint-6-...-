@@ -22,6 +22,14 @@ enum CheckError: Error {
 }
 
 struct LoginInspector: LoginViewControllerDelegate {
+    func check(login: String?, password: String?) throws -> User {
+        return User(login: "dfg", fullName: "dfg", status: "dg")
+    }
+
+    func register(login: String, password: String) throws -> User {
+        return User(login: "dfg", fullName: "dfg", status: "dg")
+    }
+
 
     
     var checkerService: CheckerServiceProtocol! // Вызывать методы CheckerService в сервисе/инспекторе LoginInspector, который закрыт протоколом LoginViewControllerDelegate и который инджектится в LoginViewController.
@@ -30,31 +38,31 @@ struct LoginInspector: LoginViewControllerDelegate {
         self.checkerService = checkerService
     }
     
-    func check(login: String?, password: String?) throws -> Bool {
-        
-        guard let login = login else {
-            throw CheckError.notCorrectLogin
-        }
-        
-        guard let password = password else {
-            throw CheckError.notCorrectPassword
-        }
-        
-        checkerService.checkCredentials(email: login, pass: password) { data, error in
-            guard let error = error else {
-                return
-            }
-        }
-        
-        return checkerService.checkUserStartSession()
-    }
-    
-    func register(login: String, password: String) throws -> Bool {
-        checkerService.signUp(email: login, pass: password) { data, error in
-//            guard error == nil else {
-//                return false
+//    func check(login: String?, password: String?) -> User {
+//
+//        guard let login = login else {
+//            throw CheckError.notCorrectLogin
+//        }
+//
+//        guard let password = password else {
+//            throw CheckError.notCorrectPassword
+//        }
+//
+//        checkerService.checkCredentials(email: login, pass: password) { data, error in
+//            guard let error = error else {
+//                return
 //            }
-        }
-        return try check(login: login, password: password)
-    }
+//        }
+//
+//        return checkerService.checkUserStartSession()
+//    }
+//
+//    func register(login: String, password: String) throws -> Bool {
+//        checkerService.signUp(email: login, pass: password) { data, error in
+////            guard error == nil else {
+////                return false
+////            }
+//        }
+//        return try check(login: login, password: password)
+//    }
 }

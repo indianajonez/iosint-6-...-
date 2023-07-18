@@ -39,11 +39,11 @@ extension LoginCoordinator: CoordinatorProtocol {
         let user = User(
             login: "q",
             fullName: "Test",
-            avatar: nil,
             status: "TestStatus"
         )
         let loginDelegate = Checker(user: user, password: "1")
-        let loginViewController = LogInViewController(loginDelegate: loginDelegate)
+        let checkerService = CheckerService()
+        let loginViewController = LogInViewController(loginDelegate: loginDelegate, checkerService: CheckerService())
         loginViewController.coordinator = self
         
         self.navigationController.setViewControllers([loginViewController], animated: false)
