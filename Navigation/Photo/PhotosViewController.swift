@@ -35,7 +35,6 @@ class PhotosViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Gallery"
         navigationController?.navigationBar.isHidden = false
-// Запустите сценарий наполнения коллекции изображениями через метод addImagesWithTimer. Поставьте задержку времени не менее 0.5 секунд, чтобы наблюдать, как этот паблишер работает. Количество повторений RepeatCount нужно поставить более 10, чтобы вся коллекция постепенно заполнилась фото.
     
         // Начать генерацию изображений с помощью метода addImagesWithTimer
 //        self.imagePublisherFacade.addImagesWithTimer(time: 0.5, repeat: 20, userImages: allPhotos)
