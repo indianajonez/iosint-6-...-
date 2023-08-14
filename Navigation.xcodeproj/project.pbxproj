@@ -49,6 +49,11 @@
 		F3785B722A0287AC00EDFF3F /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3785B5D2A0287AB00EDFF3F /* StorageService.framework */; };
 		F3785B732A0287AC00EDFF3F /* StorageService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3785B5D2A0287AB00EDFF3F /* StorageService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F367D60229C386A1009A07B8 /* FeedViewController.swift */; };
+		F37A7C1E2A880D08004922D9 /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C1D2A880D08004922D9 /* PostCoordinator.swift */; };
+		F37A7C202A880D68004922D9 /* PostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C1F2A880D68004922D9 /* PostTableViewController.swift */; };
+		F37A7C232A880DAD004922D9 /* SavedPostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C222A880DAD004922D9 /* SavedPostTableViewCell.swift */; };
+		F37A7C262A8814B7004922D9 /* PostStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C242A8814B7004922D9 /* PostStorage.xcdatamodeld */; };
+		F37A7C292A881796004922D9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C272A8816D2004922D9 /* CoreDataManager.swift */; };
 		F380563E29E342E3007C5031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380563D29E342E3007C5031 /* Extensions.swift */; };
 		F38653572A40B7F400900391 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38653562A40B7F400900391 /* CoordinatorProtocol.swift */; };
 		F39A2B592A459F450088E20A /* CheckerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B582A459F450088E20A /* CheckerResult.swift */; };
@@ -146,6 +151,11 @@
 		F3785B602A0287AB00EDFF3F /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
 		F3785B662A0287AC00EDFF3F /* StorageServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StorageServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3785B6D2A0287AC00EDFF3F /* StorageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageServiceTests.swift; sourceTree = "<group>"; };
+		F37A7C1D2A880D08004922D9 /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
+		F37A7C1F2A880D68004922D9 /* PostTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewController.swift; sourceTree = "<group>"; };
+		F37A7C222A880DAD004922D9 /* SavedPostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPostTableViewCell.swift; sourceTree = "<group>"; };
+		F37A7C252A8814B7004922D9 /* PostStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostStorage.xcdatamodel; sourceTree = "<group>"; };
+		F37A7C272A8816D2004922D9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F380563D29E342E3007C5031 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F38653562A40B7F400900391 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		F39A2B582A459F450088E20A /* CheckerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerResult.swift; sourceTree = "<group>"; };
@@ -188,13 +198,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		F30A342C2A56E1A000178CBA /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		F30A342F2A56EFAA00178CBA /* PostViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +225,6 @@
 		F316B5ED2A4D87B700F81E03 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
-				F30A342C2A56E1A000178CBA /* Models */,
 				F30A342D2A56EEDD00178CBA /* CoreNetworkManager.swift */,
 			);
 			path = NetworkManager;
@@ -252,6 +254,7 @@
 		F3582BD62A28DFDE0002C786 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				F37A7C1D2A880D08004922D9 /* PostCoordinator.swift */,
 				F38653562A40B7F400900391 /* CoordinatorProtocol.swift */,
 				F3582BD72A28E01B0002C786 /* MainCoordinator.swift */,
 				F3582BD92A28E0320002C786 /* TabBarCoordinator.swift */,
@@ -304,6 +307,7 @@
 		F367D5DE29C057AC009A07B8 = {
 			isa = PBXGroup;
 			children = (
+				F37A7C242A8814B7004922D9 /* PostStorage.xcdatamodeld */,
 				F367D5E929C057AC009A07B8 /* Navigation */,
 				F3785B5E2A0287AB00EDFF3F /* StorageService */,
 				F3785B6C2A0287AC00EDFF3F /* StorageServiceTests */,
@@ -324,10 +328,12 @@
 		F367D5E929C057AC009A07B8 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F37A7C272A8816D2004922D9 /* CoreDataManager.swift */,
 				F316B5ED2A4D87B700F81E03 /* NetworkManager */,
 				F39A2B5A2A45A6130088E20A /* MediaPlayer */,
 				F3582BE12A28E0F30002C786 /* App */,
 				F3582BD62A28DFDE0002C786 /* Coordinators */,
+				F37A7C212A880D73004922D9 /* Post */,
 				F3582BD32A1FA88D0002C786 /* Feed */,
 				F343964A2A13F236007FFD87 /* Login */,
 				F3582BE22A28E1A60002C786 /* Photo */,
@@ -385,6 +391,15 @@
 				F3785B6D2A0287AC00EDFF3F /* StorageServiceTests.swift */,
 			);
 			path = StorageServiceTests;
+			sourceTree = "<group>";
+		};
+		F37A7C212A880D73004922D9 /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				F37A7C1F2A880D68004922D9 /* PostTableViewController.swift */,
+				F37A7C222A880DAD004922D9 /* SavedPostTableViewCell.swift */,
+			);
+			path = Post;
 			sourceTree = "<group>";
 		};
 		F38653582A40B8FA00900391 /* Models */ = {
@@ -566,6 +581,7 @@
 				F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */,
 				F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */,
 				F3582BD82A28E01B0002C786 /* MainCoordinator.swift in Sources */,
+				F37A7C232A880DAD004922D9 /* SavedPostTableViewCell.swift in Sources */,
 				F30A342E2A56EEDD00178CBA /* CoreNetworkManager.swift in Sources */,
 				F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */,
 				F3F6E2552A3453FE002B9431 /* RunloopViewController.swift in Sources */,
@@ -573,6 +589,7 @@
 				F34396522A1512EB007FFD87 /* MyLoginFactory.swift in Sources */,
 				F31191BF29D8ACAC00EEC6DF /* PostTableViewCell.swift in Sources */,
 				F30A34332A56F01D00178CBA /* InfoNetworkService.swift in Sources */,
+				F37A7C262A8814B7004922D9 /* PostStorage.xcdatamodeld in Sources */,
 				F367D60729C395D9009A07B8 /* PostViewController.swift in Sources */,
 				F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */,
 				F345E1672A630F9600703834 /* TextPicker.swift in Sources */,
@@ -582,16 +599,19 @@
 				F367D60129C3859A009A07B8 /* ProfileViewController.swift in Sources */,
 				0EFA8A5A29C47FCE008A1549 /* InfoViewController.swift in Sources */,
 				F343964C2A13F24C007FFD87 /* Checker.swift in Sources */,
+				F37A7C202A880D68004922D9 /* PostTableViewController.swift in Sources */,
 				F3582BEB2A2A5C2B0002C786 /* Factory.swift in Sources */,
 				F3582BED2A2A655F0002C786 /* LoginCoordinator.swift in Sources */,
 				F38653572A40B7F400900391 /* CoordinatorProtocol.swift in Sources */,
 				F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */,
 				F3F46A062A1BA2B700FDBA34 /* CustomButton.swift in Sources */,
+				F37A7C1E2A880D08004922D9 /* PostCoordinator.swift in Sources */,
 				F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */,
 				F3582BDE2A28E0590002C786 /* ProfileCoordinator.swift in Sources */,
 				F312038129DAE2A1009B9D7F /* Photos.swift in Sources */,
 				F380563E29E342E3007C5031 /* Extensions.swift in Sources */,
 				F3582BDC2A28E0450002C786 /* FeedCoordicator.swift in Sources */,
+				F37A7C292A881796004922D9 /* CoreDataManager.swift in Sources */,
 				F345E1692A63233100703834 /* CheckerService.swift in Sources */,
 				F312037F29DAE0C6009B9D7F /* PhotosTableViewCell.swift in Sources */,
 				F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */,
@@ -1001,6 +1021,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F37A7C242A8814B7004922D9 /* PostStorage.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F37A7C252A8814B7004922D9 /* PostStorage.xcdatamodel */,
+			);
+			currentVersion = F37A7C252A8814B7004922D9 /* PostStorage.xcdatamodel */;
+			path = PostStorage.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F367D5DF29C057AC009A07B8 /* Project object */;
 }

@@ -92,7 +92,7 @@ extension MainCoordinator: CoordinatorProtocol {
 extension MainCoordinator: MainCoordinatorProcotol {
     func goToTabBarController() {
         // УРА!!!!
-        print("EHF!")
+        print("УРА!")
         
         let tabBarCoordinator = TabBarCoordinator(tabBarController: UITabBarController())
         self.addChildCoordinator(tabBarCoordinator)

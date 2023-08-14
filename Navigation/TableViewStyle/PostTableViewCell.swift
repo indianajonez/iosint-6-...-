@@ -12,6 +12,8 @@ class PostTableViewCell: UITableViewCell {
     
     // MARK: - Private properties
     
+    private var post: Post!
+    
     private lazy var postNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +70,7 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstrains()
+        setupGestures()
     }
     
     required init?(coder: NSCoder) {
@@ -83,13 +86,23 @@ class PostTableViewCell: UITableViewCell {
         posrDescLabel.text = post.description
         postLikesCount.text = String(post.likes)
         postViewsCount.text = String(post.views)
-
+        self.post = post
     }
     
     
     // MARK: - Private methods
+    private func setupGestures() {
+        let tapLikes = UITapGestureRecognizer(target: self, action: #selector(addLikes))
+        postLikes.addGestureRecognizer(tapLikes)
+        postLikes.isUserInteractionEnabled = true
+    }
     
-
+    @objc private func addLikes() {
+        CoreDataManager.shared.createNewPost(self.post)
+        CoreDataManager.shared.save()
+    }
+    
+    
     private func setupConstrains() {
         [postNameLabel, postImage, posrDescLabel, postLikes, postLikesCount, postViews, postViewsCount].forEach({contentView.addSubview($0)})
         

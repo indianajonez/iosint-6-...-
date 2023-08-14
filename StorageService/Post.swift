@@ -6,21 +6,34 @@
 //
 
 import UIKit
+import CoreData
 
 public struct Post {
-    public let id = UUID()
+    public var id = UUID().uuidString
     public let author: String
     public let description: String
     public let image: String
     public var likes: Int
     public var views: Int
+}
+
+extension Post {
+//    public init(author: String, description: String, image: String, likes: Int, views: Int) {
+//        self.author = author
+//        self.description = description
+//        self.image = image
+//        self.likes = likes
+//        self.views = views
+//    }
     
-    public init(author: String, description: String, image: String, likes: Int, views: Int) {
-        self.author = author
-        self.description = description
-        self.image = image
-        self.likes = likes
-        self.views = views
+    public init(data: NSManagedObject) {
+        self.id = (data.value(forKey: "id") as? String)!
+        self.author = (data.value(forKey: "author") as? String)!
+        self.description = (data.value(forKey: "desc") as? String)!
+        self.image = (data.value(forKey: "image") as? String)!
+        self.likes = (data.value(forKey: "likes") as? Int)!
+        self.views = (data.value(forKey: "views") as? Int)!
+
     }
 }
 
