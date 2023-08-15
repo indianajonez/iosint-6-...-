@@ -37,7 +37,7 @@ class SavedPostTableViewCell: UITableViewCell {
             nameAuthor.leadingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             nameAuthor.trailingAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             nameAuthor.topAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: 10),
-            nameAuthor.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.topAnchor, constant: -10)
+            nameAuthor.bottomAnchor.constraint(equalTo: contentView.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
         
     }

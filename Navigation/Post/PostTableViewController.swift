@@ -29,6 +29,7 @@ class PostTableViewController: UIViewController {
         view.backgroundColor = .white
         title = "Сохраненные посты"
         getFromCoreData()
+        self.tablePosts.reloadData()
         layout()
     }
     
