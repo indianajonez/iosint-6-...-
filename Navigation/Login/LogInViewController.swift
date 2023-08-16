@@ -232,7 +232,7 @@ final class LogInViewController: UIViewController {
             }
             self.coordinator?.goToTabBarController()
         }
-        
+        RealmManager.shared.save(login: login, pass: password)
 //        var result: Bool? = true
 //        do {
 //            result = try loginDelegate?.check(login: login, password: password)
