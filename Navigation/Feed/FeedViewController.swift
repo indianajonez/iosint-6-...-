@@ -88,13 +88,21 @@ class FeedViewController: UIViewController{
             return button
         }()
     
+    private lazy var didTapButtonOpenMAp: CustomButton = {
+        let button = CustomButton(title: "Map", titleColor: .black, action: {
+            let mapVC = MapViewController()
+            self.navigationController?.pushViewController(mapVC, animated: true)
+        })
+            return button
+        }()
+    
+    
     private lazy var buttonTwo: CustomButton = {
         let button = CustomButton(title: "Post Two", titleColor: .black, action: {
             let postVC = PostViewController()
             let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
             postVC.setupPost(post)
             postVC.coordinator = self.coordinator
-//            self.coordinator?.forward(to: postVC)
             self.navigationController?.pushViewController(postVC, animated: true)
         })
         return button
@@ -128,7 +136,8 @@ class FeedViewController: UIViewController{
         view.addSubview(textField)
         view.addSubview(labelCheck)
         view.addSubview(checkGuessButton)
-        [buttonOne, buttonTwo].forEach{stackView.addArrangedSubview($0)}
+        //view.addSubview(didTapButtonOpenMAp)
+        [buttonOne, buttonTwo,didTapButtonOpenMAp].forEach{stackView.addArrangedSubview($0)}
         
         NSLayoutConstraint.activate([
             stackView.topAnchor.constraint(equalTo: checkGuessButton.bottomAnchor, constant: 200),

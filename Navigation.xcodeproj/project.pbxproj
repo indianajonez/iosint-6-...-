@@ -55,6 +55,7 @@
 		F37A7C262A8814B7004922D9 /* PostStorage.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C242A8814B7004922D9 /* PostStorage.xcdatamodeld */; };
 		F37A7C292A881796004922D9 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F37A7C272A8816D2004922D9 /* CoreDataManager.swift */; };
 		F380563E29E342E3007C5031 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F380563D29E342E3007C5031 /* Extensions.swift */; };
+		F38518552A939F5700EB41BF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38518542A939F5700EB41BF /* MapViewController.swift */; };
 		F38653572A40B7F400900391 /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F38653562A40B7F400900391 /* CoordinatorProtocol.swift */; };
 		F39A2B592A459F450088E20A /* CheckerResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B582A459F450088E20A /* CheckerResult.swift */; };
 		F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */; };
@@ -157,6 +158,7 @@
 		F37A7C252A8814B7004922D9 /* PostStorage.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostStorage.xcdatamodel; sourceTree = "<group>"; };
 		F37A7C272A8816D2004922D9 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		F380563D29E342E3007C5031 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F38518542A939F5700EB41BF /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		F38653562A40B7F400900391 /* CoordinatorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorProtocol.swift; sourceTree = "<group>"; };
 		F39A2B582A459F450088E20A /* CheckerResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerResult.swift; sourceTree = "<group>"; };
 		F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 		F367D5DE29C057AC009A07B8 = {
 			isa = PBXGroup;
 			children = (
+				F38518532A939EF600EB41BF /* Map */,
 				F37A7C242A8814B7004922D9 /* PostStorage.xcdatamodeld */,
 				F367D5E929C057AC009A07B8 /* Navigation */,
 				F3785B5E2A0287AB00EDFF3F /* StorageService */,
@@ -402,6 +405,14 @@
 				F37A7C222A880DAD004922D9 /* SavedPostTableViewCell.swift */,
 			);
 			path = Post;
+			sourceTree = "<group>";
+		};
+		F38518532A939EF600EB41BF /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				F38518542A939F5700EB41BF /* MapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		F38653582A40B8FA00900391 /* Models */ = {
@@ -614,6 +625,7 @@
 				F3F46A062A1BA2B700FDBA34 /* CustomButton.swift in Sources */,
 				F37A7C1E2A880D08004922D9 /* PostCoordinator.swift in Sources */,
 				F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */,
+				F38518552A939F5700EB41BF /* MapViewController.swift in Sources */,
 				F3582BDE2A28E0590002C786 /* ProfileCoordinator.swift in Sources */,
 				F312038129DAE2A1009B9D7F /* Photos.swift in Sources */,
 				F380563E29E342E3007C5031 /* Extensions.swift in Sources */,
