@@ -9,11 +9,12 @@ import Foundation
 import RealmSwift
 
 class AuthRealm: Object {
-    @Persisted var id: String = UUID().uuidString
-    @Persisted var login: String
-    @Persisted var password: String
+    @Persisted(primaryKey: true) var id: String = UUID().uuidString
+    @Persisted var login: String = ""
+    @Persisted var password: String = ""
     
-    init(login: String, password: String) {
+    convenience init(login: String, password: String) {
+        self.init()
         self.login = login
         self.password = password
     }

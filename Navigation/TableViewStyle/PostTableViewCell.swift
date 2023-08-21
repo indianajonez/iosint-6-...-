@@ -14,6 +14,8 @@ class PostTableViewCell: UITableViewCell {
     
     private var post: Post!
     
+    private var isTapped = false
+    
     private lazy var postNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +35,7 @@ class PostTableViewCell: UITableViewCell {
     
     private lazy var posrDescLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -63,6 +65,16 @@ class PostTableViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
+    
+    private lazy var tapLikeButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.tintColor = .systemRed
+        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.addTarget(self, action: #selector(addLikes), for: .touchUpInside)
+        
+        return button
+    }()
 
     
     // MARK: - Init
@@ -70,7 +82,8 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupConstrains()
-        setupGestures()
+//        setupGestures()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -91,20 +104,32 @@ class PostTableViewCell: UITableViewCell {
     
     
     // MARK: - Private methods
-    private func setupGestures() {
-        let tapLikes = UITapGestureRecognizer(target: self, action: #selector(addLikes))
-        postLikes.addGestureRecognizer(tapLikes)
-        postLikes.isUserInteractionEnabled = true
-    }
+    
+    
+//    @objc private func setupGestures() {
+//        let tapLikes = UITapGestureRecognizer(target: self, action: #selector(addLikes))
+//        postLikes.addGestureRecognizer(tapLikes)
+//        postLikes.isUserInteractionEnabled = true
+//    }
     
     @objc private func addLikes() {
-        CoreDataManager.shared.createNewPost(self.post)
-        CoreDataManager.shared.save()
+        let object = CoreDataManager.shared.createNewPost(self.post)
+        let isExist = CoreDataManager.shared.isExist(post: object)
+        if isExist {
+            CoreDataManager.shared.save()
+        } else {
+            print("is EXIST! NOT ADD TO COREDATA")
+        }
+        
+        isTapped.toggle()
+        let name = isTapped ? "heart.fill" : "heart"
+        tapLikeButton.setImage(UIImage(systemName: name), for: .normal)
+        print(name)
     }
     
     
     private func setupConstrains() {
-        [postNameLabel, postImage, posrDescLabel, postLikes, postLikesCount, postViews, postViewsCount].forEach({contentView.addSubview($0)})
+        [postNameLabel, postImage, posrDescLabel, postLikes, postLikesCount, postViews, postViewsCount, tapLikeButton].forEach({contentView.addSubview($0)})
         
         let labelInset: CGFloat = 16
         let imageInset: CGFloat = 12
@@ -140,7 +165,11 @@ class PostTableViewCell: UITableViewCell {
             
             postViewsCount.topAnchor.constraint(equalTo: posrDescLabel.bottomAnchor, constant: labelInset),
             postViewsCount.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -labelInset),
-            postViewsCount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelInset)
+            postViewsCount.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -labelInset),
+            
+            tapLikeButton.topAnchor.constraint(equalTo: posrDescLabel.bottomAnchor, constant: labelInset),
+            tapLikeButton.leadingAnchor.constraint(equalTo: postLikesCount.trailingAnchor, constant: labelInset),
+            tapLikeButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -labelInset)
         ])
     }
 }

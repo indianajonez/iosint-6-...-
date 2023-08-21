@@ -38,6 +38,11 @@ final class RealmManager: RealmManagerProtocol {
             return
         }
     }
+    
+    func isExist(id: String) {
+        
+    }
+    
     func delete() {
         
     }

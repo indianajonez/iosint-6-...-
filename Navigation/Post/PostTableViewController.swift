@@ -21,6 +21,7 @@ class PostTableViewController: UIViewController {
         table.delegate = self
         table.dataSource = self
         table.register(SavedPostTableViewCell.self, forCellReuseIdentifier: String(describing: SavedPostTableViewCell.self))
+       
         return table
     }()
     
@@ -28,6 +29,7 @@ class PostTableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Сохраненные посты"
+//        tablePosts.rowHeight = 200
         getFromCoreData()
         self.tablePosts.reloadData()
         layout()
@@ -36,6 +38,7 @@ class PostTableViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getFromCoreData()
+        self.tablePosts.reloadData()
     }
     
     private func getFromCoreData() {
@@ -63,7 +66,9 @@ class PostTableViewController: UIViewController {
 
 
 extension PostTableViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
 }
 
 extension PostTableViewController: UITableViewDataSource {
