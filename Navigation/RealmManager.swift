@@ -21,9 +21,14 @@ final class RealmManager: RealmManagerProtocol {
     private let realm: Realm!
     
     private init() {
-        let key = Data(count: 64)
+        let privateKey: [UInt8] = [115, 117, 112, 101, 114, 95, 115, 101, 99, 114, 116, 95, 107, 101, 121]
+        
+        var key = Data(count: 64)
+//        _ = key.withUnsafeMutableBytes { (pointer: UnsafeMutableRawBufferPointer) in
+//            SecRandomCopyBytes(kSecRandomDefault, 64, pointer.baseAddress!)
+//        }
         let config = Realm.Configuration(encryptionKey: key)
-        realm = try! Realm(configuration: config)
+        realm = try? Realm(configuration: config)
     }
 
     
@@ -37,10 +42,6 @@ final class RealmManager: RealmManagerProtocol {
         } catch {
             return
         }
-    }
-    
-    func isExist(id: String) {
-        
     }
     
     func delete() {

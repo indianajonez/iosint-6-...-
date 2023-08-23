@@ -41,7 +41,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
         mapView.showsCompass = true
         mapView.showsTraffic = true
         
-        let coordinates = CLLocationCoordinate2D(latitude: 59.93, longitude: 30.30)
+        let coordinates = CLLocationCoordinate2D(latitude: 59.937500, longitude: 30.308611)
         mapView.setCenter(coordinates, animated: true)
         
         //        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
@@ -77,14 +77,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     private func appPin() {
-        let annotetion = MKPointAnnotation()
-        annotetion.title = "Наш пин"
-        annotetion.coordinate = CLLocationCoordinate2D(latitude: 59.93, longitude: 30.30)
-        mapView.addAnnotation(annotetion)
+        let annotation = MKPointAnnotation()
+        annotation.title = "Наш пин"
+        annotation.coordinate = CLLocationCoordinate2D(latitude: 59.93, longitude: 30.30)
+        mapView.addAnnotation(annotation)
     }
     
     private func addRouter() {
         let directionRequest = MKDirections.Request()
+        // вид транспорта
         directionRequest.transportType = .automobile
         
         let sourcePlaceMark = MKPlacemark(coordinate: CLLocationCoordinate2D(latitude: 59.93, longitude: 30.30))
@@ -103,6 +104,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // с помощью polyline рисуются отрезки на карте 
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = .red
         renderer.lineWidth = 5

@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 public struct Post {
-    public var id = UUID().uuidString
+    public var id = UUID().uuidString 
     public let author: String
     public let description: String
     public let image: String

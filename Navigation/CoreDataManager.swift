@@ -63,20 +63,16 @@ final class CoreDataManager: CoreDataManagerProtocol {
     }
     
     
-    // настроить чтобы при сохранении пост не повторялся и была возможность его удалить из избранного. для этого нужно каждому посту присвоить не изменяющийся айдишник и прописать метод где при переборе айдишников повторяющиеся не сохранялись в кор дату.8
-    func isExist(post: NSManagedObject) -> Bool {
-//        let coreDataModel = NSManagedObject.fetchRequest()
+    // настроить чтобы при сохранении пост не повторялся и была возможность его удалить из избранного. для этого нужно каждому посту присвоить не изменяющийся айдишник и прописать метод где при переборе айдишников повторяющиеся не сохранялись в кор дату.
+    func isExist(post: Post) -> Bool {
 //        coreDataModel.predicate = NSPredicate(format: "id == %@", post.id)
-        let existPost = NSEntityDescription.entity(forEntityName: "PostStorage", in: managetContext)!
-        
-        do{
-            let object = try managetContext.existingObject(with: post.objectID)
-            
+        let allPost = self.fetchAllData(NSFetchRequest<NSManagedObject>(entityName: "PostStorage"))
+        if let _ = allPost.firstIndex(where: {$0.value(forKey: "author") as? String == post.author
+            && $0.value(forKey: "desc") as? String == post.description}) {
+            print("find twice")
             return true
-        } catch {
-            return false
         }
-        
+        return false
     }
 }
 

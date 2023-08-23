@@ -113,9 +113,10 @@ class PostTableViewCell: UITableViewCell {
 //    }
     
     @objc private func addLikes() {
-        let object = CoreDataManager.shared.createNewPost(self.post)
-        let isExist = CoreDataManager.shared.isExist(post: object)
-        if isExist {
+
+        let isExist = CoreDataManager.shared.isExist(post: self.post)
+        if !isExist {
+            let object = CoreDataManager.shared.createNewPost(self.post)
             CoreDataManager.shared.save()
         } else {
             print("is EXIST! NOT ADD TO COREDATA")
@@ -124,7 +125,6 @@ class PostTableViewCell: UITableViewCell {
         isTapped.toggle()
         let name = isTapped ? "heart.fill" : "heart"
         tapLikeButton.setImage(UIImage(systemName: name), for: .normal)
-        print(name)
     }
     
     
