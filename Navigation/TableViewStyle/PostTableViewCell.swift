@@ -114,13 +114,7 @@ class PostTableViewCell: UITableViewCell {
     
     @objc private func addLikes() {
 
-        let isExist = CoreDataManager.shared.isExist(post: self.post)
-        if !isExist {
-            let object = CoreDataManager.shared.createNewPost(self.post)
-            CoreDataManager.shared.save()
-        } else {
-            print("is EXIST! NOT ADD TO COREDATA")
-        }
+        CoreDataManager.shared.addToFavorites(originPost: post) 
         
         isTapped.toggle()
         let name = isTapped ? "heart.fill" : "heart"

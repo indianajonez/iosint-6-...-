@@ -9,87 +9,60 @@ import UIKit
 import CoreData
 import StorageService
 
-protocol CoreDataManagerProtocol {
-    func save()
-    func delete(_ object: NSManagedObject)
-    func fetchAllData(_ request: NSFetchRequest<NSManagedObject>) -> [NSManagedObject]
-    func createNewPost(_ data: Post) -> NSManagedObject
-}
 
-final class CoreDataManager: CoreDataManagerProtocol {
+final class CoreDataManager {
     
     static let shared = CoreDataManager()
     
-    private let appDelegate: AppDelegate
-    private let managetContext: NSManagedObjectContext
+    var favoritesPost: [PostStorage] = []
     
-    private init() {
-        self.appDelegate = UIApplication.shared.delegate as! AppDelegate
-        self.managetContext = appDelegate.persistentContainer.viewContext
+    var didChangedPosts: (() -> ())?
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+
+        let container = NSPersistentContainer(name: "PostStorage")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error {
+                fatalError("Unresolved error, \((error as NSError).userInfo)")
+            }
+        })
+        return container
+    }()
+    
+    
+    private func getPost(post: Post, context: NSManagedObjectContext) -> PostStorage? {
+        let request = PostStorage.fetchRequest()
+        request.predicate = NSPredicate(format: "id == %@", post.id)
+        return (try? context.fetch(request))?.first
     }
     
-    func save() {
-        do {
-            try managetContext.save()
-        } catch let error as NSError {
-            print("\(error). Info: \(error.userInfo)")
+    func addToFavorites(originPost: Post){
+        persistentContainer.performBackgroundTask { [weak self] backgroundContext in
+            guard self?.getPost(post: originPost, context: backgroundContext) == nil else { return }
+            let post = PostStorage(context: backgroundContext)
+            post.author = originPost.author
+            post.id = originPost.id
+            post.desc = originPost.description
+            post.image = originPost.image
+            post.likes = Int64(originPost.likes)
+            post.views = Int64(originPost.views)
+            try? backgroundContext.save()
+            self?.fetchFavorites()
+            
         }
     }
     
-    func delete(_ object: NSManagedObject) {
-        managetContext.delete(object)
+    func fetchFavorites() {
+        let request = PostStorage.fetchRequest()
+        favoritesPost = (try? persistentContainer.viewContext.fetch(request)) ?? []
+        didChangedPosts?()
     }
     
-    func fetchAllData(_ request: NSFetchRequest<NSManagedObject>) -> [NSManagedObject] {
-        do {
-            let result = try managetContext.fetch(request)
-            return result
-        } catch let error as NSError {
-            print("\(error). Info: \(error.userInfo)")
-            return []
-        }
-    }
-    
-    func createNewPost(_ data: Post) -> NSManagedObject {
-        let entity = NSEntityDescription.entity(forEntityName: "PostStorage", in: managetContext)!
-        let newPost = NSManagedObject(entity: entity, insertInto: managetContext)
-        newPost.setValue(data.id, forKey: "id")
-        newPost.setValue(data.author, forKey: "author")
-        newPost.setValue(data.description, forKey: "desc")
-        newPost.setValue(data.image, forKey: "image")
-        newPost.setValue(data.views, forKey: "views")
-        newPost.setValue(data.likes, forKey: "likes")
-        return newPost
-    }
-    
-    
-    // настроить чтобы при сохранении пост не повторялся и была возможность его удалить из избранного. для этого нужно каждому посту присвоить не изменяющийся айдишник и прописать метод где при переборе айдишников повторяющиеся не сохранялись в кор дату.
-    func isExist(post: Post) -> Bool {
-//        coreDataModel.predicate = NSPredicate(format: "id == %@", post.id)
-        let allPost = self.fetchAllData(NSFetchRequest<NSManagedObject>(entityName: "PostStorage"))
-        if let _ = allPost.firstIndex(where: {$0.value(forKey: "author") as? String == post.author
-            && $0.value(forKey: "desc") as? String == post.description}) {
-            print("find twice")
-            return true
-        }
-        return false
+    func deletePost(post: PostStorage) {
+        let context = post.managedObjectContext
+        context?.delete(post)
+        try? context?.save()
+        fetchFavorites()
     }
 }
 
-//func update(habit: Habit) -> Bool {
-//    let fetchRequest = HabitCoreDataModel.fetchRequest()
-//    fetchRequest.predicate =NSPredicate(format: "id == %@", habit.id)
-//    do {
-//        let habitCoreDataModels = try context.fetch(fetchRequest)
-//        habitCoreDataModels.forEach {
-//            $0.id = habit.id
-//            $0.title = habit.title
-//            $0.createAt = habit.createdAtString
-//        }
-//        guard context.hasChanges else { return false }
-//        try context.save()
-//        return true
-//    } catch {
-//        return false
-//
-//}

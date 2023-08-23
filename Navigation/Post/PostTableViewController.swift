@@ -11,9 +11,9 @@ import StorageService
 
 class PostTableViewController: UIViewController {
     
-    private var coreDataManager: CoreDataManagerProtocol = CoreDataManager.shared
+    private var coreDataManager = CoreDataManager.shared
     private let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PostStorage")
-    private var dataForTable: [Post] = []
+//    private var dataForTable: [Post] = []
     
     private lazy var tablePosts: UITableView = {
         let table = UITableView()
@@ -29,25 +29,20 @@ class PostTableViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Сохраненные посты"
-//        tablePosts.rowHeight = 200
-        getFromCoreData()
-        self.tablePosts.reloadData()
+        coreDataManager.fetchFavorites()
+        coreDataManager.didChangedPosts = { [weak self] in
+            DispatchQueue.main.async {
+                self?.tablePosts.reloadData()
+            }
+        }
         layout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getFromCoreData()
         self.tablePosts.reloadData()
     }
     
-    private func getFromCoreData() {
-        dataForTable = []
-        let all = coreDataManager.fetchAllData(fetchRequest)
-        for post in all {
-            dataForTable.append(Post(data: post))
-        }
-    }
     
     private func layout() {
         view.addSubview(tablePosts)
@@ -69,16 +64,28 @@ extension PostTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         UITableView.automaticDimension
     }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                coreDataManager.deletePost(post: coreDataManager.favoritesPost[indexPath.row])
+            } else if editingStyle == .insert {
+                
+            }
+        }
 }
 
 extension PostTableViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        dataForTable.count
+        coreDataManager.favoritesPost.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tablePosts.dequeueReusableCell(withIdentifier: String(describing: SavedPostTableViewCell.self), for: indexPath) as? SavedPostTableViewCell else {return UITableViewCell()}
-        cell.setup(post: dataForTable[indexPath.row])
+        cell.setup(post: coreDataManager.favoritesPost[indexPath.row])
         return cell
     }
     

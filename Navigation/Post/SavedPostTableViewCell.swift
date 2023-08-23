@@ -67,10 +67,10 @@ class SavedPostTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setup(post: Post) {
+    func setup(post: PostStorage) {
         self.nameAuthor.text = post.author
-        self.imageInPosts.image = (UIImage(named: post.image))
-        self.descriptionOfPosts.text = post.description
+        self.imageInPosts.image = (UIImage(named: post.image!))
+        self.descriptionOfPosts.text = post.desc
         self.postLikesCount.text = String(post.likes)
         self.postViewsCount.text = String(post.views)
         

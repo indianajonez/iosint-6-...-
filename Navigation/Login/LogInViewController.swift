@@ -9,11 +9,12 @@ import UIKit
 import FirebaseAuth
 
 
+
 final class LogInViewController: UIViewController {
     
     // MARK: - Public properties
     
-    
+   
     
     weak var coordinator: LoginCoordinatorProtocol?
     
@@ -113,6 +114,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupView()
         setupConstraints()
         setupgestureRecognizer()
@@ -135,6 +137,7 @@ final class LogInViewController: UIViewController {
     
     
     // MARK: - Private methods
+
     
     private func setupView() {
         view.backgroundColor = .white
