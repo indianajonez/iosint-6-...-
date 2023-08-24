@@ -16,7 +16,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     override func loadView() {
         super.loadView()
-        
+        view.backgroundColor = .white
         setupMapView()
         configureMapView()
         checkUserLocationPermission()

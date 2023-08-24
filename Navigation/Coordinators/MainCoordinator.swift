@@ -16,7 +16,6 @@ final class MainCoordinator {
     // MARK: - Private properties
     
     private var childCoordinators: [CoordinatorProtocol] = []
-    
     private var rootViewController: UIViewController
     
     
@@ -74,14 +73,11 @@ final class MainCoordinator {
 
 extension MainCoordinator: CoordinatorProtocol {
     func start() -> UIViewController {
-        // проверка?
-        // предствим, что не авторизирован
-        
+
         let loginCoordinator = LoginCoordinator(navigationController: UINavigationController())
         loginCoordinator.parentCoordinator = self
         self.addChildCoordinator(loginCoordinator)
         let loginViewController = loginCoordinator.start()
-        
         self.setFlow(to: loginViewController)
         
         return self.rootViewController
@@ -91,8 +87,6 @@ extension MainCoordinator: CoordinatorProtocol {
 
 extension MainCoordinator: MainCoordinatorProcotol {
     func goToTabBarController() {
-        // УРА!!!!
-        print("УРА!")
         
         let tabBarCoordinator = TabBarCoordinator(tabBarController: UITabBarController())
         self.addChildCoordinator(tabBarCoordinator)
