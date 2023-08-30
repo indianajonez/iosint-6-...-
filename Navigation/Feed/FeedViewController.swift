@@ -89,7 +89,8 @@ class FeedViewController: UIViewController{
         }()
     
     private lazy var didTapButtonOpenMAp: CustomButton = {
-        let button = CustomButton(title: "Map", titleColor: .black, action: {
+        let localizedTitle = NSLocalizedString("MapButtonTabBar", comment: "testing localizedString")
+        let button = CustomButton(title: localizedTitle, titleColor: .black, action: {
             let mapVC = MapViewController()
             self.navigationController?.pushViewController(mapVC, animated: true)
         })

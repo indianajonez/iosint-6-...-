@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+//Privacy - Location When In Use Usage Description
+
+NSLocationUsageDescription = "Пожалуйста, подвердите возможность использовать вашу геолокацию.";

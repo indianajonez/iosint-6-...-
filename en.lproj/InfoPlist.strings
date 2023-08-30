@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+NSLocationUsageDescription = "Please, confirm the possibility of using your geolocation.";

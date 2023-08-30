@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            handleAuthorizationStatus(locationMAnager: locationManager, status: CLLocationManager.authorizationStatus())
+            handleAuthorizationStatus(locationManager: locationManager, status: CLLocationManager.authorizationStatus())
         } else {
             print("Location services are not enabled")
         }
@@ -75,8 +75,6 @@ class MapViewController: UIViewController {
         let mapView = MKMapView()
         mapView.delegate = self
         mapView.showsUserLocation = true
-        
-        
         return mapView
     }()
     
@@ -94,8 +92,8 @@ class MapViewController: UIViewController {
             guard let placemarks = placemarks,
             let placemark =  placemarks.first,
             let location = placemark.location
-            
             else { return }
+            
             let destinationCoordinate = location.coordinate
             self.mapRoute(destinationCoordinate: destinationCoordinate)
             
@@ -141,10 +139,10 @@ class MapViewController: UIViewController {
         mapView.setRegion(region, animated: true)
     }
     
-    fileprivate func handleAuthorizationStatus(locationMAnager: CLLocationManager, status: CLAuthorizationStatus) {
+    fileprivate func handleAuthorizationStatus(locationManager: CLLocationManager, status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
-            locationMAnager.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
             break
         case .restricted:
             //
@@ -156,7 +154,7 @@ class MapViewController: UIViewController {
             //
             break
         case .authorizedWhenInUse:
-            if let center = locationMAnager.location?.coordinate {
+            if let center = locationManager.location?.coordinate {
                 centerViewToUserLocation(center: center)
             }
             break
@@ -232,7 +230,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        handleAuthorizationStatus(locationMAnager: locationManager, status: status)
+        handleAuthorizationStatus(locationManager: locationManager, status: status)
     }
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
