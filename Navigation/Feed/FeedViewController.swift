@@ -33,7 +33,8 @@ class FeedViewController: UIViewController{
             textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
             textField.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
             textField.leftViewMode = .always
-            textField.placeholder = "Write the right word here.."
+        let localizationtextField = NSLocalizedString("textField", comment: "testing")
+            textField.placeholder = localizationtextField
         
             return textField
         }()
@@ -50,7 +51,8 @@ class FeedViewController: UIViewController{
     }()
     
     private lazy var checkGuessButton: CustomButton = {
-        let button = CustomButton(title: "checkGuessButton", titleColor: .black, action: {
+        let localizedCheckGuestButton =  NSLocalizedString("CheckGuestButton", comment:  "TestingLocolizationString")
+        let button = CustomButton(title: localizedCheckGuestButton, titleColor: .black, action: {
             if self.feedmodel.check(word: self.textField.text ?? "nothing") {
                 self.labelCheck.text = "TRUE"
                 self.labelCheck.textColor = .green
@@ -76,9 +78,11 @@ class FeedViewController: UIViewController{
     }()
     
     private lazy var buttonOne: CustomButton = {
-        let button = CustomButton(title: "Post One", titleColor: .black, action: {
+        let localizedButtonPostOne = NSLocalizedString("ButtonPostOne", comment: "TestingLocolizationString")
+        let button = CustomButton(title: localizedButtonPostOne, titleColor: .black, action: {
             let postVC = PostViewController()
-            let post = self.feedViewModel.getPost(title: "Post Title One", image: nil, text: "Description One")
+            let localisedTitleOfPostOne = NSLocalizedString("TitleOfPostOne", comment: "TestingLocolizationString")
+            let post = self.feedViewModel.getPost(title: localisedTitleOfPostOne, image: nil, text: "Description One")
             postVC.coordinator = self.coordinator
             postVC.setupPost(post)
             
@@ -89,7 +93,8 @@ class FeedViewController: UIViewController{
         }()
     
     private lazy var didTapButtonOpenMAp: CustomButton = {
-        let button = CustomButton(title: "Map", titleColor: .black, action: {
+        let locolizeTitileOfMapButton = NSLocalizedString("MapButton", comment: "TestingLocolizationString")
+        let button = CustomButton(title: locolizeTitileOfMapButton, titleColor: .black, action: {
             let mapVC = MapViewController()
             self.navigationController?.pushViewController(mapVC, animated: true)
         })
@@ -98,9 +103,11 @@ class FeedViewController: UIViewController{
     
     
     private lazy var buttonTwo: CustomButton = {
-        let button = CustomButton(title: "Post Two", titleColor: .black, action: {
+        let locolizeTitleOfPostTwoButton = NSLocalizedString("PostTwoButton", comment: "TestingLocolizationString")
+        let locolizeTitleOfTitlePostTwo = NSLocalizedString("TitlePostTwo", comment: "TestingLocolizationString")
+        let button = CustomButton(title: locolizeTitleOfPostTwoButton, titleColor: .black, action: {
             let postVC = PostViewController()
-            let post = self.feedViewModel.getPost(title: "Post Title Two", image: nil, text: "Description Two")
+            let post = self.feedViewModel.getPost(title: locolizeTitleOfTitlePostTwo, image: nil, text: "Description Two")
             postVC.setupPost(post)
             postVC.coordinator = self.coordinator
             self.navigationController?.pushViewController(postVC, animated: true)

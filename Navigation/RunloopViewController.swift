@@ -26,7 +26,8 @@ class RunloopViewController: UIViewController{
     private lazy var subscribeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Купи подписку и используй все возможности приложения!"
+        let localizationLabel = NSLocalizedString("Label", comment: "testing")
+        label.text = localizationLabel
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         label.numberOfLines = 2
@@ -38,7 +39,8 @@ class RunloopViewController: UIViewController{
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(rgb: 0x4885CC)
         button.layer.cornerRadius = 10
-        button.setTitle("Buy", for: .normal)
+        let localizationTitleOfbutton = NSLocalizedString("TitleOfbutton", comment: "testing")
+        button.setTitle(localizationTitleOfbutton, for: .normal)
         button.addTarget(self, action: #selector(buy), for: .touchUpInside)
         return button
     }()

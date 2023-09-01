@@ -25,8 +25,9 @@ final class FeedCoordinator {
     // MARK: - Private methods
     
     private func setupNavigationController() {
+        let localizedtabBarItemFeed = NSLocalizedString("tabBarItemFeed", comment: "testing")
         let tabBarItem = UITabBarItem(
-            title: "Feed",
+            title: localizedtabBarItemFeed,
             image: UIImage(systemName: "rectangle.3.group.bubble.left"),
             tag: 0
         )

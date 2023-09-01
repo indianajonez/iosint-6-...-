@@ -28,7 +28,8 @@ class PostTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        title = "Сохраненные посты"
+        let localizedSavedPostsTitle = NSLocalizedString("SavedPostsTitle", comment: "testing")
+        title = localizedSavedPostsTitle
         coreDataManager.fetchFavorites()
         coreDataManager.didChangedPosts = { [weak self] in
             DispatchQueue.main.async {

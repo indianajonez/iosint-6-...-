@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
         start()
         super.viewDidLoad()
         #if DEBUG
-        view.backgroundColor = .cyan
+        view.backgroundColor = .white
         #else
         view.backgroundColor = .lightGray
         #endif

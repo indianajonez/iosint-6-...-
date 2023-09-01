@@ -29,8 +29,9 @@ final class PostCoordinator {
     }
     
     private func setupNavigationController() {
+        let localiedTabbarItemNamePosts = NSLocalizedString("TabbarItemNamePosts", comment: "testing")
         let tabBarItem = UITabBarItem(
-            title: "Posts",
+            title: localiedTabbarItemNamePosts,
             image: UIImage(systemName: "newspaper"),
             tag: 3
         )

@@ -25,8 +25,9 @@ final class MediaPlayerViewCoordinator {
     // MARK: - Private methods
     
     private func setupNavigationController() {
+        let localizedTabBarItemMediaPlayer = NSLocalizedString("TabBarItemMediaPlayer", comment: "testing")
         let tabBarItem = UITabBarItem(
-            title: "MediaPlayer",
+            title: localizedTabBarItemMediaPlayer,
             image: UIImage(systemName: "play.rectangle"),
             tag: 2
         )

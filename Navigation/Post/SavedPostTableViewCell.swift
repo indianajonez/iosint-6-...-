@@ -34,7 +34,8 @@ class SavedPostTableViewCell: UITableViewCell {
     
     private lazy var likesInPosts: UILabel = {
         let likes = UILabel()
-        likes.text = "Likes: "
+        let localizedLikesInPosts = NSLocalizedString("LikesInPosts", comment: "testing")
+        likes.text = localizedLikesInPosts
         likes.translatesAutoresizingMaskIntoConstraints = false
         return likes
     }()
@@ -47,7 +48,8 @@ class SavedPostTableViewCell: UITableViewCell {
     
     private lazy var postViews: UILabel = {
         let views = UILabel()
-        views.text = "Views: "
+        let localizedViewsInPosts = NSLocalizedString("ViewsInPosts", comment: "testing")
+        views.text = localizedViewsInPosts
         views.translatesAutoresizingMaskIntoConstraints = false
         return views
     }()

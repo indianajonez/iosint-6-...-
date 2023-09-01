@@ -46,7 +46,8 @@ final class LogInViewController: UIViewController {
         login.layer.borderColor = UIColor.lightGray.cgColor
         login.layer.borderWidth = 0.5
         login.leftViewMode = .always
-        login.placeholder = "Login"
+        let localizedTextField = NSLocalizedString("LoginTextField", comment: "testing")
+        login.placeholder = localizedTextField
         login.autocapitalizationType = .none
         login.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         return login
@@ -60,7 +61,8 @@ final class LogInViewController: UIViewController {
         password.layer.borderColor = UIColor.lightGray.cgColor
         password.layer.borderWidth = 0.5
         password.leftViewMode = .always
-        password.placeholder = "Password"
+        let localizedPlaceholderPassword = NSLocalizedString("PlaceholderPassword", comment: "testing")
+        password.placeholder = localizedPlaceholderPassword
         password.autocapitalizationType = .none
         password.isSecureTextEntry = true
         password.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
@@ -84,7 +86,8 @@ final class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(rgb: 0x4885CC)
         button.layer.cornerRadius = 10
-        button.setTitle("Log In", for: .normal)
+        let localizedLogInButton = NSLocalizedString("LogInButton", comment: "testing")
+        button.setTitle(localizedLogInButton, for: .normal)
         button.addTarget(self, action: #selector(self.didTapButton), for: .touchUpInside)
         return button
     }()
@@ -94,7 +97,8 @@ final class LogInViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = UIColor(rgb: 0x4885CC)
         button.layer.cornerRadius = 10
-        button.setTitle("Singup", for: .normal)
+        let localizedregistrationButton = NSLocalizedString("registrationButton", comment: "testing")
+        button.setTitle(localizedregistrationButton, for: .normal)
         button.addTarget(self, action: #selector(self.didTapRegistrationButton), for: .touchUpInside)
         return button
     }()
@@ -160,12 +164,14 @@ final class LogInViewController: UIViewController {
     }
     
     private func makeWrongAlert(massage: String) {
+        let localizedWrongAlertTitle = NSLocalizedString("WrongAlertTitle", comment: "testing")
         let alertController = UIAlertController(
-            title: "Ошибка",
+            title: localizedWrongAlertTitle,
             message: massage,
             preferredStyle: .alert
         )
-        let okAction = UIAlertAction(title: "OK", style: .cancel)
+        let localizedAlertOkAction = NSLocalizedString("AlertOkAction", comment: "testing")
+        let okAction = UIAlertAction(title: localizedAlertOkAction, style: .cancel)
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
     }
@@ -226,11 +232,12 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapButton() { //не заходит в систему даже если данные правильные
+        let localizedTextInAlertWrong = NSLocalizedString("TextInAlertWrong", comment: "testing")
         let login = self.loginTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
         checkerService.checkCredentials(email: login, pass: password) { user, errorString in
             guard let user else {
-                self.makeWrongAlert(massage: errorString ?? "Login or password is not correct")
+                self.makeWrongAlert(massage: errorString ?? localizedTextInAlertWrong)
                 return
             }
             self.coordinator?.goToTabBarController()
@@ -264,10 +271,11 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapRegistrationButton() {
+        let localizedRegistrationButtonNotCorrectPass = NSLocalizedString("RegistrationButtonNotCorrectPass", comment: "testing")
         TextPicker.defaultPicker.showSignupPicker(in: self) { login, pass, pass2 in
             if login != "" && pass != "" && pass2 != "" {
                 if pass != pass2 {
-                    self.makeWrongAlert(massage: "password is not sovpadaet")
+                    self.makeWrongAlert(massage: localizedRegistrationButtonNotCorrectPass)
 
                     return
                 }
@@ -282,7 +290,8 @@ final class LogInViewController: UIViewController {
                 }
             }
             else {
-                self.makeWrongAlert(massage: "Zapolni vse polia")
+                let localizedMakeWrongAlert = NSLocalizedString("MakeWrongAlert", comment: "testing")
+                self.makeWrongAlert(massage: localizedMakeWrongAlert)
             }
         }
     }

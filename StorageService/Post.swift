@@ -55,11 +55,22 @@ public struct Post2 {
 
 extension Post2 {
     public static func make() -> [Post] {
+        let localizedPostsInformationAuthor1 = NSLocalizedString("PostsInformationAuthor1", comment: "testing")
+        let localizedPostsInformationAuthor2 = NSLocalizedString("PostsInformationAuthor2", comment: "testing")
+        let localizedPostsInformationAuthor3 = NSLocalizedString("PostsInformationAuthor3", comment: "testing")
+        let localizedPostsInformationAuthor4 = NSLocalizedString("PostsInformationAuthor4", comment: "testing")
+        
+        let localizedPostsInformationDescription4 = NSLocalizedString("PostsInformationDescription1", comment: "testing")
+        let localizedPostsInformationDescription3 = NSLocalizedString("PostsInformationDescription2", comment: "testing")
+        let localizedPostsInformationDescription2 = NSLocalizedString("PostsInformationDescription3", comment: "testing")
+        let localizedPostsInformationDescription1 = NSLocalizedString("PostsInformationDescription4", comment: "testing")
+        
+        
         return [
-            Post(id: "12", author: "Лохматый", description: "Сегодня еще ничего не елдлапрои мывлмтывжл рмфжвмо фжщимофж шмрофущш комфщшумрфшзгкеи рфшкгеримфшыкгеирыал опирш жагиргшыкер", image: "Лохматый", likes: 10, views: 320),
-            Post(id: "23",author: "CalmCat", description: "Молчу весь день. Тяжело.", image: "CalmCat", likes: 10, views: 320),
-            Post(id: "45",author: "MaybeImNotCat", description: "Блохи и клещи худщие враги", image: "MaybeImNotCat", likes: 10, views: 320),
-            Post(id: "56",author: "ImOkay", description: "Бегаю за хвостом. Пока не поймал.", image: "ImOkay", likes: 10, views: 320)
+            Post(id: "12", author: localizedPostsInformationAuthor1, description: localizedPostsInformationDescription4, image: "Лохматый", likes: 10, views: 320),
+            Post(id: "23",author: localizedPostsInformationAuthor2, description: localizedPostsInformationDescription3, image: "CalmCat", likes: 10, views: 320),
+            Post(id: "45",author: localizedPostsInformationAuthor3, description: localizedPostsInformationDescription2, image: "MaybeImNotCat", likes: 10, views: 320),
+            Post(id: "56",author: localizedPostsInformationAuthor4, description: localizedPostsInformationDescription1, image: "ImOkay", likes: 10, views: 320)
         ]
 
     }

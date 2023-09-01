@@ -25,8 +25,9 @@ final class ProfileCoordinator {
     // MARK: - Private methods
     
     private func setupNavigationController() {
+        let localizedProfileTabBarItemName = NSLocalizedString("ProfileTabBarItemName", comment: "testing")
         let tabBarItem = UITabBarItem(
-            title: "Profile",
+            title: localizedProfileTabBarItemName,
             image: UIImage(systemName: "person.fill"),
             tag: 1
         )

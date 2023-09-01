@@ -31,6 +31,7 @@ class ProfileHeaderView: UIView {
     }()
     
     private lazy var avatarImage: UIImageView = {
+        
         var image = UIImageView(image: UIImage(named: "HipstaCat"))
         image.translatesAutoresizingMaskIntoConstraints = false
         image.layer.cornerRadius = 50
@@ -43,7 +44,8 @@ class ProfileHeaderView: UIView {
     private lazy var fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Hipster Cat"
+        let localixedAvatarLabel = NSLocalizedString("AvatarImage", comment: "testing")
+        label.text = localixedAvatarLabel
         label.textColor = .black
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
@@ -62,14 +64,16 @@ class ProfileHeaderView: UIView {
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
         textField.leftViewMode = .always
-        textField.placeholder = "Write your status..."
+        let localizedPlaceholderStatus = NSLocalizedString("PlaceholderStatus", comment: "testing")
+        textField.placeholder = localizedPlaceholderStatus
         return textField
     }()
     
     private lazy var statusLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Waiting for something..."
+        let localizedStatusLabel = NSLocalizedString("StatusLabel", comment: "testing")
+        label.text = localizedStatusLabel
         label.textColor = .gray
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
@@ -78,7 +82,8 @@ class ProfileHeaderView: UIView {
     private lazy var setStatusButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Show status", for: .normal)
+        let localizedSetStatusButton = NSLocalizedString("SetStatusButton", comment: "testing")
+        button.setTitle(localizedSetStatusButton, for: .normal)
         button.layer.cornerRadius = 4
         button.layer.backgroundColor = UIColor.blue.cgColor
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)

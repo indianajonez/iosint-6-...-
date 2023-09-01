@@ -39,7 +39,8 @@ class MapViewController: UIViewController {
     
     lazy var directionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Куда поедем?"
+        let localizedDirectionLabel = NSLocalizedString("DirectionLabel", comment: "testing")
+        label.text = localizedDirectionLabel
         label.font = .boldSystemFont(ofSize: 16)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -48,14 +49,16 @@ class MapViewController: UIViewController {
     
     lazy var textField: UITextField = {
         let tf = UITextField()
-        tf.placeholder = "Введите адрес пункта назначения"
+        let localizedDirectionTextField = NSLocalizedString("DirectionTextField", comment: "testing")
+        tf.placeholder = localizedDirectionTextField
         tf.borderStyle = .roundedRect
         return tf
     }()
     
     lazy var getDirectionButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Ок", for: .normal)
+        let localizedgetDirectionButton = NSLocalizedString("getDirectionButton", comment: "testing")
+        button.setTitle(localizedgetDirectionButton, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(getDirectionButtonTapped), for: .touchUpInside)
@@ -64,7 +67,8 @@ class MapViewController: UIViewController {
     
     lazy var startStopButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Начать маршрут", for: .normal)
+        let localizedgetstartStopButton = NSLocalizedString("startStopButton", comment: "testing")
+        button.setTitle(localizedgetstartStopButton, for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         button.addTarget(self, action: #selector(startStopButtonTapped), for: .touchUpInside)
@@ -119,8 +123,10 @@ class MapViewController: UIViewController {
         }
         
         navigationStarted.toggle()
+        let localizedstopRoute = NSLocalizedString("stopRoute", comment: "testing")
+        let localizedStartRoute = NSLocalizedString("StartRoute", comment: "testing")
         
-        startStopButton.setTitle(navigationStarted ? "Завершить маршрут" : "Начать маршрут", for: .normal)
+        startStopButton.setTitle(navigationStarted ? localizedstopRoute : localizedStartRoute, for: .normal)
     }
     
     override func viewDidLoad() {

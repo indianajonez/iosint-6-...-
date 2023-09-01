@@ -33,7 +33,8 @@ class PhotosViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Gallery"
+        let localizedTitleOfPhotoGelary = NSLocalizedString("TitleOfPhotoGelary", comment: "testing")
+        navigationItem.title = localizedTitleOfPhotoGelary
         navigationController?.navigationBar.isHidden = false
     
         // Начать генерацию изображений с помощью метода addImagesWithTimer
