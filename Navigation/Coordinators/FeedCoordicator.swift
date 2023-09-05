@@ -26,11 +26,12 @@ final class FeedCoordinator {
     
     private func setupNavigationController() {
         let localizedtabBarItemFeed = NSLocalizedString("tabBarItemFeed", comment: "testing")
-        let tabBarItem = UITabBarItem(
+        var tabBarItem = UITabBarItem(
             title: localizedtabBarItemFeed,
             image: UIImage(systemName: "rectangle.3.group.bubble.left"),
             tag: 0
         )
+        tabBarItem.badgeColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         self.navigationController.tabBarItem = tabBarItem
     }
 }

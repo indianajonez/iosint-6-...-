@@ -35,6 +35,7 @@ final class PostCoordinator {
             image: UIImage(systemName: "newspaper"),
             tag: 3
         )
+        tabBarItem.badgeColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         self.navigationController.tabBarItem = tabBarItem
     }
     
