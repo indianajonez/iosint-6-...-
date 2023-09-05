@@ -55,12 +55,12 @@ class FeedViewController: UIViewController{
         let button = CustomButton(title: localizedCheckGuestButton, titleColor: .black, action: {
             if self.feedmodel.check(word: self.textField.text ?? "nothing") {
                 self.labelCheck.text = "TRUE"
-                self.labelCheck.textColor = .green
+                self.labelCheck.textColor = .systemGreen
                 self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             } else {
                 self.labelCheck.font = UIFont.systemFont(ofSize: 20, weight: .bold)
                 self.labelCheck.text = "FALSE"
-                self.labelCheck.textColor = .red
+                self.labelCheck.textColor = .systemRed
             }
         })
         button.layer.cornerRadius = 5
@@ -71,7 +71,7 @@ class FeedViewController: UIViewController{
     private lazy var labelCheck: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .gray
+        label.backgroundColor = .systemGray
         label.layer.cornerRadius = 5
         
         return label

@@ -41,9 +41,9 @@ final class LogInViewController: UIViewController {
     private lazy var loginTextField: UITextField = {
         let login = UITextField()
         login.translatesAutoresizingMaskIntoConstraints = false
-        login.textColor = .black
-        login.layer.backgroundColor = UIColor.systemGray6.cgColor
-        login.layer.borderColor = UIColor.lightGray.cgColor
+        login.textColor = UIColor.createColor(lightMode: .black, darkMode: .white) //Palette.labelColor
+        login.layer.backgroundColor = UIColor.createCGolor(lightMode: .systemGray6, darkMode: .darkGray)
+        login.layer.borderColor = UIColor.createCGolor(lightMode: .systemGray4, darkMode: .systemGray2)
         login.layer.borderWidth = 0.5
         login.leftViewMode = .always
         let localizedTextField = NSLocalizedString("LoginTextField", comment: "testing")
@@ -56,9 +56,9 @@ final class LogInViewController: UIViewController {
     private lazy var passwordTextField: UITextField = {
         let password = UITextField()
         password.translatesAutoresizingMaskIntoConstraints = false
-        password.textColor = .black
-        password.layer.backgroundColor = UIColor.systemGray6.cgColor
-        password.layer.borderColor = UIColor.lightGray.cgColor
+        password.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
+        password.layer.backgroundColor = UIColor.createCGolor(lightMode: .systemGray6, darkMode: .darkGray)
+        password.layer.borderColor = UIColor.createCGolor(lightMode: .systemGray4, darkMode: .systemGray2)
         password.layer.borderWidth = 0.5
         password.leftViewMode = .always
         let localizedPlaceholderPassword = NSLocalizedString("PlaceholderPassword", comment: "testing")
@@ -84,7 +84,7 @@ final class LogInViewController: UIViewController {
     private lazy var logInButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(rgb: 0x4885CC)
+        button.backgroundColor = UIColor.createColor(lightMode: UIColor(rgb: 0x4885CC), darkMode: UIColor(rgb: 0x666666))
         button.layer.cornerRadius = 10
         let localizedLogInButton = NSLocalizedString("LogInButton", comment: "testing")
         button.setTitle(localizedLogInButton, for: .normal)
@@ -95,7 +95,7 @@ final class LogInViewController: UIViewController {
     private lazy var registrationButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = UIColor(rgb: 0x4885CC)
+        button.backgroundColor = UIColor.createColor(lightMode: UIColor(rgb: 0x4885CC), darkMode: UIColor(rgb: 0x666666))
         button.layer.cornerRadius = 10
         let localizedregistrationButton = NSLocalizedString("registrationButton", comment: "testing")
         button.setTitle(localizedregistrationButton, for: .normal)
@@ -118,11 +118,14 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setupView()
         setupConstraints()
         setupgestureRecognizer()
+        view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
+        
         Auth.auth().addStateDidChangeListener{ auth, user in // заходим в профайл если данные получены корректно
+            
             
         }
     }
@@ -144,7 +147,7 @@ final class LogInViewController: UIViewController {
 
     
     private func setupView() {
-        view.backgroundColor = .white
+        
         view.addSubview(scrollView)
         scrollView.addSubview(logoImageView)
         scrollView.addSubview(stackView)

@@ -27,7 +27,7 @@ class SavedPostTableViewCell: UITableViewCell {
     private lazy var imageInPosts: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .white
+        image.backgroundColor = .systemBackground
         image.contentMode = .scaleAspectFit
         return image
     }()

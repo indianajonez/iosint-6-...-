@@ -40,7 +40,7 @@ class MediaPlayerViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Музыкальный трек"
-        label.textColor = .black
+        label.textColor = .systemBlue
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 25, weight: .bold)
         return label
@@ -50,7 +50,7 @@ class MediaPlayerViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "play.circle", withConfiguration: largeConfig), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(playButtonAction), for: .touchUpInside)
         return button
     }()
@@ -60,7 +60,7 @@ class MediaPlayerViewController: UIViewController {
         let button = UIButton() 
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "stop.circle", withConfiguration: largeConfig), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(stopButtonAction), for: .touchUpInside)
         return button
     }()
@@ -69,7 +69,7 @@ class MediaPlayerViewController: UIViewController {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "forward.circle", withConfiguration: largeConfig), for: .normal)
-        button.tintColor = .black
+        button.tintColor = .systemBlue
         button.addTarget(self, action: #selector(forwardButtonAction), for: .touchUpInside)
         return button
     }()
@@ -93,7 +93,7 @@ class MediaPlayerViewController: UIViewController {
 //        if audioPlayer.isPlaying {
 //            audioPlayer.pause()
 //            playButton.setImage(UIImage(systemName: "play.rectangle"), for: .normal)
-//        } else {
+//        } else { 
 //            audioPlayer.play()
 //            playButton.setImage(UIImage(systemName: "pause.rectangle"), for: .normal)
 //        }
@@ -122,7 +122,7 @@ class MediaPlayerViewController: UIViewController {
     // MARK: - Private methods
     
     private func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
     }
     
     private func setupAudioPlayer() {

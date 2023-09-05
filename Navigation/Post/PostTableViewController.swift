@@ -27,7 +27,7 @@ class PostTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         let localizedSavedPostsTitle = NSLocalizedString("SavedPostsTitle", comment: "testing")
         title = localizedSavedPostsTitle
         coreDataManager.fetchFavorites()

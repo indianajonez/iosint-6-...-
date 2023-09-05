@@ -29,7 +29,7 @@ class PhotosTableViewCell: UITableViewCell {
     
     private lazy var namelabel: UILabel = {
         let name = UILabel()
-        name.textColor = .black
+        name.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         name.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         let localizedNameLabelPhotos = NSLocalizedString("NameLabelPhotos", comment: "testing")
         name.text = localizedNameLabelPhotos
@@ -55,7 +55,7 @@ class PhotosTableViewCell: UITableViewCell {
         imageCollection.translatesAutoresizingMaskIntoConstraints = false
         imageCollection.delegate = self // кто будет реагировать на делегиварование
         imageCollection.dataSource = self // хранилище дванных
-        imageCollection.backgroundColor = .lightGray
+        imageCollection.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
         imageCollection.register(PhotosCollectionViewCell.self, forCellWithReuseIdentifier: PhotosCollectionViewCell.identifier)
         return imageCollection
     }()

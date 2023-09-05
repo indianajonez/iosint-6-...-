@@ -46,7 +46,7 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         let localixedAvatarLabel = NSLocalizedString("AvatarImage", comment: "testing")
         label.text = localixedAvatarLabel
-        label.textColor = .black
+        label.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
@@ -58,8 +58,8 @@ class ProfileHeaderView: UIView {
         textField.layer.borderColor = UIColor.black.cgColor
         textField.layer.borderWidth = 1
         textField.layer.cornerRadius = 12
-        textField.layer.backgroundColor = UIColor.white.cgColor
-        textField.textColor = .black
+        textField.layer.backgroundColor = UIColor.createCGolor(lightMode: .white, darkMode: .systemGray2)
+        textField.textColor = UIColor.createColor(lightMode: .black, darkMode: .white)
         textField.textAlignment = .left
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 10, width: 10, height: 10))
@@ -74,7 +74,7 @@ class ProfileHeaderView: UIView {
         label.translatesAutoresizingMaskIntoConstraints = false
         let localizedStatusLabel = NSLocalizedString("StatusLabel", comment: "testing")
         label.text = localizedStatusLabel
-        label.textColor = .gray
+        label.textColor = UIColor.createColor(lightMode: .gray, darkMode: .systemGray2)
         label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         return label
     }()
@@ -85,7 +85,7 @@ class ProfileHeaderView: UIView {
         let localizedSetStatusButton = NSLocalizedString("SetStatusButton", comment: "testing")
         button.setTitle(localizedSetStatusButton, for: .normal)
         button.layer.cornerRadius = 4
-        button.layer.backgroundColor = UIColor.blue.cgColor
+        button.layer.backgroundColor = UIColor.createCGolor(lightMode: UIColor(rgb: 0x4885CC), darkMode: UIColor(rgb: 0x9acf))
         button.layer.shadowOffset = CGSize(width: 4.0, height: 4.0)
         button.layer.shadowOpacity = 0.7
         button.layer.shadowRadius = 4

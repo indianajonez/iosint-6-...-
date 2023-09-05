@@ -19,6 +19,7 @@
 		F312038329DAE447009B9D7F /* PhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */; };
 		F313B01E29DDA28B00A30AD7 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */; };
 		F316B5E82A4C3D7200F81E03 /* SomeMusicForNavigationPlayer in Resources */ = {isa = PBXBuildFile; fileRef = F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */; };
+		F33BCE932AA5FEA900951DA6 /* Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = F33BCE922AA5FEA900951DA6 /* Palette.swift */; };
 		F343964C2A13F24C007FFD87 /* Checker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964B2A13F24C007FFD87 /* Checker.swift */; };
 		F343964E2A13F769007FFD87 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964D2A13F769007FFD87 /* LoginInspector.swift */; };
 		F34396502A15109D007FFD87 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F343964F2A15109C007FFD87 /* LoginFactory.swift */; };
@@ -133,6 +134,7 @@
 		F312038229DAE447009B9D7F /* PhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		F313B01D29DDA28B00A30AD7 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SomeMusicForNavigationPlayer; sourceTree = "<group>"; };
+		F33BCE922AA5FEA900951DA6 /* Palette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Palette.swift; sourceTree = "<group>"; };
 		F343964B2A13F24C007FFD87 /* Checker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checker.swift; sourceTree = "<group>"; };
 		F343964D2A13F769007FFD87 /* LoginInspector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInspector.swift; sourceTree = "<group>"; };
 		F343964F2A15109C007FFD87 /* LoginFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFactory.swift; sourceTree = "<group>"; };
@@ -361,6 +363,7 @@
 		F367D5DE29C057AC009A07B8 = {
 			isa = PBXGroup;
 			children = (
+				F33BCE922AA5FEA900951DA6 /* Palette.swift */,
 				F3CBC2832A9F5F0C00AE47F9 /* Localizable.strings */,
 				F3CBC27A2A9F5D1700AE47F9 /* InfoPlist.strings */,
 				F38518532A939EF600EB41BF /* Map */,
@@ -771,6 +774,7 @@
 				F31191BF29D8ACAC00EEC6DF /* PostTableViewCell.swift in Sources */,
 				F30A34332A56F01D00178CBA /* InfoNetworkService.swift in Sources */,
 				F37A7C262A8814B7004922D9 /* PostStorage.xcdatamodeld in Sources */,
+				F33BCE932AA5FEA900951DA6 /* Palette.swift in Sources */,
 				F367D60729C395D9009A07B8 /* PostViewController.swift in Sources */,
 				F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */,
 				F345E1672A630F9600703834 /* TextPicker.swift in Sources */,
@@ -1013,6 +1017,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1043,6 +1048,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

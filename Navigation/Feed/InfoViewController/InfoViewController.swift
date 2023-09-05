@@ -18,7 +18,7 @@ class InfoViewController: UIViewController{
            let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
            label.text = ""
-           label.textColor = .black
+           label.textColor = .systemBlue
            label.textAlignment = .center
            label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
            return label
@@ -28,7 +28,7 @@ class InfoViewController: UIViewController{
            let label = UILabel()
            label.translatesAutoresizingMaskIntoConstraints = false
            label.text = ""
-           label.textColor = .black
+           label.textColor = .systemBlue
            label.textAlignment = .center
            label.font = UIFont.systemFont(ofSize: 18, weight: .bold)
            return label
@@ -53,7 +53,7 @@ class InfoViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .systemYellow
         makeButton()
         layout()
         infoNetworkService.requestTaskOne(number: 2) { result in
@@ -102,7 +102,7 @@ class InfoViewController: UIViewController{
         let localizedCloseButton = NSLocalizedString("CloseButton", comment: "TestingLocolizationString")
         button.center = view.center
         button.setTitle(localizedCloseButton, for: .normal)
-        button.backgroundColor = .black
+        button.backgroundColor = .secondaryLabel
         button.addTarget(self, action: #selector(tapAction), for: .touchUpInside)
         view.addSubview(button)
     }

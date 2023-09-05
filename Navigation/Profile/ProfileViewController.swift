@@ -24,7 +24,7 @@ class ProfileViewController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.delegate = self
         table.dataSource = self
-        table.backgroundColor = .lightGray
+        table.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
         table.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         table.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
         return table
@@ -41,9 +41,9 @@ class ProfileViewController: UIViewController {
         start()
         super.viewDidLoad()
         #if DEBUG
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
         #else
-        view.backgroundColor = .lightGray
+        view.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
         #endif
     }
     
@@ -121,7 +121,7 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = ProfileHeaderView()
         header.setView(user: currentUser)
-        header.backgroundColor = .lightGray
+        header.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
         return section == 0 ? header : nil
     }
     
@@ -149,14 +149,14 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier) as? PhotosTableViewCell else { return UITableViewCell()}
             cell.delegate = self
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
             return cell
         } else {
             
             
             guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier) as? PostTableViewCell else { return UITableViewCell()}
             cell.setupCell(listPost[indexPath.row])
-            cell.backgroundColor = .lightGray
+            cell.backgroundColor = UIColor.createColor(lightMode: .lightGray, darkMode: .black)
             return cell
         }
         

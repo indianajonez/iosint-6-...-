@@ -6,6 +6,7 @@
   
 */
 
+
 //MARK: FeedViewController
 
 "MapButton" = "Карта";
@@ -35,6 +36,7 @@
 "textField" = "Напиши правильное слово сюда..";
 
 // MARK: RunLoop
+
 "Label" = "Купи подписку и используй все возможности приложения!";
 "TitleOfbutton" = "Купить";
 
