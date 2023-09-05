@@ -1,0 +1,106 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+
+//MARK: FeedViewController
+
+"MapButton" = "Карта";
+"PostTwoButton" = "Второй пост";
+"CheckGuestButton" = "Кнопка: Проверить гостя ";
+
+//MARK: PostTwo
+
+"TitlePostTwo" = "Второй пост";
+
+//MARK: PostOne
+
+"ButtonPostOne" = "Первый пост";
+"TitleOfPostOne" = "Заголовок первого поста";
+
+
+//MARK: Info
+
+"TitleAlert" = "Перейти назад";
+"MessageAlert" = "Что ты хочешь сделать?";
+"AlertButton" = "Выйти";
+"CancelAlertButton" = "Отмена";
+"CloseButton" = "Закрыть";
+
+//MARK: The right word
+
+"textField" = "Напиши правильное слово сюда..";
+
+// MARK: RunLoop
+
+"Label" = "Купи подписку и используй все возможности приложения!";
+"TitleOfbutton" = "Купить";
+
+// MARK: LoginViewController
+
+"LoginTextField" = "Логин";
+"PlaceholderPassword" = "Пароль";
+"LogInButton" = "Войти";
+"registrationButton" = "Регистрация";
+"WrongAlertTitle" = "Ошибка";
+"AlertOkAction" = "Хорошо";
+"TextInAlertWrong" = "Неверный логин или пароль";
+"RegistrationButtonNotCorrectPass" = "Пароль не совпадает";
+"MakeWrongAlert" = "Пожалуйста, заполните все поля";
+
+//MARK: MapViewController
+
+"DirectionLabel" = "Куда вы хотите поехать?";
+"DirectionTextField" = "Geben Sie die Zieladresse ein";
+"DirectionTextField" = "Введите адрес пункта назначения";
+"getDirectionButton" = "Хорошо";
+"startStopButton" = "Начать маршрут";
+"stopRoute" = "Завершить маршрут";
+"StartRoute" = "Начать маршрут";
+
+// MARK: TabBarController
+
+"TabbarItemNamePosts" = "Посты";
+"tabBarItemFeed" = "Фиид";
+"ProfileTabBarItemName" = "Профайл";
+"TabBarItemMediaPlayer" = "Медиаплеер";
+
+//MARK: SavedPosts
+
+"SavedPostsTitle" = "Сохраненные посты";
+"LikesInPosts" = "Лайки: ";
+"ViewsInPosts" = "Просмотры: ";
+
+//MARK: PhotosViewController
+
+"TitleOfPhotoGelary" = "Галерея";
+"NameLabelPhotos" = "Фотографии";
+
+//MARK: PostTableViewCell
+"PostLikesLabel" = "Лайки: ";
+"PostViewsLabel" = "Просмотры: ";
+
+//MARK: ProfileViewController
+
+"AvatarImage" = "Хипстерский кот";
+"PlaceholderStatus" = "Напиши свой статус...";
+"StatusLabel" = "Жду когда ты что-нибудь сюда напишешь...";
+"SetStatusButton" = "Показать статус";
+
+//MARK: Posts
+
+"PostsInformationAuthor1" = "Лохматый";
+"PostsInformationAuthor2" = "Спокойный Кот";
+"PostsInformationAuthor3" = "Может Я Не Кот";
+"PostsInformationAuthor4" = "У Меня Все Хорошо";
+
+"PostsInformationDescription1" = "Сегодня еще ничего не ел.";
+"PostsInformationDescription2" = "Молчу весь день. Тяжело.";
+"PostsInformationDescription3" = "Блохи и клещи худщие враги.";
+"PostsInformationDescription4" = "Бегаю за хвостом. Пока не поймал.";
+
+

@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+NSLocationUsageDescription = "
+Erlauben Sie den Zugriff auf Ihre Geoposition";
