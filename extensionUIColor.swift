@@ -1,5 +1,5 @@
 //
-//  Palette.swift
+//  extensionUIColor.swift
 //  Navigation
 //
 //  Created by Ekaterina Saveleva on 04.09.2023.
