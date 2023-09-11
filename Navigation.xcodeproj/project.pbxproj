@@ -29,7 +29,8 @@
 		F345E1412A61E4E900703834 /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1402A61E4E900703834 /* Validator.swift */; };
 		F345E1672A630F9600703834 /* TextPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1662A630F9600703834 /* TextPicker.swift */; };
 		F345E1692A63233100703834 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F345E1682A63233100703834 /* CheckerService.swift */; };
-		F34EC4592AA84FB200D84C7D /* NavigationUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EC4582AA84FB200D84C7D /* NavigationUnitTests.swift */; };
+		F346BB512AAF497D009F0410 /* FeedModelUnitTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F346BB502AAF497D009F0410 /* FeedModelUnitTest.swift */; };
+		F34EC4592AA84FB200D84C7D /* ValidatorUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F34EC4582AA84FB200D84C7D /* ValidatorUnitTests.swift */; };
 		F34EC4612AA856BA00D84C7D /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = F34EC4602AA856BA00D84C7D /* Realm */; };
 		F34EC4652AA856D500D84C7D /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F34EC4642AA856D500D84C7D /* RealmSwift */; };
 		F34EC4692AA8571900D84C7D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F34EC4682AA8571900D84C7D /* FirebaseAuth */; };
@@ -154,8 +155,9 @@
 		F345E1402A61E4E900703834 /* Validator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		F345E1662A630F9600703834 /* TextPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextPicker.swift; sourceTree = "<group>"; };
 		F345E1682A63233100703834 /* CheckerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckerService.swift; sourceTree = "<group>"; };
+		F346BB502AAF497D009F0410 /* FeedModelUnitTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModelUnitTest.swift; sourceTree = "<group>"; };
 		F34EC4562AA84FB100D84C7D /* NavigationUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavigationUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F34EC4582AA84FB200D84C7D /* NavigationUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUnitTests.swift; sourceTree = "<group>"; };
+		F34EC4582AA84FB200D84C7D /* ValidatorUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidatorUnitTests.swift; sourceTree = "<group>"; };
 		F34EC4622AA856C300D84C7D /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.3.sdk/System/iOSSupport/System/Library/Frameworks/AddressBookUI.framework; sourceTree = DEVELOPER_DIR; };
 		F3582BD12A1D19D40002C786 /* FeedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedModel.swift; sourceTree = "<group>"; };
 		F3582BD42A1FA8F00002C786 /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
@@ -303,7 +305,7 @@
 		F343964A2A13F236007FFD87 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				F38653582A40B8FA00900391 /* Models */,
+				F38653582A40B8FA00900391 /* AuthModels */,
 				F3D500A729D1A77400CCABF5 /* LogInViewController.swift */,
 			);
 			path = Login;
@@ -312,7 +314,8 @@
 		F34EC4572AA84FB200D84C7D /* NavigationUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				F34EC4582AA84FB200D84C7D /* NavigationUnitTests.swift */,
+				F34EC4582AA84FB200D84C7D /* ValidatorUnitTests.swift */,
+				F346BB502AAF497D009F0410 /* FeedModelUnitTest.swift */,
 			);
 			path = NavigationUnitTests;
 			sourceTree = "<group>";
@@ -505,7 +508,7 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
-		F38653582A40B8FA00900391 /* Models */ = {
+		F38653582A40B8FA00900391 /* AuthModels */ = {
 			isa = PBXGroup;
 			children = (
 				F34396512A1512EB007FFD87 /* MyLoginFactory.swift */,
@@ -517,7 +520,7 @@
 				F345E1662A630F9600703834 /* TextPicker.swift */,
 				F345E1682A63233100703834 /* CheckerService.swift */,
 			);
-			path = Models;
+			path = AuthModels;
 			sourceTree = "<group>";
 		};
 		F39A2B5A2A45A6130088E20A /* MediaPlayer */ = {
@@ -831,7 +834,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F34EC4592AA84FB200D84C7D /* NavigationUnitTests.swift in Sources */,
+				F34EC4592AA84FB200D84C7D /* ValidatorUnitTests.swift in Sources */,
+				F346BB512AAF497D009F0410 /* FeedModelUnitTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

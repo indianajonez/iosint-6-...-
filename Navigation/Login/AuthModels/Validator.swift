@@ -5,7 +5,7 @@
 //  Created by Ekaterina Saveleva on 14.07.2023.
 //
 
-import UIKit
+import Foundation
 
 final class Validator {
     static let shared = Validator()
