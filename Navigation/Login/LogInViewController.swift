@@ -14,8 +14,7 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Public properties
     
-   
-    
+
     weak var coordinator: LoginCoordinatorProtocol?
     
     // MARK: - Privte properties

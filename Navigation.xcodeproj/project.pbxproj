@@ -72,6 +72,7 @@
 		F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A2D9DD2A0925C0005BA05C /* User.swift */; };
 		F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960C2A37560B0054B1D4 /* TypeError.swift */; };
 		F3C3960F2A3758C30054B1D4 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */; };
+		F3C962E62AB34BE500748102 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */; };
 		F3CBC2782A9F5D1700AE47F9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3CBC27A2A9F5D1700AE47F9 /* InfoPlist.strings */; };
 		F3CBC2812A9F5F0C00AE47F9 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3CBC2832A9F5F0C00AE47F9 /* Localizable.strings */; };
 		F3D500A829D1A77400CCABF5 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D500A729D1A77400CCABF5 /* LogInViewController.swift */; };
@@ -197,6 +198,7 @@
 		F3A2D9DD2A0925C0005BA05C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F3C3960C2A37560B0054B1D4 /* TypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeError.swift; sourceTree = "<group>"; };
 		F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
 		F3CBC2792A9F5D1700AE47F9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		F3CBC27B2A9F5D3B00AE47F9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		F3CBC27C2A9F5D3C00AE47F9 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				F316B5E72A4C3D7200F81E03 /* SomeMusicForNavigationPlayer */,
 				F367D5F829C057B0009A07B8 /* Info.plist */,
 				F345E11B2A5FFB4E00703834 /* GoogleService-Info.plist */,
+				F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				F3785B7E2A0288B600EDFF3F /* FeedViewController.swift in Sources */,
 				F38518552A939F5700EB41BF /* MapViewController.swift in Sources */,
 				F3582BDE2A28E0590002C786 /* ProfileCoordinator.swift in Sources */,
+				F3C962E62AB34BE500748102 /* LocalNotificationsService.swift in Sources */,
 				F312038129DAE2A1009B9D7F /* Photos.swift in Sources */,
 				F380563E29E342E3007C5031 /* Extensions.swift in Sources */,
 				F3582BDC2A28E0450002C786 /* FeedCoordicator.swift in Sources */,
