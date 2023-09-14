@@ -18,7 +18,7 @@ class LocalNotificationsService {
             case .authorized:
                 self.dispatchNotification()
             case .notDetermined:
-                notificationCenter.requestAuthorization(options: [ .alert, .sound, .provisional, .badge]) { didAllow, error in
+                notificationCenter.requestAuthorization(options: [ .alert, .sound, .provisional, .badge]) { didAllow, error in //.provisional
                     if didAllow {
                         self.dispatchNotification()
                     }
