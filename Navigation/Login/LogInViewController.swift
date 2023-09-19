@@ -345,15 +345,5 @@ final class LogInViewController: UIViewController {
     }
 
     
-    //        do {
-    //            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
-    //            self.coordinator?.goToTabBarController()
-    //        } catch {
-    //            if let error = error as? LoginViewControllerDelegateError {
-    //                self.makeWrongAlert(massage: error.errorDescription)
-    //            } else {
-    //                self.makeWrongAlert(massage: "Неизвестная ошибка")
-    //            }
-    //        }
 
 
