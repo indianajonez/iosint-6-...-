@@ -48,6 +48,7 @@
 "TextInAlertWrong" = "Login or password is not correct";
 "RegistrationButtonNotCorrectPass" = "password is not correct";
 "MakeWrongAlert" = "Please, fill in all the fields";
+"biometricButton" = "Face ID"
 
 //MARK: MapViewController
 

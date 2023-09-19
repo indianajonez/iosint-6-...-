@@ -102,6 +102,17 @@ final class LogInViewController: UIViewController {
         return button
     }()
     
+    private lazy var biometryButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = UIColor.createColor(lightMode: UIColor(rgb: 0x4885CC), darkMode: UIColor(rgb: 0x666666))
+        button.layer.cornerRadius = 10
+        let localizedBiometricButton = NSLocalizedString("biometricButton", comment: "testing")
+        button.setTitle(localizedBiometricButton, for: .normal)
+        button.addTarget(self, action: #selector(self.didTapBiometricButton), for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK: - Lifecycles
     
@@ -298,7 +309,10 @@ final class LogInViewController: UIViewController {
         }
     }
     
-    
+    @objc
+    private func didTapBiometricButton() {
+        //authorizeIfPossible()
+    }
     
     //        do {
     //            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)

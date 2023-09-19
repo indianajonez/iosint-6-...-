@@ -70,6 +70,7 @@
 		F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */; };
 		F39A2B622A45DF750088E20A /* MediaPlayerViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F39A2B612A45DF750088E20A /* MediaPlayerViewCoordinator.swift */; };
 		F3A2D9DE2A0925C0005BA05C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A2D9DD2A0925C0005BA05C /* User.swift */; };
+		F3AE8E2A2AB8A7DF0099A7F7 /* LocalAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AE8E292AB8A7DF0099A7F7 /* LocalAuthorizationService.swift */; };
 		F3C3960D2A37560B0054B1D4 /* TypeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960C2A37560B0054B1D4 /* TypeError.swift */; };
 		F3C3960F2A3758C30054B1D4 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */; };
 		F3C962E62AB34BE500748102 /* LocalNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */; };
@@ -196,6 +197,7 @@
 		F39A2B5B2A45A6490088E20A /* MediaPlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewController.swift; sourceTree = "<group>"; };
 		F39A2B612A45DF750088E20A /* MediaPlayerViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerViewCoordinator.swift; sourceTree = "<group>"; };
 		F3A2D9DD2A0925C0005BA05C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F3AE8E292AB8A7DF0099A7F7 /* LocalAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthorizationService.swift; sourceTree = "<group>"; };
 		F3C3960C2A37560B0054B1D4 /* TypeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeError.swift; sourceTree = "<group>"; };
 		F3C3960E2A3758C30054B1D4 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationsService.swift; sourceTree = "<group>"; };
@@ -451,6 +453,7 @@
 				F367D5F829C057B0009A07B8 /* Info.plist */,
 				F345E11B2A5FFB4E00703834 /* GoogleService-Info.plist */,
 				F3C962E52AB34BE500748102 /* LocalNotificationsService.swift */,
+				F3AE8E292AB8A7DF0099A7F7 /* LocalAuthorizationService.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -885,6 +888,7 @@
 				F380563E29E342E3007C5031 /* Extensions.swift in Sources */,
 				F3582BDC2A28E0450002C786 /* FeedCoordicator.swift in Sources */,
 				F37A7C292A881796004922D9 /* CoreDataManager.swift in Sources */,
+				F3AE8E2A2AB8A7DF0099A7F7 /* LocalAuthorizationService.swift in Sources */,
 				F345E1692A63233100703834 /* CheckerService.swift in Sources */,
 				F312037F29DAE0C6009B9D7F /* PhotosTableViewCell.swift in Sources */,
 				F39A2B5C2A45A6490088E20A /* MediaPlayerViewController.swift in Sources */,
