@@ -1,0 +1,104 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+//MARK: FeedViewController
+
+"MapButton" = "die Karte";
+"PostTwoButton" = "Beitrag Zwei";
+"CheckGuestButton" = "CheckGuestButton";
+
+//MARK: PostTwo
+
+"TitlePostTwo" = "Beitrag Zwei";
+
+//MARK: PostOne
+
+"ButtonPostOne" = "Erster Beitrag";
+"TitleOfPostOne" = "Beitragstitel Eins";
+
+//MARK: Info
+
+"TitleAlert" = "Schritt zurück";
+"MessageAlert" = "was willst du tun?";
+"AlertButton" = "herauskommen";
+"CancelAlertButton" = "Annullierung";
+"CloseButton" = "Schließen";
+
+//MARK: The right word
+
+"textField" = "Schreiben Sie hier das richtige Wort..";
+
+// MARK: RunLoop
+"Label" = "Kaufe ein Abonnement und nutze alle Funktionen der App!";
+"TitleOfbutton" = "Kaufen";
+
+// MARK: LoginViewController
+
+"LoginTextField" = "Anmelden";
+"PlaceholderPassword" = "Passwort";
+"LogInButton" = "Anmelden";
+"registrationButton" = "Anmelden";
+"WrongAlertTitle" = "Ahtung";
+"AlertOkAction" = "Okay";
+"TextInAlertWrong" = "Login oder Passwort ist nicht korrekt";
+"RegistrationButtonNotCorrectPass" = "passwort ist nicht korrekt";
+"MakeWrongAlert" = "Füllen Sie alle Felder aus";
+"biometricButton" = "Face ID";
+
+//MARK: MapViewController
+
+"DirectionLabel" = "Wohin gehen wir?";
+"DirectionTextField" = "Geben Sie die Zieladresse ein";
+"getDirectionButton" = "Okay";
+"startStopButton" = "Route starten";
+"stopRoute" = "Route beenden";
+"StartRoute" = "Route starten";
+
+// MARK: TabBarController
+
+"TabbarItemNamePosts" = "Beiträge";
+"tabBarItemFeed" = "Vorschub";
+"ProfileTabBarItemName" = "Profil";
+"TabBarItemMediaPlayer" = "Media Player";
+
+//MARK: SavedPosts
+
+"SavedPostsTitle" = "Gespeicherte Beiträge";
+"LikesInPosts" = "Gefällt mir: ";
+"ViewsInPosts" = "Ansichten: ";
+
+//MARK: PhotosViewController
+
+"TitleOfPhotoGelary" = "Galerie";
+"NameLabelPhotos" = "Fotos";
+
+//MARK: PostTableViewCell
+"PostLikesLabel" = "Likes: ";
+
+//MARK: PostTableViewCell
+"PostLikesLabel" = "Gefällt mir: ";
+"PostViewsLabel" = "Ansichten: ";
+
+//MARK: ProfileViewController
+
+"AvatarImage" = "HipstaCat";
+"PlaceholderStatus" = "Schreibe deinen Status...";
+"StatusLabel" = "Warten auf etwas...";
+"SetStatusButton" = "Status anzeigen";
+
+//MARK: Posts
+
+"PostsInformationAuthor1" = "Zottig";
+"PostsInformationAuthor2" = "Ruhige Katze";
+"PostsInformationAuthor3" = "Vielleicht bin ich keine Katze";
+"PostsInformationAuthor4" = "Mir Geht es gut";
+
+"PostsInformationDescription1" = "Ich habe heute noch nichts gegessen.";
+"PostsInformationDescription2" = "Ich bin den ganzen Tag still. Schwer.";
+"PostsInformationDescription3" = "Flöhe und Zecken sind die schlimmsten Feinde.";
+"PostsInformationDescription4" = "Ich laufe hinter meinem Schwanz. Ich habe es noch nicht erwischt.";
