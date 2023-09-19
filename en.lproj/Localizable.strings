@@ -1,0 +1,102 @@
+/* 
+  Localizable.strings
+  Navigation
+
+  Created by Ekaterina Saveleva on 30.08.2023.
+  
+*/
+
+//MARK: FeedViewController
+
+"MapButton" = "Map";
+"PostTwoButton" = "Post Two";
+"CheckGuestButton" = "CheckGuestButton";
+
+//MARK: PostTwo
+
+"TitlePostTwo" = "PostTwo";
+
+//MARK: PostOne
+
+"ButtonPostOne" = "Post One";
+"TitleOfPostOne" = "Post Title One";
+
+//MARK: Info
+
+"TitleAlert" = "Step back";
+"MessageAlert" =  "What do you want to do?";
+"AlertButton" = "Quit";
+"CancelAlertButton" = "Cancle";
+"CloseButton" = "Quit";
+
+//MARK: The right word
+
+"textField" = "Write the right word here..";
+
+// MARK: RunLoop
+"Label" = "Buy a subscription and use all the features of the app!";
+"TitleOfbutton" = "Buy";
+
+// MARK: LoginViewController
+
+"LoginTextField" = "Login";
+"PlaceholderPassword" = "Password";
+"LogInButton" = "Log In";
+"registrationButton" = "Singup";
+"WrongAlertTitle" = "Error";
+"AlertOkAction" = "Ok";
+"TextInAlertWrong" = "Login or password is not correct";
+"RegistrationButtonNotCorrectPass" = "password is not correct";
+"MakeWrongAlert" = "Please, fill in all the fields";
+"biometricButton" = "Face ID";
+
+//MARK: MapViewController
+
+"DirectionLabel" = "Where are we going?";
+"DirectionTextField" = "Enter the destination address";
+"getDirectionButton" = "Ok";
+"startStopButton" = "Start route";
+"stopRoute" = "End route";
+"StartRoute" = "Start route";
+
+// MARK: TabBarController
+
+"TabbarItemNamePosts" = "Posts";
+"tabBarItemFeed" = "Feed";
+"ProfileTabBarItemName" = "Profile";
+"TabBarItemMediaPlayer" = "MediaPlayer";
+
+//MARK: SavedPosts
+
+"SavedPostsTitle" = "Saved Posts";
+"LikesInPosts" = "Likes: ";
+"ViewsInPosts" = "Views: ";
+
+//MARK: PhotosViewController
+
+"TitleOfPhotoGelary" = "Gellary";
+"NameLabelPhotos" = "Photos";
+
+//MARK: PostTableViewCell
+
+"PostLikesLabel" = "Likes: ";
+"PostViewsLabel" = "Views: ";
+
+//MARK: ProfileViewController
+
+"AvatarImage" = "HipstaCat";
+"PlaceholderStatus" = "Write your status...";
+"StatusLabel" = "Waiting for something...";
+"SetStatusButton" = "Show status";
+
+//MARK: Posts
+
+"PostsInformationAuthor1" = "Shaggy";
+"PostsInformationAuthor2" = "Calm Cat";
+"PostsInformationAuthor3" = "Maybe I'm Not A Cat";
+"PostsInformationAuthor4" = "I'm Fine";
+
+"PostsInformationDescription1" = "I haven't eaten anything yet today.";
+"PostsInformationDescription2" = "I've been silent all day. It's hard.";
+"PostsInformationDescription3" = "Fleas and ticks are the worst enemies.";
+"PostsInformationDescription4" = "Running after the tail. I haven't caught it yet.";
