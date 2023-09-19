@@ -51,7 +51,7 @@
 "TextInAlertWrong" = "Неверный логин или пароль";
 "RegistrationButtonNotCorrectPass" = "Пароль не совпадает";
 "MakeWrongAlert" = "Пожалуйста, заполните все поля";
-"biometricButton" = "Использовать для входа Face ID"
+"biometricButton" = "Использовать для входа Face ID";
 
 //MARK: MapViewController
 

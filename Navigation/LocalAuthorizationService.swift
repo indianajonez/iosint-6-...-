@@ -10,6 +10,33 @@ import LocalAuthentication
 
 
 class LocalAuthorizationService {
+        
+        func authorizeIfPossible(_ authorizationFinished: @escaping (Bool) -> Void) {
+            let context = LAContext()
+            var error: NSError?
+            
+            // Проверка, если face ID доступно
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "Авторизуйтесь, используя Face ID"
+                
+                // Выполнить ауткнтификацию по Face ID
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, error in
+                    DispatchQueue.main.async {
+                        if success {
+                            // Face ID authentication succeeded
+                            authorizationFinished(true)
+                        } else {
+                            // Face ID authentication failed
+                            authorizationFinished(false)
+                        }
+                    }
+                }
+            } else {
+                // Face ID is not available on the device
+                authorizationFinished(false)
+            }
+        }
+    }
     
 //    func authorizeIfPossible() {
 //        let context = LAContext()
@@ -22,7 +49,7 @@ class LocalAuthorizationService {
 //                DispatchQueue.main.async {
 //                    guard success, error == nil else {
 //                        // falied
-//                        
+//
 //                        let alert = UIAlertController(title: "Failed to Authenticate",
 //                                                      message: "Please try again.",
 //                                                      preferredStyle: .alert)
@@ -32,8 +59,8 @@ class LocalAuthorizationService {
 //                        self?.present(alert, animated: true)
 //                        return
 //                    }
-//                    
-//                    
+//
+//
 //                    // show other screen
 //                    // success
 //                    let vc = UIViewController()
@@ -54,7 +81,7 @@ class LocalAuthorizationService {
 //            present(alert, animated: true)
 //        }
 //    }
-}
+
 //Создайте в этом классе метод func authorizeIfPossible(_ authorizationFinished: @escaping (Bool) -> Void), где Bool будет служить успешной/неуспешной авторизацией.
 //Внутри метода добавьте проверку возможности использования биометрии.
 //Добавьте авторизацию по биометрии.

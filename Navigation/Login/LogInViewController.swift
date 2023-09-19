@@ -14,7 +14,7 @@ final class LogInViewController: UIViewController {
     
     // MARK: - Public properties
     
-
+    
     weak var coordinator: LoginCoordinatorProtocol?
     
     // MARK: - Privte properties
@@ -22,6 +22,8 @@ final class LogInViewController: UIViewController {
     private let checkerService: CheckerServiceProtocol
     
     private var loginDelegate: LoginViewControllerDelegate?
+    
+    private var localAuthorizationService = LocalAuthorizationService()
     
     private let validator = Validator.shared
     
@@ -128,7 +130,7 @@ final class LogInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         setupConstraints()
         setupgestureRecognizer()
@@ -154,7 +156,7 @@ final class LogInViewController: UIViewController {
     
     
     // MARK: - Private methods
-
+    
     
     private func setupView() {
         
@@ -164,6 +166,7 @@ final class LogInViewController: UIViewController {
         setupStackView()
         scrollView.addSubview(logInButton)
         scrollView.addSubview(registrationButton)
+        scrollView.addSubview(biometryButton)
     }
     
     private func setupStackView() {
@@ -214,7 +217,12 @@ final class LogInViewController: UIViewController {
             registrationButton.topAnchor.constraint(equalTo: logInButton.bottomAnchor, constant: 16),
             registrationButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             registrationButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            registrationButton.heightAnchor.constraint(equalToConstant: 50)
+            registrationButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            biometryButton.topAnchor.constraint(equalTo: registrationButton.bottomAnchor, constant: 16),
+            biometryButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            biometryButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            biometryButton.heightAnchor.constraint(equalToConstant: 50),
         ])
     }
     
@@ -256,19 +264,19 @@ final class LogInViewController: UIViewController {
             self.coordinator?.goToTabBarController()
         }
         RealmManager.shared.save(login: login, pass: password)
-//        var result: Bool? = true
-//        do {
-//            result = try loginDelegate?.check(login: login, password: password)
-//        } catch {
-//            print(error.localizedDescription)
-//        }
-//
-//        if result! {
-//            self.coordinator?.goToTabBarController()
-//        } else {
-//            self.makeWrongAlert(massage: "Login or password is not correct")
-//        }
-//
+        //        var result: Bool? = true
+        //        do {
+        //            result = try loginDelegate?.check(login: login, password: password)
+        //        } catch {
+        //            print(error.localizedDescription)
+        //        }
+        //
+        //        if result! {
+        //            self.coordinator?.goToTabBarController()
+        //        } else {
+        //            self.makeWrongAlert(massage: "Login or password is not correct")
+        //        }
+        //
         //        checker.checkCredentials(email: login, pass: password) { [weak self] authDataResult, error in
         //            guard let self = self else {return}
         //            if let error {
@@ -289,7 +297,7 @@ final class LogInViewController: UIViewController {
             if login != "" && pass != "" && pass2 != "" {
                 if pass != pass2 {
                     self.makeWrongAlert(massage: localizedRegistrationButtonNotCorrectPass)
-
+                    
                     return
                 }
                 
@@ -311,8 +319,31 @@ final class LogInViewController: UIViewController {
     
     @objc
     private func didTapBiometricButton() {
-        //authorizeIfPossible()
+        localAuthorizationService.authorizeIfPossible() { success in
+            if success {
+                DispatchQueue.main.async {
+                    print("Авторизация успешна")
+                    // Дополнительные действия после успешной авторизации
+                    self.coordinator?.goToTabBarController()
+                    
+                }
+            } else {
+                print("Авторизация не удалась")
+                // Дополнительные действия после неуспешной авторизации
+                let alert = UIAlertController(title: "Failed to Authenticate", message: "Please try again.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alert, animated: true)
+                return
+                
+            }
+                        // can not use
+                        let alert = UIAlertController(title: "Unavailable", message: "You cant use this featire", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
+            }
+        }
     }
+
     
     //        do {
     //            let user = try self.loginDelegate.check(login: self.loginTextField.text, password: self.passwordTextField.text)
@@ -324,5 +355,5 @@ final class LogInViewController: UIViewController {
     //                self.makeWrongAlert(massage: "Неизвестная ошибка")
     //            }
     //        }
-}
+
 
