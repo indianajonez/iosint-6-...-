@@ -23,8 +23,8 @@ Swift, Xcode, Git, GitHub, Instruments, Realm, CoreData, Notifications, UIKit, C
 
 ### Экран с возможностью угадать слово и перейти на другие экраны через нижнее меню табБара
 
-<img src="https://github.com/indianajonez/DiplomProject/blob/main/3.png" width="200"/>
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/2%2015.35.27.png" width="200"/>
 
 ### Аналог аккаунта пользователя в социальной сети
 
-<img src="https://github.com/indianajonez/DiplomProject/blob/main/4.png" width="200"/>
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/3%2015.35.27.png" width="200"/>
