@@ -21,30 +21,30 @@ Swift, Xcode, Git, GitHub, Instruments, Realm, CoreData, Notifications, UIKit, C
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/1%2015.35.27.png" width="200"/>
 
-### Экран с возможностью угадать слово и перейти на другие экраны через нижнее меню табБара
+### Экран с возможностью угадать слово и получить ответ TRUE/FALSE и перейти на другие экраны через нижнее меню табБара
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/2%2015.35.27.png" width="200"/>
-
-### RunLoop высвечивается через 5 секунд после входа в аккаунт пользователя
-
-<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/3%2015.35.27.png" width="200"/>
 
 ### Аккаунт пользователя
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/4%2015.35.27.png" width="200"/>
 
-### Заголовок
+### RunLoop высвечивается через 5 секунд после входа в аккаунт пользователя
+
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/3%2015.35.27.png" width="200"/>
+
+### Лента постов пользователя
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/6.png" width="200"/>
 
-### Заголовок
+### Галерея фотографий пользователя
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/5.png" width="200"/>
 
-### Заголовок
+### Карта с возможностью построить маршрут до пункта назначения с аудио и видео сопровождением
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/7%2015.35.27.png" width="200"/>
 
-### Заголовок
+### Работа с сетью - отправка запроса и получение данных из сети
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/8%2015.35.27.png" width="200"/>
