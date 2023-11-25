@@ -35,6 +35,10 @@ Swift, Xcode, Git, GitHub, Instruments, Realm, CoreData, Notifications, UIKit, C
 
 ### Заголовок
 
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/6.png" width="200"/>
+
+### Заголовок
+
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/5.png" width="200"/>
 
 ### Заголовок
