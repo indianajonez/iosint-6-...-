@@ -25,6 +25,22 @@ Swift, Xcode, Git, GitHub, Instruments, Realm, CoreData, Notifications, UIKit, C
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/2%2015.35.27.png" width="200"/>
 
-### Аналог аккаунта пользователя в социальной сети
+### RunLoop высвечивается через 5 секунд после входа в аккаунт пользователя
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/3%2015.35.27.png" width="200"/>
+
+### Аккаунт пользователя
+
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/4%2015.35.27.png" width="200"/>
+
+### Заголовок
+
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/5.png" width="200"/>
+
+### Заголовок
+
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/7%2015.35.27.png" width="200"/>
+
+### Заголовок
+
+<img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/8%2015.35.27.png" width="200"/>
