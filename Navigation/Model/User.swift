@@ -22,12 +22,12 @@ class User {
     }
 }
 // 2. протокол UserService с функцией, которая в качестве аргумента принимает логин и возвращает объект класса User?. То есть, в случае неверного логина, пользователь не будет авторизован.
-protocol UserService {
+protocol UserServiceProtocol {
     func checkLogin(login: String) -> User?
 }
 
 // 3. Добавьте новый класс CurrentUserService, который поддерживает протокол UserService. Класс должен хранить объект класса User и возвращать его в функции, реализующей протокол, если, конечно, переданный логин соответствует логину имени пользователя.
-class CurrentUserService: UserService {
+class CurrentUserService: UserServiceProtocol {
     
     var user: User? // объект класса User
     
@@ -44,7 +44,7 @@ class CurrentUserService: UserService {
 
 //Добавьте новый класс TestUserService, который также поддерживает протокол UserService. Класс должен хранить объект класса User с тестовыми данными и возвращать его в реализации протокола.
 
-class TestUserService: UserService {
+class TestUserService: UserServiceProtocol {
 
     var user: User? = User(login: "test", fullName: "Testovay", status: "online")
 

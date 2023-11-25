@@ -10,7 +10,7 @@ import FirebaseAuth
 
 protocol CheckerServiceProtocol {
     
-    func checkCredentials(email: String, pass: String, completion: @escaping (User?, _ errorString: String?) -> Void )
+    func logIn(email: String, pass: String, completion: @escaping (User?, _ errorString: String?) -> Void )
     func signUp(email: String, pass: String, completion: @escaping (Bool, _ errorString: String?) -> Void )
     func checkUserStartSession() -> Bool
     func logout() 
@@ -18,7 +18,7 @@ protocol CheckerServiceProtocol {
 
 final class CheckerService: CheckerServiceProtocol {
 
-    func checkCredentials(email: String, pass: String, completion: @escaping (User?, _ errorString: String?) -> Void ) {
+    func logIn(email: String, pass: String, completion: @escaping (User?, _ errorString: String?) -> Void ) {
         Auth.auth().signIn(withEmail: email, password: pass) { authResult, error in
             if let error {
                 print(error.localizedDescription)

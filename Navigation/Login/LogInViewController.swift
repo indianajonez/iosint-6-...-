@@ -9,11 +9,9 @@ import UIKit
 import FirebaseAuth
 
 
-
 final class LogInViewController: UIViewController {
     
     // MARK: - Public properties
-    
     
     weak var coordinator: LoginCoordinatorProtocol?
     
@@ -135,8 +133,8 @@ final class LogInViewController: UIViewController {
         setupConstraints()
         setupgestureRecognizer()
         view.backgroundColor = UIColor.createColor(lightMode: .white, darkMode: .black)
-        
-        Auth.auth().addStateDidChangeListener{ auth, user in // заходим в профайл если данные получены корректно
+        // заходим в профайл если данные получены корректно
+        Auth.auth().addStateDidChangeListener{ auth, user in
             
             
         }
@@ -252,11 +250,11 @@ final class LogInViewController: UIViewController {
     }
     
     @objc
-    private func didTapButton() { //не заходит в систему даже если данные правильные
+    private func didTapButton() {
         let localizedTextInAlertWrong = NSLocalizedString("TextInAlertWrong", comment: "testing")
         let login = self.loginTextField.text ?? ""
         let password = self.passwordTextField.text ?? ""
-        checkerService.checkCredentials(email: login, pass: password) { user, errorString in
+        checkerService.logIn(email: login, pass: password) { user, errorString in
             guard let user else {
                 self.makeWrongAlert(massage: errorString ?? localizedTextInAlertWrong)
                 return
@@ -320,7 +318,9 @@ final class LogInViewController: UIViewController {
     @objc
     private func didTapBiometricButton() {
         localAuthorizationService.authorizeIfPossible() { success in
+            
             if success {
+                print(error)
                 DispatchQueue.main.async {
                     print("Авторизация успешна")
                     // Дополнительные действия после успешной авторизации

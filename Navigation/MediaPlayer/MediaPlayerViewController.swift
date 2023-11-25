@@ -15,11 +15,9 @@ class MediaPlayerViewController: UIViewController {
     
     var coordinator: CoordinatorProtocol?
     
-    
     // MARK: - Private properties
     
     private let largeConfig = UIImage.SymbolConfiguration(scale: .large)
-    
     private var player = AVPlayer()
     private var audioPlayer: AVAudioPlayer!
     private let path1 = Bundle.main.path(forResource: "Louis Armstrong", ofType: "mp3")

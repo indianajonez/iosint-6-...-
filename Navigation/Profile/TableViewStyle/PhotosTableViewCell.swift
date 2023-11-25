@@ -140,7 +140,7 @@ extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout {
 
 
 
-// MARK: - UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
 
 extension PhotosTableViewCell: UICollectionViewDataSource {
     

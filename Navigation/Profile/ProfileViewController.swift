@@ -115,7 +115,7 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        UITableView.automaticDimension // автоматическая высока в зависимости от контента
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -168,6 +168,7 @@ extension ProfileViewController: UITableViewDataSource {
 // MARK: - PhotosGalleryDelegate
 
 extension ProfileViewController: PhotosGalleryDelegate {
+    
     func openGallery() {
         print(#function)
         let galleryVC = PhotosViewController()
