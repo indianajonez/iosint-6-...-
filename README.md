@@ -29,7 +29,7 @@
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/4%2015.35.27.png" width="200"/>
 
-### RunLoop высвечивается через 5 секунд после входа в аккаунт пользователя
+### 
 
 <img src="https://github.com/indianajonez/iosint-6-...-/blob/dev/iosadv/6/3%2015.35.27.png" width="200"/>
 
